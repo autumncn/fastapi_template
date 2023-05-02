@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from pathlib import Path
 
 class Settings:
-    PROJECT_NAME: str = "demo_fastapi"
+    PROJECT_NAME: str = "fastapi_template"
     PROJECT_VERSION: str = "1.0.0"
 
     BASE_DIR = os.path.abspath(os.path.dirname(__file__))
