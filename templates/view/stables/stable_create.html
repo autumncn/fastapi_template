@@ -1,0 +1,105 @@
+{% extends "shared/base.html" %}
+
+{% block link %}
+{% endblock %}
+
+{% block title %}
+    <title>{{ _('title_stable_diffusion') }}</title>
+{% endblock %}
+
+{% block main %}
+<header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+    <div class="container-xl px-4">
+        <div class="page-header-content">
+            <div class="row align-items-center justify-content-between pt-3">
+                <div class="col-auto mb-3">
+                    <h1 class="page-header-title">
+                        <div class="page-header-icon"><i data-feather="cloud"></i></div>
+                        {{ _('title_stable_diffusion') }}
+                    </h1>
+                </div>
+                <div class="col-12 col-xl-auto mb-3">
+                    <a class="btn btn-sm btn-light text-primary" href="javascript:history.back();">
+                        <i class="me-1" data-feather="arrow-left"></i>
+                        {{ _('back') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main page content-->
+<div class="container-fluid px-4">
+    <div class="row">
+        <div class="col-xl-6">
+            <!-- Account details card-->
+            <div class="card mb-4">
+                <div class="card-header">
+                </div>
+                <div class="card-body">
+                    <form action="/stables/create" enctype="multipart/form-data" method="POST" style="needs-validation" >
+                        <!-- Form Row-->
+                        <!-- Form Group (email address)-->
+                        <div class="mb-3">
+                            <label class="small mb-1" for="prompt">{{ _('prompt') }}</label>
+                            <textarea class="form-control" name="prompt" id="prompt"
+                                   placeholder="" required >dvArchModern, 85mm, f1.8, photo realistic, hyperrealistic, super detailed, intricate, dramatic, high dynamic range</textarea>
+                            <div class="invalid-feedback">
+                                {{ _('please_give_prompt_key_words') }}
+                            </div>
+                        </div>
+                        <!-- Form Group (Roles)-->
+                        <div class="mb-3">
+                            <label class="small mb-1">{{ _('image_reference') }}</label>
+                            <input class="form-control" name="image_file" id="image_file" type="file" accept="image/*"
+                                                   onchange="previewImage(event)" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="small mb-1">{{ _('performance') }}</label>
+                            <input class="form-control" name="steps" id="steps" placeholder="Recommended setting: 25" value="25" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="small mb-1">{{ _('ai_level') }}</label>
+                            <input class="form-control" name="ai_level" id="ai_level" placeholder="Recommended setting: 11.5" value="11.5"  required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="small mb-1">{{ _('controlnet_mode') }}</label>
+                                <div class="col-sm form-check"><input class="form-check-input" type="radio" name="cn_mode" value="mlsd"
+                                                      checked><label class="form-check-label">{{ _('mlsd') }}</label></div>
+                                <div class="col-sm form-check"><input class="form-check-input" type="radio" name="cn_mode"
+                                                      value="canny"><label class="form-check-label">{{ _('canny') }}</label></div>
+                                <div class="col-sm form-check"><input class="form-check-input" type="radio" name="cn_mode"
+                                                      value="depth"><label class="form-check-label">{{ _('depth') }}</label></div>
+                        </div>
+                        <!-- Submit button-->
+                        <button class="btn btn-primary" type="submit">{{ _('submit') }}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="row" style="padding-left: 25px; ">
+                <div class="col-md-6">
+                    <img style="padding: 10px; padding-top: 30px; display:none" id="preview" src="" alt="{{ _('preview') }}" width="512">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+function previewImage(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+        var preview = document.getElementById('preview');
+        preview.src = reader.result;
+        preview.style.display = "block";
+};
+    reader.readAsDataURL(event.target.files[0]);
+}
+</script>
+{% endblock %}
+

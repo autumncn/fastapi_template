@@ -1,0 +1,84 @@
+{% extends "shared/base.html" %}
+
+{% block link %}
+{% endblock %}
+
+{% block title %}
+    <title>{{ _('title_stable_diffusion') }}</title>
+{% endblock %}
+
+{% block main %}
+<header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+    <div class="container-fluid px-4">
+        <div class="page-header-content">
+            <div class="row align-items-center justify-content-between pt-3">
+                <div class="col-auto mb-3">
+                    <h1 class="page-header-title">
+                        <div class="page-header-icon"><i data-feather="cloud"></i></div>
+                        {{ _('title_stable_diffusion') }}
+                    </h1>
+                </div>
+                <div class="col-12 col-xl-auto mb-3">
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main page content-->
+<div class="container-fluid px-4">
+    <div class="card mb-4">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <button class="btn btn-primary" type="button" onclick="location.href='/stables/create'">
+                    <i class="icon-on-right"></i>{{ _('create') }}
+                </button>
+                <button class="btn btn-primary" type="button" onclick="location.href='/stables/tasks'">
+                    <i class="icon-on-right"></i>{{ _('tasks') }}
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="row g-3" style="padding:25px; padding-bottom: 10px;">
+                    <h1>{{ _('stable_diffusion_history') }}</h1>
+                </div>
+                <div class="card-list-container" style="height: 600px; overflow-x: auto; white-space: nowrap;">
+
+                    {% for img in img_list %}
+                      <div class="card" style="display: inline-block; width: 300px; margin-right: 10px;">
+                          <a data-bs-toggle="modal" data-bs-target="#modal" onclick="showModal('{{ img.uri }}', '{{ img.prompt }}', '{{ img.content_new }}')" href="#" >
+                              <img src="data:image/png;base64,{{ img.content_new }}" class="card-img-top" alt="#" style="max-height:160px">
+                          </a>
+                          <div class="card-body">
+                          <h5 class="card-title" style="white-space: break-spaces;">{{ img.seed }}:</h5>
+                          <h5 class="card-title" style="white-space: break-spaces;">{{ img.uri }}</h5>
+                          <p class="card-text" style="white-space: break-spaces;">{{ img.prompt }}</p>
+                        </div>
+                      </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function showModal(title, description, image) {
+    // 获取modal和数据元素
+    var modal = document.getElementById('modal');
+    var titleElement = document.getElementById('modal_title');
+    var descriptionElement = document.getElementById('modal_body');
+    var modal_body_html = document.getElementById("modal_insert").innerHTML;
+    var modal_dialog = document.getElementById('modal_dialog');
+
+    modal_dialog.classList.add('modal-lg');
+    // 填充数据
+    titleElement.textContent = title;
+    descriptionElement.textContent = description;
+    image_html = "<img style='padding:10px;  width:-webkit-fill-available;'  src='data:image/png;base64," + image + "' height='512'>";
+    document.getElementById("modal_insert").innerHTML = image_html;
+}
+</script>
+{% endblock %}
+

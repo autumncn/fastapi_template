@@ -1,0 +1,74 @@
+{% extends "shared/base.html" %}
+
+{% block link %}
+{% endblock %}
+
+{% block title %}
+    <title>{{ _('title_user_login_log') }}</title>
+{% endblock %}
+
+{% block main %}
+<header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+    <div class="container-fluid px-4">
+        <div class="page-header-content">
+            <div class="row align-items-center justify-content-between pt-3">
+                <div class="col-auto mb-3">
+                    <h1 class="page-header-title">
+                        <div class="page-header-icon"><i data-feather="book"></i></div>
+                        {{ _('title_user_login_log') }}
+                    </h1>
+                </div>
+                <div class="col-12 col-xl-auto mb-3">
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main page content-->
+<div class="container-fluid px-4">
+    <div class="card mb-4">
+        <div class="card-header">
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple" class="table table-hover table-borderless align-middle datatable-table">
+                <thead>
+                    <tr>
+                        <th>{{ _('id') }}</th>
+                        <th>{{ _('user') }}</th>
+                        <th>{{ _('ip') }}</th>
+                        <th>{{ _('country_code') }}</th>
+                        <th>{{ _('ua') }}</th>
+                        <th>{{ _('login_time') }}</th>
+                        <th>{{ _('action') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        {% for userLoginLog in userLoginLog_list %}
+                    <tr>
+                        <td>{{ userLoginLog.id }}</td>
+                        <td>{{ userLoginLog.user_email }}</td>
+                        <td>{{ userLoginLog.ip }}</td>
+                        <td>{{ userLoginLog.country_code }}</td>
+                        <td>{{ userLoginLog.ua }}</td>
+                        <td>{{ userLoginLog.login_time }}</td>
+                        <td>
+                            <form action="/access/{{ userLoginLog.id }}/view" method="GET" style="display: inline-block;">
+                                <input type="submit" class="btn btn-primary btn-sm" value="{{ _('view') }}">
+                            </form>
+                            <form action="/access/{{ userLoginLog.id }}/delete" method="POST" style="display: inline-block;">
+                                <input type="submit" class="btn btn-danger btn-sm" value="{{ _('delete') }}">
+                            </form>
+                        </td>
+                    </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}
+

@@ -1,0 +1,115 @@
+{% extends "shared/base.html" %}
+
+{% block link %}
+{% endblock %}
+
+{% block title %}
+    <title>{{ _('registration_page') }}</title>
+{% endblock %}
+
+{% block body_class %}class="bg-primary"{% endblock %}
+
+{% block body %}
+<div id="layoutAuthentication">
+    <div id="layoutAuthentication_content">
+        <main>
+            <div class="container-xl px-4">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                        <!-- Basic registration form-->
+                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            <div class="card-header p-5 text-center">
+                                <div class="brand-logo">
+                                    <img class="mb-4" src="{{ url_for('static', path='images/logo_dark_big.png') }}" alt="" width="80">
+                                </div>
+                                <h3 class="fw-light my-4">{{ _('create_an_account') }}</h3>
+                            </div>
+
+                            <div class="card-body">
+                                <!-- Registration form-->
+                                <form action="/register" enctype="application/x-www-form-urlencoded" method="POST" style="needs-validation">
+                                    <!-- Form Row-->
+                                    <div class="row gx-3">
+                                        <div class="col-md-6">
+                                            <!-- Form Group (first name)-->
+                                            <div class="mb-3">
+                                                <label class="small mb-1" for="inputFirstName">{{ _('first_name') }}</label>
+                                                <input class="form-control" id="inputFirstName" type="text" placeholder="{{ _('enter_first_name') }}" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!-- Form Group (last name)-->
+                                            <div class="mb-3">
+                                                <label class="small mb-1" for="inputLastName">{{ _('last_name') }}</label>
+                                                <input class="form-control" id="inputLastName" type="text" placeholder="{{ _('enter_last_name') }}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Form Group (email address)            -->
+                                    <div class="mb-3">
+                                        <label class="small mb-1" for="email">{{ _('email') }}</label>
+                                        <input class="form-control" id="email" name="email" type="email" aria-describedby="emailHelp" placeholder="{{ _('enter_email_address') }}" required autofocus/>
+                                        <div class="invalid-feedback">
+                                            {{ _('please_type_your_login_email') }}
+                                        </div>
+                                    </div>
+                                    <!-- Form Row    -->
+                                    <div class="row gx-3">
+                                        <div class="col-md-6">
+                                            <!-- Form Group (password)-->
+                                            <div class="mb-3">
+                                                <label class="small mb-1" for="password">{{ _('password') }}</label>
+                                                <input class="form-control" id="password" name="password" type="password" placeholder="{{ _('enter_password') }}" required/>
+                                                <div class="invalid-feedback">
+                                                    {{ _('please_type_your_password') }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!-- Form Group (confirm password)-->
+                                            <div class="mb-3">
+                                                <label class="small mb-1" for="re_password">{{ _('re_password') }}</label>
+                                                <input class="form-control" type="password" id="re_password" name="re_password" placeholder="{{ _('re_enter_password') }}" required/>
+                                                <div class="invalid-feedback">
+                                                    {{ _('please_type_your_password') }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Form Group (create account submit)-->
+                                    <button type="submit" class="btn btn-primary btn-block" style="width:120px">{{ _('register') }}</button>
+                                </form>
+                            </div>
+                            <div class="card-footer text-center">
+                                <div class="small"><a href="/login">{{ _('already_have_an_account_login') }}</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div id="layoutAuthentication_footer">
+        <footer class="footer-admin mt-auto footer-dark">
+            <div class="container-xl px-4">
+                <div class="row">
+                    <div class="col-md-6 small">Copyright © 2023 Cloudtim. All Rights Reserved.</div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+
+<script>
+let email = Cookies.get("login");
+if (email !== "") {
+    $('input[name="email"]').val(email);
+}
+</script>
+{% endblock %}

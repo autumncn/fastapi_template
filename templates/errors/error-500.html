@@ -1,0 +1,69 @@
+{% extends "shared/base.html" %}
+
+
+{% block baselink %}
+<link href="../../static/starbootstrap/css/styles.css" rel="stylesheet">
+<link href="../../static/images/favicon.png" rel="icon" type="image/x-icon">
+<script src="../../static/fontawesome/js/all.min.js" defer></script>
+{% endblock %}
+
+{% block link %}
+{% endblock %}
+
+{% block title %}
+<title>{{ _('500_error_cloudtim') }}</title>
+{% endblock %}
+
+{% block body_class %}class="bg-white"{% endblock %}
+
+{% block body %}
+<div class="bg-light min-vh-100 d-flex flex-row align-items-center dark:bg-transparent">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="clearfix">
+                    <h1 class="float-start display-3 me-4">500</h1>
+                    <h4 class="pt-3">{{ _('oops_you_are_lost') }}</h4>
+                    <!--Your client does not have permission to get this page from the server.-->
+                    <p class="text-medium-emphasis">
+                        {% if "error_code_msg" in request.session %}{{ request.session.pop("error_code_msg") }}
+                        {% else %}{{ _('500_error_message') }}
+                        {% endif %}
+                    </p>
+                    <br>
+                    <hr>
+                    <br>
+                    <div class="row gx-3 mb-3">
+                        <div class="col-md-6">
+                            <a class="text-arrow-icon" href="/dashboard">
+                                <i class="ms-0 me-1" data-feather="home"></i>
+                                {{ _('return_to_dashboard') }}
+                            </a>
+
+                        </div>
+                    </div>
+                    <div class="row gx-3 mb-3">
+                        <div class="col-md-6">
+                            <a class="text-arrow-icon" href="javascript:history.back();">
+                                <i class="ms-0 me-1" data-feather="arrow-left"></i>
+                                {{ _('back') }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block basescripts %}
+<script src="../../static/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../static/starbootstrap/js/scripts.js"></script>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
+
+

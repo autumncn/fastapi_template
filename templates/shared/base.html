@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- plugins:css -->
+
+    {% block baselink %}
+    <link href="{{ url_for('static', path='starbootstrap/css/styles.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', path='images/favicon.png') }}" rel="icon" type="image/x-icon" >
+    <script src="{{ url_for('static', path='fontawesome/js/all.min.js') }}" defer></script>
+    {% endblock %}
+
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
+
+    {% block link %}
+    {% endblock %}
+
+    {% block title %}
+    {% endblock %}
+</head>
+
+<!-- Alert -->
+{% include "components/alert.html" %}
+
+<body {% block body_class %}class="nav-fixed"{% endblock %}>
+
+<!-- Modal-->
+{% block modal %}{% include "components/modal.html" %}{% endblock %}
+
+{% block body %}
+{% block topbar %}{% include "components/topbar.html" %}{% endblock %}
+
+<div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+          {% block sidebar %}{% include "components/sidebar.html" %}{% endblock %}
+    </div>
+    <div id="layoutSidenav_content">
+        <main>
+          {% block main %}{% endblock %}
+        </main>
+
+        {% block footer %}{% include "components/footer.html" %}{% endblock %}
+
+    </div>
+
+</div>
+
+<!--    &lt;!&ndash; Scroll to Top Button&ndash;&gt;-->
+<!--    <a class="scroll-to-top rounded" href="#page-top">-->
+<!--        <i class="fas fa-angle-up"></i>-->
+<!--    </a>-->
+
+{% endblock %}
+
+    <!-- plugins:js -->
+     {% block basescripts %}
+    <script src="{{ url_for('static', path='bootstrap/js/bootstrap.bundle.min.js') }}" defer></script>
+    <script src="{{ url_for('static', path='starbootstrap/js/scripts.js') }}" defer></script>
+    <script src="{{ url_for('static', path='starbootstrap/js/datatables/datatables-simple-demo.js') }}" defer></script>
+    <script src="{{ url_for('static', path='starbootstrap/js/litepicker.js') }}" defer></script>
+    {% endblock %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    {% block scripts %}
+    {% endblock %}
+
+</body>
+
+</html>

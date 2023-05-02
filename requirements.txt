@@ -1,0 +1,41 @@
+fastapi
+uvicorn
+
+#for template
+jinja2
+
+#for static files
+aiofiles
+
+#for database   #new
+sqlalchemy
+#psycopg2
+
+#for loading environment variables  #new
+#python-dotenv
+
+#for email validation            #new
+pydantic[email]
+email_validator
+
+#hashing              #new
+passlib[bcrypt]
+
+#for creating jwt tokens
+python-jose
+
+#for  cleaning up codebase on each commit
+pre-commit
+
+#for accessing form data       #new
+python-multipart
+
+rich
+anyio
+httpx
+aioredis
+pycryptodome
+captcha
+
+click
+fastapi_babel

@@ -1,0 +1,1267 @@
+# Chinese translations for PROJECT.
+# Copyright (C) 2023 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2023-05-02 17:40+0800\n"
+"PO-Revision-Date: 2023-04-11 11:28+0800\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh\n"
+"Language-Team: zh <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.12.1\n"
+
+#: apis/common/dictionary.py:43
+msgid "dictionary_already_exists"
+msgstr "字典已存在"
+
+#: apis/common/dictionary.py:53 apis/common/dictionary.py:98
+#: apis/common/items.py:62 apis/common/menus.py:72 apis/common/menus.py:135
+#: apis/common/nodes.py:60 apis/common/nodes.py:185
+#: apis/common/permissions.py:65 apis/common/permissions.py:156
+#: apis/common/stables.py:128 apis/common/stables.py:167
+#: apis/common/tasks.py:72 apis/common/tools.py:93 apis/common/tools.py:156
+#: apis/common/users.py:74 apis/common/users.py:151
+msgid "success_saved"
+msgstr "保存成功"
+
+#: apis/common/dictionary.py:62 apis/common/dictionary.py:72
+#: apis/common/dictionary.py:87
+msgid "dictionary_not_found"
+msgstr "无法找到字典"
+
+#: apis/common/dictionary.py:106 apis/common/menus.py:143
+#: apis/common/nodes.py:191 apis/common/permissions.py:174
+#: apis/common/stables.py:136 apis/common/stables.py:176
+#: apis/common/tasks.py:79 apis/common/tools.py:164
+#: apis/common/userLoginLogs.py:62 apis/common/users.py:159
+msgid "success_deleted"
+msgstr "删除成功"
+
+#: apis/common/items.py:42
+msgid "item_not_found"
+msgstr "无法找到项目"
+
+#: apis/common/login.py:76
+msgid "incorrect_username_or_password"
+msgstr "用户名或者密码错误"
+
+#: apis/common/login.py:87
+msgid "user_is_not_exist"
+msgstr "用户不存在"
+
+#: apis/common/login.py:209
+msgid "register_is_not_allowed"
+msgstr "目前注册功能已关闭"
+
+#: apis/common/menus.py:53 apis/common/tools.py:74
+msgid "menu_already_exists"
+msgstr "菜单已存在"
+
+#: apis/common/menus.py:81 apis/common/menus.py:91 apis/common/menus.py:115
+#: apis/common/tools.py:102 apis/common/tools.py:112 apis/common/tools.py:136
+msgid "menu_not_found"
+msgstr "无法找到菜单"
+
+#: apis/common/nodes.py:50
+msgid "node_already_added"
+msgstr "节点已经存在."
+
+#: apis/common/nodes.py:70 apis/common/nodes.py:82 apis/common/nodes.py:150
+#: apis/common/nodes.py:165
+msgid "node_not_found"
+msgstr "节点无法找到."
+
+#: apis/common/nodes.py:110 apis/common/nodes.py:142
+msgid "updated_saved"
+msgstr "更新成功"
+
+#: apis/common/nodes.py:172
+msgid "duplicated_node_name_found"
+msgstr "重复节点名称"
+
+#: apis/common/permissions.py:52
+msgid "permission_already_exists"
+msgstr "权限已存在"
+
+#: apis/common/permissions.py:83 apis/common/permissions.py:101
+#: apis/common/permissions.py:143
+msgid "permission_not_found"
+msgstr "权限无法找到"
+
+#: apis/common/stables.py:109
+msgid "no_sufficient_nodes"
+msgstr "没有找到足够的可用节点"
+
+#: apis/common/stables.py:144 apis/common/stables.py:221
+msgid "image_not_found"
+msgstr "无法找到图片"
+
+#: apis/common/tasks.py:35 apis/common/tasks.py:46 apis/common/tasks.py:61
+msgid "task_not_found"
+msgstr "无法找到任务"
+
+#: apis/common/tools.py:42
+msgid "incorrect_ip_format"
+msgstr "IP格式错误"
+
+#: apis/common/userLoginLogs.py:45
+msgid "userLoginLog_not_found"
+msgstr "用户登录日志无法找到"
+
+#: apis/common/users.py:53
+msgid "email_already_registered"
+msgstr "E-mail已经被注册过"
+
+#: apis/common/users.py:84 apis/common/users.py:100 apis/common/users.py:124
+msgid "user_not_found"
+msgstr "用户无法找到"
+
+#: core/i18n.py:24 register/middleware.py:106 register/middleware.py:150
+#: register/middleware.py:156 register/middleware.py:163
+msgid "token_expired_please_relogin_401"
+msgstr "Token过期 ，请重新登录(401)"
+
+#: core/i18n.py:31
+msgid "return_home"
+msgstr "返回主页"
+
+#: register/exception.py:80
+msgid "update_data_conflict"
+msgstr "更新数据冲突"
+
+#: register/exception.py:88
+msgid "request_parameter_missing"
+msgstr "请求参数缺失"
+
+#: register/middleware.py:65
+msgid "redis_connect_error"
+msgstr "Redis连接失败"
+
+#: register/middleware.py:70
+msgid "database_connect_error"
+msgstr "数据库连接失败"
+
+#: register/middleware.py:95
+msgid "not_auth_please_login_401"
+msgstr "Token过期 ，请重新登录(401)"
+
+#: register/middleware.py:171
+msgid "menu_is_not_accessible_403"
+msgstr "菜单无法访问"
+
+#: templates/components/alert.html:3
+msgid "alert_error"
+msgstr "错误"
+
+#: templates/components/alert.html:6 templates/components/alert.html:16
+#: templates/components/modal.html:7 templates/components/modal.html:16
+#: templates/components/modal.html:30 templates/view/profile.html:87
+msgid "close"
+msgstr "关闭"
+
+#: templates/components/alert.html:13
+msgid "alert_notice"
+msgstr "提示"
+
+#: templates/components/modal.html:29
+msgid "ready_to_leave"
+msgstr "确定要退出吗?"
+
+#: templates/components/modal.html:32
+msgid "log_out_explain"
+msgstr "如果你准备结束当前会话，请选择下面的 退出。"
+
+#: templates/components/modal.html:34
+msgid "cancel"
+msgstr "取消"
+
+#: templates/components/modal.html:36 templates/components/topbar.html:39
+msgid "log_out"
+msgstr "退出"
+
+#: templates/components/sidebar.html:53
+msgid "login_as"
+msgstr "登陆信息"
+
+#: templates/components/sidebar.html:59 templates/components/sidebar.html:64
+#: templates/components/sidebar.html:65 templates/components/sidebar.html:66
+#: templates/components/sidebar.html:67 templates/components/sidebar.html:68
+msgid "system"
+msgstr "系统"
+
+#: templates/components/sidebar.html:59 templates/components/sidebar.html:62
+#: templates/components/sidebar.html:64 templates/components/sidebar.html:65
+#: templates/components/sidebar.html:66 templates/components/sidebar.html:67
+#: templates/components/sidebar.html:68
+#: templates/view/dictionary/dictionary.html:32
+#: templates/view/items/items.html:32 templates/view/menus/menus.html:32
+#: templates/view/nodes/nodes.html:32
+#: templates/view/permissions/permissions.html:32
+#: templates/view/stables/stables.html:33 templates/view/users/users.html:32
+msgid "create"
+msgstr "创建"
+
+#: templates/components/sidebar.html:59
+#: templates/view/permissions/permission_create.html:60
+#: templates/view/permissions/permission_edit.html:72
+#: templates/view/permissions/permission_view.html:59
+#: templates/view/permissions/permissions.html:43
+msgid "menus"
+msgstr "菜单"
+
+#: templates/components/sidebar.html:59
+msgid "configuration"
+msgstr "配置"
+
+#: templates/components/sidebar.html:59
+msgid "permisions"
+msgstr "权限"
+
+#: templates/components/sidebar.html:59
+msgid "utilities"
+msgstr "附加功能"
+
+#: templates/components/sidebar.html:60
+msgid "tools"
+msgstr "工具"
+
+#: templates/components/sidebar.html:60
+msgid "stable_diffusion"
+msgstr "Stable Diffusion"
+
+#: templates/components/sidebar.html:60 templates/view/stables/stables.html:36
+msgid "tasks"
+msgstr "任务"
+
+#: templates/components/sidebar.html:60
+msgid "items"
+msgstr "项目"
+
+#: templates/components/sidebar.html:60
+#: templates/view/permissions/permission_create.html:52
+#: templates/view/permissions/permission_edit.html:60
+#: templates/view/permissions/permission_view.html:51
+#: templates/view/permissions/permissions.html:42
+msgid "users"
+msgstr "用户"
+
+#: templates/components/sidebar.html:60
+msgid "nodes"
+msgstr "节点"
+
+#: templates/components/sidebar.html:61
+msgid "applications"
+msgstr "应用管理"
+
+#: templates/components/sidebar.html:61
+msgid "home"
+msgstr "主页"
+
+#: templates/components/sidebar.html:61
+msgid "dashboard"
+msgstr "仪表盘"
+
+#: templates/components/sidebar.html:61
+msgid "core"
+msgstr "核心"
+
+#: templates/components/sidebar.html:61
+msgid "dictionary"
+msgstr "字典"
+
+#: templates/components/sidebar.html:61
+msgid "ai_design"
+msgstr "AI智能设计"
+
+#: templates/components/sidebar.html:62
+msgid "management"
+msgstr "管理"
+
+#: templates/components/sidebar.html:62
+msgid "custom"
+msgstr "自定义"
+
+#: templates/components/sidebar.html:62
+msgid "administrative"
+msgstr "后台管理"
+
+#: templates/components/sidebar.html:62
+msgid "user_login_log"
+msgstr "用户登录日志"
+
+#: templates/components/sidebar.html:62
+msgid "tool_ip"
+msgstr "IP工具"
+
+#: templates/components/topbar.html:12
+msgid "cloudtim"
+msgstr "Cloudtim"
+
+#: templates/components/topbar.html:35
+msgid "profile"
+msgstr "简介"
+
+#: templates/errors/error-400.html:14
+msgid "400_error_cloudtim"
+msgstr "400错误 - Cloudtim"
+
+#: templates/errors/error-400.html:26 templates/errors/error-401.html:26
+#: templates/errors/error-403.html:26 templates/errors/error-404.html:26
+#: templates/errors/error-422.html:26 templates/errors/error-500.html:26
+#: templates/errors/error-502.html:26 templates/errors/error-503.html:26
+#: templates/errors/error-504.html:26
+msgid "oops_you_are_lost"
+msgstr "哎呀！您所访问的资源无法打开"
+
+#: templates/errors/error-400.html:30
+msgid "400_error_message"
+msgstr "请求报文存在语法错误，服务器无法处理该请求。"
+
+#: templates/errors/error-400.html:38 templates/errors/error-401.html:38
+#: templates/errors/error-403.html:38 templates/errors/error-404.html:38
+#: templates/errors/error-422.html:38 templates/errors/error-500.html:40
+#: templates/errors/error-502.html:38 templates/errors/error-503.html:40
+#: templates/errors/error-504.html:40
+msgid "return_to_dashboard"
+msgstr "返回到主页"
+
+#: templates/errors/error-400.html:47 templates/errors/error-401.html:47
+#: templates/errors/error-403.html:47 templates/errors/error-404.html:47
+#: templates/errors/error-422.html:47 templates/errors/error-500.html:49
+#: templates/errors/error-502.html:47 templates/errors/error-503.html:49
+#: templates/errors/error-504.html:49
+#: templates/view/dictionary/dictionary_create.html:24
+#: templates/view/dictionary/dictionary_edit.html:24
+#: templates/view/dictionary/dictionary_view.html:24
+#: templates/view/items/item_view.html:24
+#: templates/view/menus/menu_create.html:24
+#: templates/view/menus/menu_edit.html:24
+#: templates/view/menus/menu_view.html:24
+#: templates/view/nodes/node_create.html:24
+#: templates/view/nodes/node_edit.html:24
+#: templates/view/nodes/node_view.html:24
+#: templates/view/permissions/permission_create.html:25
+#: templates/view/permissions/permission_edit.html:25
+#: templates/view/permissions/permission_view.html:24
+#: templates/view/profile.html:24 templates/view/stables/stable_create.html:24
+#: templates/view/stables/stable_edit.html:24
+#: templates/view/stables/stable_tasks.html:24
+#: templates/view/tasks/task_edit.html:24
+#: templates/view/tasks/task_view.html:24
+#: templates/view/userLoginLogs/userLoginLog_view.html:24
+#: templates/view/users/user_create.html:24
+#: templates/view/users/user_edit.html:24
+#: templates/view/users/user_view.html:24
+msgid "back"
+msgstr "返回"
+
+#: templates/errors/error-401.html:14
+msgid "401_error_cloudtim"
+msgstr "401错误 - Cloudtim"
+
+#: templates/errors/error-401.html:30
+msgid "401_error_message"
+msgstr "请求未经授权，访问此资源被拒绝。"
+
+#: templates/errors/error-403.html:14
+msgid "403_error_cloudtim"
+msgstr "403错误 - Cloudtim"
+
+#: templates/errors/error-403.html:30
+msgid "403_error_message"
+msgstr "请求被拒绝访问，服务器理解请求，但拒绝提供服务。"
+
+#: templates/errors/error-404.html:14
+msgid "404_error_cloudtim"
+msgstr "404错误 - Cloudtim"
+
+#: templates/errors/error-404.html:30
+msgid "404_error_message"
+msgstr "请求的资源不存在"
+
+#: templates/errors/error-422.html:14
+msgid "422_error_cloudtim"
+msgstr "422错误 - Cloudtim"
+
+#: templates/errors/error-422.html:30
+msgid "422_error_message"
+msgstr "提交的数据无法处理或验证，因为包含错误或不完整的信息。"
+
+#: templates/errors/error-500.html:14
+msgid "500_error_cloudtim"
+msgstr "500错误 - Cloudtim"
+
+#: templates/errors/error-500.html:30
+msgid "500_error_message"
+msgstr "服务器内部错误，无法完成请求。"
+
+#: templates/errors/error-502.html:14
+msgid "502_error_cloudtim"
+msgstr "502错误 - Cloudtim"
+
+#: templates/errors/error-502.html:30
+msgid "502_error_message"
+msgstr "请求的服务器从另一个服务器接收到了一个无效的响应。"
+
+#: templates/errors/error-503.html:14
+msgid "503_error_cloudtim"
+msgstr "503错误 - Cloudtim"
+
+#: templates/errors/error-503.html:30
+msgid "503_error_message"
+msgstr "请求未完成，服务器当前无法处理请求，一段时间后可能恢复正常。"
+
+#: templates/errors/error-504.html:14
+msgid "504_error_cloudtim"
+msgstr "504错误 - Cloudtim"
+
+#: templates/errors/error-504.html:30
+msgid "504_error_message"
+msgstr "服务器遇到了临时错误，无法完成您的请求。"
+
+#: templates/general_pages/homepage.html:7
+#: templates/general_pages/homepage.html:18
+msgid "title_home"
+msgstr "首页"
+
+#: templates/general_pages/homepage.html:35
+msgid "home_page_display_text"
+msgstr ""
+"欢迎来到我们的网站首页! 我们很高兴能够为您提供一个有趣、有用、丰富的在线体验。我们的网站是一个多功能平台，为您提供各种有价值的资源和服务。 "
+"我们的使命是为您提供最好的在线体验，以及最好的产品和服务。我们希望您在我们的网站上找到您所需要的一切，并享受到最好的服务。我们的网站是为了让您更轻松地获取信息、学习知识、与他人交流、购买产品和服务。"
+" "
+"我们的团队由一群经验丰富、充满创意的专业人员组成，致力于为您提供最好的产品和服务。我们的网站拥有最新的技术和最好的设计，以确保您的在线体验是快速、流畅、愉悦的。"
+" "
+"我们的网站提供了各种功能和服务，例如新闻、博客、社交媒体、商店等。我们还提供在线学习资源、技能培训、职业发展指导等服务，以满足您的不同需求。我们的目标是为您提供一站式的在线平台，使您的生活更加便利、丰富、有趣。"
+" 我们非常感谢您的访问和支持。如果您有任何问题、建议或反馈，请随时联系我们，我们将竭诚为您服务。谢谢!"
+
+#: templates/view/forget_password.html:7
+msgid "forget_password_page"
+msgstr "忘记密码"
+
+#: templates/view/forget_password.html:25
+msgid "recover_password"
+msgstr "恢复密码"
+
+#: templates/view/forget_password.html:28
+msgid "reset_password_msg"
+msgstr "我们明白，忘记密码这种事情时而发生了。只要在下面输入你的电子邮件地址，我们就会给你发送一个链接，以重新设置你的密码!"
+
+#: templates/view/forget_password.html:33 templates/view/login.html:37
+#: templates/view/profile.html:45 templates/view/registration.html:50
+#: templates/view/users/user_create.html:44
+#: templates/view/users/user_edit.html:64
+#: templates/view/users/user_view.html:51 templates/view/users/users.html:40
+msgid "email"
+msgstr "电子邮箱"
+
+#: templates/view/forget_password.html:34 templates/view/login.html:38
+msgid "enter_email"
+msgstr "输入邮件"
+
+#: templates/view/forget_password.html:38
+msgid "return_to_login"
+msgstr "返回登录页面"
+
+#: templates/view/forget_password.html:39
+msgid "reset_password"
+msgstr "重置密码"
+
+#: templates/view/forget_password.html:44 templates/view/login.html:66
+msgid "need_an_account_sign_up"
+msgstr "需要一个账户？立即注册!"
+
+#: templates/view/login.html:7
+msgid "login_page"
+msgstr "登陆页面"
+
+#: templates/view/login.html:25
+msgid "hello_let_get_started"
+msgstr "您好，让我们从这里开始..."
+
+#: templates/view/login.html:28
+msgid "sign_in_to_continue"
+msgstr "继续"
+
+#: templates/view/login.html:40 templates/view/registration.html:53
+msgid "please_type_your_login_email"
+msgstr "请输入您的登录邮箱"
+
+#: templates/view/login.html:45 templates/view/registration.html:61
+msgid "password"
+msgstr "密码"
+
+#: templates/view/login.html:46 templates/view/registration.html:62
+msgid "enter_password"
+msgstr "输入密码"
+
+#: templates/view/login.html:48 templates/view/registration.html:64
+#: templates/view/registration.html:74
+msgid "please_type_your_password"
+msgstr "请输入您的密码"
+
+#: templates/view/login.html:55
+msgid "remember_me"
+msgstr "记住我"
+
+#: templates/view/login.html:60
+msgid "forget_password"
+msgstr "忘记密码了?"
+
+#: templates/view/login.html:61
+msgid "log_in"
+msgstr "登陆"
+
+#: templates/view/login.html:81
+msgid "privacy_policy"
+msgstr "隐私政策"
+
+#: templates/view/login.html:83
+msgid "terms_conditions"
+msgstr "条款和条件"
+
+#: templates/view/profile.html:7 templates/view/profile.html:18
+msgid "title_profile"
+msgstr "简介"
+
+#: templates/view/dictionary/dictionary.html:39
+#: templates/view/dictionary/dictionary_edit.html:38
+#: templates/view/dictionary/dictionary_edit.html:46
+#: templates/view/dictionary/dictionary_view.html:39
+#: templates/view/items/item_view.html:40
+#: templates/view/menus/menu_edit.html:38
+#: templates/view/menus/menu_edit.html:46
+#: templates/view/menus/menu_view.html:39 templates/view/menus/menus.html:39
+#: templates/view/nodes/node_edit.html:38
+#: templates/view/nodes/node_edit.html:46
+#: templates/view/nodes/node_view.html:40 templates/view/nodes/nodes.html:42
+#: templates/view/permissions/permission_edit.html:39
+#: templates/view/permissions/permission_edit.html:47
+#: templates/view/permissions/permission_view.html:39
+#: templates/view/permissions/permissions.html:39
+#: templates/view/profile.html:40 templates/view/stables/stable_edit.html:38
+#: templates/view/stables/stable_edit.html:46
+#: templates/view/tasks/task_edit.html:38
+#: templates/view/tasks/task_edit.html:46
+#: templates/view/tasks/task_view.html:40 templates/view/tasks/tasks.html:35
+#: templates/view/userLoginLogs/userLoginLog_view.html:39
+#: templates/view/userLoginLogs/userLoginLogs.html:36
+#: templates/view/users/user_edit.html:38
+#: templates/view/users/user_edit.html:46
+#: templates/view/users/user_view.html:39 templates/view/users/users.html:39
+msgid "id"
+msgstr "序号"
+
+#: templates/view/menus/menu_create.html:113
+#: templates/view/menus/menu_edit.html:112
+#: templates/view/menus/menu_view.html:87 templates/view/menus/menus.html:51
+#: templates/view/nodes/node_create.html:56
+#: templates/view/nodes/node_edit.html:63
+#: templates/view/nodes/node_view.html:47 templates/view/nodes/nodes.html:45
+#: templates/view/profile.html:50 templates/view/stables/stable_tasks.html:40
+#: templates/view/tasks/task_edit.html:51
+#: templates/view/tasks/task_view.html:44 templates/view/tasks/tasks.html:38
+#: templates/view/users/user_edit.html:70
+#: templates/view/users/user_view.html:55 templates/view/users/users.html:41
+msgid "status"
+msgstr "状态"
+
+#: templates/view/profile.html:55 templates/view/users/user_create.html:61
+#: templates/view/users/user_edit.html:78
+#: templates/view/users/user_view.html:65 templates/view/users/users.html:42
+msgid "user_type"
+msgstr "用户类型"
+
+#: templates/view/profile.html:60 templates/view/profile.html:86
+#: templates/view/users/user_create.html:69
+#: templates/view/users/user_edit.html:88
+#: templates/view/users/user_view.html:82
+msgid "language"
+msgstr "语言"
+
+#: templates/view/dictionary/dictionary.html:58
+#: templates/view/menus/menus.html:76 templates/view/nodes/nodes.html:66
+#: templates/view/permissions/permissions.html:60
+#: templates/view/profile.html:62 templates/view/tasks/tasks.html:60
+#: templates/view/users/users.html:66
+msgid "edit"
+msgstr "编辑"
+
+#: templates/view/profile.html:85
+msgid "change_user_lang"
+msgstr "更改用户语言"
+
+#: templates/view/menus/menu_create.html:86
+#: templates/view/menus/menu_create.html:101
+#: templates/view/menus/menu_create.html:115
+#: templates/view/menus/menu_edit.html:85
+#: templates/view/menus/menu_edit.html:100
+#: templates/view/menus/menu_edit.html:114
+#: templates/view/nodes/node_create.html:49
+#: templates/view/nodes/node_create.html:58
+#: templates/view/nodes/node_edit.html:57
+#: templates/view/nodes/node_edit.html:65 templates/view/profile.html:86
+#: templates/view/tasks/task_edit.html:53
+#: templates/view/users/user_create.html:63
+#: templates/view/users/user_create.html:71
+#: templates/view/users/user_create.html:80
+#: templates/view/users/user_edit.html:72
+#: templates/view/users/user_edit.html:80
+#: templates/view/users/user_edit.html:90
+#: templates/view/users/user_edit.html:98
+msgid "--------"
+msgstr "--------"
+
+#: templates/view/profile.html:86 templates/view/users/user_create.html:72
+#: templates/view/users/user_edit.html:91
+#: templates/view/users/user_view.html:85
+msgid "english"
+msgstr "English"
+
+#: templates/view/profile.html:86 templates/view/users/user_create.html:73
+#: templates/view/users/user_edit.html:92
+#: templates/view/users/user_view.html:87
+msgid "chinese"
+msgstr "中文"
+
+#: templates/view/profile.html:87
+msgid "save"
+msgstr "保存"
+
+#: templates/view/registration.html:7
+msgid "registration_page"
+msgstr "注册页面"
+
+#: templates/view/registration.html:25
+msgid "create_an_account"
+msgstr "创建账户!"
+
+#: templates/view/registration.html:36 templates/view/users/user_create.html:49
+#: templates/view/users/user_edit.html:53
+#: templates/view/users/user_view.html:43
+msgid "first_name"
+msgstr "名字"
+
+#: templates/view/registration.html:37
+msgid "enter_first_name"
+msgstr "输入名字"
+
+#: templates/view/registration.html:43 templates/view/users/user_create.html:54
+#: templates/view/users/user_edit.html:58
+#: templates/view/users/user_view.html:47
+msgid "last_name"
+msgstr "姓名"
+
+#: templates/view/registration.html:44
+msgid "enter_last_name"
+msgstr "输入姓名"
+
+#: templates/view/registration.html:51
+msgid "enter_email_address"
+msgstr "输入电子邮件"
+
+#: templates/view/registration.html:71
+msgid "re_password"
+msgstr "确认密码"
+
+#: templates/view/registration.html:72
+msgid "re_enter_password"
+msgstr "再次输入密码"
+
+#: templates/view/registration.html:80
+msgid "register"
+msgstr "注册"
+
+#: templates/view/registration.html:84
+msgid "already_have_an_account_login"
+msgstr "已经创建了账户，直接登录!"
+
+#: templates/view/dictionary/dictionary.html:7
+#: templates/view/dictionary/dictionary.html:18
+msgid "title_dictionary"
+msgstr "字典"
+
+#: templates/view/dictionary/dictionary.html:40
+#: templates/view/dictionary/dictionary_create.html:44
+#: templates/view/dictionary/dictionary_edit.html:52
+#: templates/view/dictionary/dictionary_view.html:43
+#: templates/view/menus/menu_create.html:44
+#: templates/view/menus/menu_view.html:43 templates/view/menus/menus.html:40
+#: templates/view/nodes/node_create.html:43
+#: templates/view/nodes/node_edit.html:51
+#: templates/view/nodes/node_view.html:44 templates/view/nodes/nodes.html:43
+#: templates/view/permissions/permission_create.html:44
+#: templates/view/permissions/permission_edit.html:52
+#: templates/view/permissions/permission_view.html:43
+#: templates/view/permissions/permissions.html:40
+msgid "name"
+msgstr "名称"
+
+#: templates/view/dictionary/dictionary.html:41
+#: templates/view/dictionary/dictionary_create.html:48
+#: templates/view/dictionary/dictionary_edit.html:56
+#: templates/view/dictionary/dictionary_view.html:47
+msgid "value"
+msgstr "值"
+
+#: templates/view/dictionary/dictionary.html:42
+#: templates/view/dictionary/dictionary_create.html:54
+#: templates/view/dictionary/dictionary_edit.html:62
+#: templates/view/dictionary/dictionary_view.html:51
+#: templates/view/menus/menu_create.html:72
+#: templates/view/menus/menu_edit.html:70
+#: templates/view/menus/menu_view.html:71 templates/view/menus/menus.html:47
+#: templates/view/nodes/node_create.html:47
+#: templates/view/nodes/node_edit.html:55
+#: templates/view/nodes/node_view.html:51 templates/view/nodes/nodes.html:44
+#: templates/view/tasks/task_view.html:52 templates/view/tasks/tasks.html:37
+msgid "type"
+msgstr "类型"
+
+#: templates/view/dictionary/dictionary.html:43
+#: templates/view/items/items.html:42 templates/view/menus/menus.html:52
+#: templates/view/nodes/nodes.html:46
+#: templates/view/permissions/permissions.html:44
+#: templates/view/stables/stable_tasks.html:42
+#: templates/view/tasks/tasks.html:42
+#: templates/view/userLoginLogs/userLoginLogs.html:42
+#: templates/view/users/users.html:43
+msgid "action"
+msgstr "操作"
+
+#: templates/view/dictionary/dictionary.html:55
+#: templates/view/items/items.html:53 templates/view/menus/menus.html:73
+#: templates/view/nodes/nodes.html:63
+#: templates/view/permissions/permissions.html:57
+#: templates/view/tasks/tasks.html:57
+#: templates/view/userLoginLogs/userLoginLogs.html:56
+#: templates/view/users/users.html:63
+msgid "view"
+msgstr "查看"
+
+#: templates/view/dictionary/dictionary.html:61
+#: templates/view/menus/menus.html:79 templates/view/nodes/nodes.html:69
+#: templates/view/permissions/permissions.html:63
+#: templates/view/stables/stable_tasks.html:84
+#: templates/view/tasks/tasks.html:63
+#: templates/view/userLoginLogs/userLoginLogs.html:59
+#: templates/view/users/users.html:69
+msgid "delete"
+msgstr "删除"
+
+#: templates/view/dictionary/dictionary_create.html:7
+#: templates/view/dictionary/dictionary_create.html:18
+msgid "title_create_dictionary"
+msgstr "创建字典"
+
+#: templates/view/dictionary/dictionary_create.html:60
+#: templates/view/dictionary/dictionary_edit.html:66
+#: templates/view/menus/menu_create.html:122
+#: templates/view/menus/menu_edit.html:120
+#: templates/view/nodes/node_create.html:64
+#: templates/view/nodes/node_edit.html:70
+#: templates/view/permissions/permission_create.html:68
+#: templates/view/permissions/permission_edit.html:84
+#: templates/view/stables/stable_create.html:75
+#: templates/view/stables/stable_edit.html:64
+#: templates/view/tasks/task_edit.html:63 templates/view/tools/tool_ip.html:49
+#: templates/view/users/user_create.html:87
+#: templates/view/users/user_edit.html:109
+msgid "submit"
+msgstr "提交"
+
+#: templates/view/dictionary/dictionary_edit.html:7
+#: templates/view/dictionary/dictionary_edit.html:18
+msgid "title_edit_dictionary"
+msgstr "编辑字典"
+
+#: templates/view/dictionary/dictionary_view.html:7
+#: templates/view/dictionary/dictionary_view.html:18
+msgid "title_view_dictionary"
+msgstr "查看字典"
+
+#: templates/view/items/item_view.html:7 templates/view/items/item_view.html:18
+msgid "title_view_item"
+msgstr "查看项目"
+
+#: templates/view/items/item_view.html:44
+#: templates/view/menus/menu_create.html:48
+#: templates/view/menus/menu_view.html:47 templates/view/menus/menus.html:41
+msgid "title"
+msgstr "标题"
+
+#: templates/view/items/item_view.html:48
+#: templates/view/permissions/permission_create.html:48
+#: templates/view/permissions/permission_edit.html:56
+#: templates/view/permissions/permission_view.html:47
+#: templates/view/permissions/permissions.html:41
+msgid "description"
+msgstr "描述"
+
+#: templates/view/items/items.html:7 templates/view/items/items.html:18
+msgid "title_item"
+msgstr "项目"
+
+#: templates/view/menus/menu_create.html:7
+#: templates/view/menus/menu_create.html:18
+msgid "title_create_menu"
+msgstr "创建菜单"
+
+#: templates/view/menus/menu_create.html:54
+#: templates/view/menus/menu_edit.html:52
+#: templates/view/menus/menu_view.html:51 templates/view/menus/menus.html:42
+msgid "path"
+msgstr "路径"
+
+#: templates/view/menus/menu_create.html:59
+#: templates/view/menus/menu_edit.html:57
+#: templates/view/menus/menu_view.html:55 templates/view/menus/menus.html:43
+msgid "parent"
+msgstr "父级"
+
+#: templates/view/menus/menu_create.html:67
+#: templates/view/menus/menu_edit.html:65
+#: templates/view/menus/menu_view.html:59 templates/view/menus/menus.html:45
+msgid "redirect"
+msgstr "跳转"
+
+#: templates/view/menus/menu_create.html:79
+#: templates/view/menus/menu_edit.html:77
+#: templates/view/menus/menu_view.html:63 templates/view/menus/menus.html:44
+msgid "icon"
+msgstr "图标"
+
+#: templates/view/menus/menu_create.html:84
+#: templates/view/menus/menu_create.html:87
+#: templates/view/menus/menu_edit.html:83
+#: templates/view/menus/menu_edit.html:86
+#: templates/view/menus/menu_view.html:67 templates/view/menus/menus.html:46
+msgid "hidden"
+msgstr "隐藏"
+
+#: templates/view/menus/menu_create.html:88
+#: templates/view/menus/menu_edit.html:87
+msgid "shown"
+msgstr "显示"
+
+#: templates/view/menus/menu_create.html:94
+#: templates/view/menus/menu_edit.html:93
+#: templates/view/menus/menu_view.html:75 templates/view/menus/menus.html:48
+msgid "component"
+msgstr "组成"
+
+#: templates/view/menus/menu_create.html:99
+#: templates/view/menus/menu_edit.html:98
+#: templates/view/menus/menu_view.html:79 templates/view/menus/menus.html:49
+msgid "sort"
+msgstr "排序"
+
+#: templates/view/menus/menu_create.html:102
+#: templates/view/menus/menu_edit.html:101
+msgid "desc"
+msgstr "倒序"
+
+#: templates/view/menus/menu_create.html:103
+#: templates/view/menus/menu_edit.html:102
+msgid "asc"
+msgstr "正序"
+
+#: templates/view/menus/menu_create.html:109
+#: templates/view/menus/menu_edit.html:108
+#: templates/view/menus/menu_view.html:83 templates/view/menus/menus.html:50
+msgid "level"
+msgstr "等级"
+
+#: templates/view/menus/menu_create.html:116
+#: templates/view/menus/menu_edit.html:115
+#: templates/view/nodes/node_create.html:60
+#: templates/view/nodes/node_edit.html:66
+#: templates/view/users/user_edit.html:73
+msgid "disable"
+msgstr "禁用"
+
+#: templates/view/menus/menu_create.html:117
+#: templates/view/menus/menu_edit.html:116
+#: templates/view/nodes/node_create.html:59
+#: templates/view/nodes/node_edit.html:67
+#: templates/view/users/user_edit.html:74
+msgid "enable"
+msgstr "启用"
+
+#: templates/view/menus/menu_edit.html:7 templates/view/menus/menu_edit.html:18
+msgid "title_edit_menu"
+msgstr "编辑菜单"
+
+#: templates/view/menus/menu_view.html:7 templates/view/menus/menu_view.html:18
+msgid "title_view_menu"
+msgstr "查看菜单"
+
+#: templates/view/menus/menus.html:7 templates/view/menus/menus.html:18
+msgid "title_menus"
+msgstr "菜单"
+
+#: templates/view/nodes/node_create.html:7
+#: templates/view/nodes/node_create.html:18
+msgid "title_create_node"
+msgstr "创建节点"
+
+#: templates/view/nodes/node_create.html:44
+msgid "enter_node_name"
+msgstr "输入节点名称"
+
+#: templates/view/nodes/node_create.html:50
+#: templates/view/nodes/node_edit.html:58
+msgid "sd_txt_to_img"
+msgstr "SD TXT to IMG"
+
+#: templates/view/nodes/node_create.html:51
+#: templates/view/nodes/node_edit.html:59
+msgid "sd_img_to_img"
+msgstr "SD IMG to IMG"
+
+#: templates/view/nodes/node_edit.html:7 templates/view/nodes/node_edit.html:18
+msgid "title_edit_node"
+msgstr "编辑节点"
+
+#: templates/view/nodes/node_view.html:7 templates/view/nodes/node_view.html:18
+msgid "title_view_node"
+msgstr "查看节点"
+
+#: templates/view/nodes/nodes.html:7 templates/view/nodes/nodes.html:18
+msgid "title_nodes"
+msgstr "节点"
+
+#: templates/view/nodes/nodes.html:35 templates/view/nodes/nodes.html:72
+msgid "check"
+msgstr "检查"
+
+#: templates/view/nodes/nodes.html:56
+msgid "available"
+msgstr "可用"
+
+#: templates/view/nodes/nodes.html:57
+msgid "busy"
+msgstr "忙碌"
+
+#: templates/view/nodes/nodes.html:58
+msgid "unavailable"
+msgstr "不可用"
+
+#: templates/view/permissions/permission_create.html:8
+#: templates/view/permissions/permission_create.html:19
+msgid "title_create_permission"
+msgstr "创建权限"
+
+#: templates/view/permissions/permission_edit.html:8
+#: templates/view/permissions/permission_edit.html:19
+msgid "title_edit_permission"
+msgstr "编辑权限"
+
+#: templates/view/permissions/permission_view.html:7
+#: templates/view/permissions/permission_view.html:18
+msgid "title_view_permission"
+msgstr "查看权限"
+
+#: templates/view/permissions/permissions.html:7
+#: templates/view/permissions/permissions.html:18
+msgid "title_permissions"
+msgstr "权限"
+
+#: templates/view/stables/stable_create.html:7
+#: templates/view/stables/stable_create.html:18
+#: templates/view/stables/stable_tasks.html:7
+#: templates/view/stables/stable_tasks.html:18
+#: templates/view/stables/stables.html:7 templates/view/stables/stables.html:18
+msgid "title_stable_diffusion"
+msgstr "Stable Diffusion"
+
+#: templates/view/stables/stable_create.html:44
+#: templates/view/stables/stable_tasks.html:163
+msgid "prompt"
+msgstr "关键字"
+
+#: templates/view/stables/stable_create.html:48
+msgid "please_give_prompt_key_words"
+msgstr "请输入关键字"
+
+#: templates/view/stables/stable_create.html:53
+#: templates/view/stables/stable_edit.html:60
+msgid "image_reference"
+msgstr "参考图像"
+
+#: templates/view/stables/stable_create.html:58
+#: templates/view/stables/stable_tasks.html:163
+msgid "performance"
+msgstr "效果"
+
+#: templates/view/stables/stable_create.html:62
+#: templates/view/stables/stable_tasks.html:163
+msgid "ai_level"
+msgstr "智能"
+
+#: templates/view/stables/stable_create.html:66
+#: templates/view/stables/stable_tasks.html:163
+msgid "controlnet_mode"
+msgstr "ControlNet模式"
+
+#: templates/view/stables/stable_create.html:68
+msgid "mlsd"
+msgstr "MLSD"
+
+#: templates/view/stables/stable_create.html:70
+msgid "canny"
+msgstr "CANNY"
+
+#: templates/view/stables/stable_create.html:72
+msgid "depth"
+msgstr "DEPTH"
+
+#: templates/view/stables/stable_create.html:83
+msgid "preview"
+msgstr "预览"
+
+#: templates/view/stables/stable_edit.html:7
+#: templates/view/stables/stable_edit.html:18
+msgid "title_edit_stable"
+msgstr "编辑Stable Diffusion"
+
+#: templates/view/stables/stable_edit.html:51
+msgid "seed"
+msgstr "种子"
+
+#: templates/view/stables/stable_edit.html:55
+#: templates/view/stables/stable_tasks.html:39
+#: templates/view/tasks/task_view.html:48 templates/view/tasks/tasks.html:36
+msgid "uid"
+msgstr "UID"
+
+#: templates/view/stables/stable_tasks.html:7
+#: templates/view/stables/stable_tasks.html:18
+#: templates/view/tasks/tasks.html:7 templates/view/tasks/tasks.html:18
+msgid "title_tasks"
+msgstr "任务"
+
+#: templates/view/stables/stable_tasks.html:41
+msgid "progress"
+msgstr "进度"
+
+#: templates/view/stables/stable_tasks.html:49
+#: templates/view/tasks/task_edit.html:54
+msgid "unknown"
+msgstr "未知"
+
+#: templates/view/stables/stable_tasks.html:49
+msgid "failed"
+msgstr "失败"
+
+#: templates/view/stables/stable_tasks.html:49
+#: templates/view/tasks/task_edit.html:56
+msgid "not_ready"
+msgstr "未完成"
+
+#: templates/view/stables/stable_tasks.html:49
+#: templates/view/tasks/task_edit.html:57
+msgid "pending"
+msgstr "排队中"
+
+#: templates/view/stables/stable_tasks.html:49
+#: templates/view/stables/stable_tasks.html:109
+#: templates/view/tasks/task_edit.html:58
+msgid "started"
+msgstr "开始"
+
+#: templates/view/stables/stable_tasks.html:49
+#: templates/view/stables/stable_tasks.html:141
+#: templates/view/tasks/task_edit.html:59
+msgid "completed"
+msgstr "完成"
+
+#: templates/view/stables/stable_tasks.html:74
+msgid "original"
+msgstr "原始图"
+
+#: templates/view/stables/stable_tasks.html:81
+msgid "generated"
+msgstr "生成图"
+
+#: templates/view/stables/stables.html:41
+msgid "stable_diffusion_history"
+msgstr "Stable Diffusion历史"
+
+#: templates/view/tasks/task_edit.html:7 templates/view/tasks/task_edit.html:18
+msgid "title_edit_task"
+msgstr "编辑任务"
+
+#: templates/view/tasks/task_edit.html:55
+msgid "failure"
+msgstr "错误"
+
+#: templates/view/tasks/task_view.html:7 templates/view/tasks/task_view.html:18
+msgid "title_view_tasks"
+msgstr "查看任务"
+
+#: templates/view/tasks/task_view.html:56 templates/view/tasks/tasks.html:39
+#: templates/view/users/user_view.html:92
+msgid "create_by"
+msgstr "创建者"
+
+#: templates/view/tasks/task_view.html:60 templates/view/tasks/tasks.html:40
+#: templates/view/users/user_view.html:96
+msgid "create_time"
+msgstr "创建时间"
+
+#: templates/view/tasks/task_view.html:64 templates/view/tasks/tasks.html:41
+msgid "update_time"
+msgstr "更新时间"
+
+#: templates/view/tools/tool_ip.html:7 templates/view/tools/tool_ip.html:18
+msgid "title_tool_ip"
+msgstr "IP工具"
+
+#: templates/view/tools/tool_ip.html:38
+msgid "check_ip"
+msgstr "查询IP"
+
+#: templates/view/tools/tool_ip.html:42
+msgid "enter_check_ip"
+msgstr "输入IP进行查询"
+
+#: templates/view/tools/tool_ip.html:45
+msgid "please_type_check_ip"
+msgstr "请输入需要查询的IP"
+
+#: templates/view/tools/tool_ip.html:59
+msgid "ip_details"
+msgstr "IP详情"
+
+#: templates/view/tools/tool_ip.html:65
+#: templates/view/userLoginLogs/userLoginLog_view.html:47
+#: templates/view/userLoginLogs/userLoginLogs.html:38
+msgid "ip"
+msgstr "IP"
+
+#: templates/view/tools/tool_ip.html:69
+msgid "continent"
+msgstr "洲/区域"
+
+#: templates/view/tools/tool_ip.html:73
+msgid "country"
+msgstr "国家"
+
+#: templates/view/tools/tool_ip.html:78
+msgid "city"
+msgstr "城市"
+
+#: templates/view/tools/tool_ip.html:83
+msgid "isp"
+msgstr "ISP"
+
+#: templates/view/tools/tool_ip.html:94
+msgid "location_in_google_map"
+msgstr "地图中显示位置"
+
+#: templates/view/userLoginLogs/userLoginLog_view.html:7
+#: templates/view/userLoginLogs/userLoginLog_view.html:18
+msgid "title_view_user_login_log"
+msgstr "查看用户登录日志"
+
+#: templates/view/userLoginLogs/userLoginLog_view.html:43
+#: templates/view/userLoginLogs/userLoginLogs.html:37
+msgid "user"
+msgstr "用户"
+
+#: templates/view/userLoginLogs/userLoginLog_view.html:51
+#: templates/view/userLoginLogs/userLoginLogs.html:39
+msgid "country_code"
+msgstr "国家"
+
+#: templates/view/userLoginLogs/userLoginLog_view.html:55
+#: templates/view/userLoginLogs/userLoginLogs.html:40
+msgid "ua"
+msgstr "User-Agent"
+
+#: templates/view/userLoginLogs/userLoginLog_view.html:59
+#: templates/view/userLoginLogs/userLoginLogs.html:41
+msgid "login_time"
+msgstr "登陆时间"
+
+#: templates/view/userLoginLogs/userLoginLogs.html:7
+#: templates/view/userLoginLogs/userLoginLogs.html:18
+msgid "title_user_login_log"
+msgstr "用户登录日志"
+
+#: templates/view/users/user_create.html:7
+#: templates/view/users/user_create.html:18
+msgid "title_create_user"
+msgstr "创建用户"
+
+#: templates/view/users/user_create.html:64
+#: templates/view/users/user_edit.html:81
+#: templates/view/users/user_view.html:70 templates/view/users/users.html:58
+msgid "user_type_normal"
+msgstr "普通用户"
+
+#: templates/view/users/user_create.html:65
+#: templates/view/users/user_edit.html:82
+#: templates/view/users/user_view.html:68 templates/view/users/users.html:57
+msgid "user_type_admin"
+msgstr "管理员"
+
+#: templates/view/users/user_create.html:78
+#: templates/view/users/user_edit.html:96
+#: templates/view/users/user_view.html:76
+msgid "user_role_id"
+msgstr "用户角色ID"
+
+#: templates/view/users/user_edit.html:7 templates/view/users/user_edit.html:18
+msgid "title_edit_user"
+msgstr "编辑用户"
+
+#: templates/view/users/user_edit.html:54
+msgid "enter_edit_first_name"
+msgstr "请输入名字"
+
+#: templates/view/users/user_edit.html:59
+msgid "enter_edit_last_name"
+msgstr "输入姓名"
+
+#: templates/view/users/user_view.html:7 templates/view/users/user_view.html:18
+msgid "title_view_users"
+msgstr "查看用户"
+
+#: templates/view/users/user_view.html:58 templates/view/users/users.html:52
+msgid "active"
+msgstr "活跃"
+
+#: templates/view/users/user_view.html:60 templates/view/users/users.html:53
+msgid "inactive"
+msgstr "停用"
+
+#: templates/view/users/user_view.html:100
+msgid "modify_by"
+msgstr "修改者"
+
+#: templates/view/users/user_view.html:104
+msgid "modify_time"
+msgstr "修改时间"
+
+#: templates/view/users/user_view.html:108
+msgid "deleted"
+msgstr "已删除"
+
+#: templates/view/users/user_view.html:112
+msgid "date_entered"
+msgstr "最近登录时间"
+
+#: templates/view/users/users.html:7 templates/view/users/users.html:18
+msgid "title_users"
+msgstr "用户"
+

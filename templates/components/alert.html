@@ -1,0 +1,18 @@
+{% if "error" in request.session %}
+    <div class="alert alert-danger alert-dismissible fade show" style="z-index:9999;position:absolute;top:25px; right:25px;opacity:0.8" role="alert">
+        <h5 class="alert-heading">{{ _('alert_error') }}:</h5>
+
+        {{ request.session.pop("error") }}
+        <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="{{ _('close') }}"></button>
+    </div>
+
+{% endif %}
+
+{% if "message" in request.session %}
+    <div class="alert alert-primary alert-dismissible fade show" style="z-index:9999;position:absolute;top:25px; right:25px;opacity:0.8" role="alert">
+        <h5 class="alert-heading">{{ _('alert_notice') }}:</h5>
+
+        {{ request.session.pop("message") }}
+        <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="{{ _('close') }}"></button>
+    </div>
+{% endif %}

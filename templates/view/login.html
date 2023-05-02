@@ -1,0 +1,105 @@
+{% extends "shared/base.html" %}
+
+{% block link %}
+{% endblock %}
+
+{% block title %}
+    <title>{{ _('login_page') }}</title>
+{% endblock %}
+
+{% block body_class %}class="bg-primary"{% endblock %}
+
+{% block body %}
+<div id="layoutAuthentication">
+    <div id="layoutAuthentication_content">
+        <main>
+            <div class="container-xl px-4">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5">
+                        <!-- Basic login form-->
+                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            <div class="card-header p-5 text-center">
+                                <div class="brand-logo">
+                                    <img class="mb-4" src="{{ url_for('static', path='images/logo_dark_big.png') }}" alt="" width="80">
+                                </div>
+                                <h4>{{ _('hello_let_get_started') }}</h4>
+<!--                                    Hello! let's get started-->
+
+                                <h6 class="fw-light">{{ _('sign_in_to_continue') }}</h6>
+<!--                                    Sign in to continue.-->
+
+                            </div>
+                            <div class="card-body">
+                                <!-- Login form-->
+                                <form action="/login" enctype="application/x-www-form-urlencoded" method="POST"  class="user" style="needs-validation">
+                                    <!-- Form Group (email address)-->
+                                    <div class="mb-3">
+                                        <label class="small mb-1" for="username">{{ _('email') }}</label>
+                                        <input class="form-control" id="username" name="username" type="email" placeholder="{{ _('enter_email') }}" required autofocus/>
+                                        <div class="invalid-feedback">
+                                            {{ _('please_type_your_login_email') }}
+                                        </div>
+                                    </div>
+                                    <!-- Form Group (password)-->
+                                    <div class="mb-3">
+                                        <label class="small mb-1" for="password">{{ _('password') }}</label>
+                                        <input class="form-control" id="password" name="password" type="password" placeholder="{{ _('enter_password') }}" required/>
+                                        <div class="invalid-feedback">
+                                            {{ _('please_type_your_password') }}
+                                        </div>
+                                    </div>
+                                    <!-- Form Group (remember password checkbox)-->
+                                    <div class="mb-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="remember" id="rememberMe" checked />
+                                            <label class="form-check-label" for="rememberMe">{{ _('remember_me') }}</label>
+                                        </div>
+                                    </div>
+                                    <!-- Form Group (login box)-->
+                                    <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                        <a class="small" href="/forget_password">{{ _('forget_password') }}</a>
+                                        <button type="submit" class="btn btn-primary" style="width:120px">{{ _('log_in') }}</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="card-footer text-center">
+                                <div class="small"><a href="/register">{{ _('need_an_account_sign_up') }}</a></div>
+<!--                                    Need an account? Sign up!-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div id="layoutAuthentication_footer">
+        <footer class="footer-admin mt-auto footer-dark">
+            <div class="container-xl px-4">
+                <div class="row">
+                    <div class="col-md-6 small">Copyright © 2023 Cloudtim. All Rights Reserved.</div>
+<!--                        <div class="col-md-6 text-md-end small">-->
+<!--                            <a href="#!">{{ _('privacy_policy') }}</a>-->
+<!--                            &middot;-->
+<!--                            <a href="#!">{{ _('terms_conditions') }}</a>-->
+<!--                        </div>-->
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+    <script>
+    let on = Cookies.get("remember");
+    let username = Cookies.get("login");
+    if (on !== "") {
+        $('input[name="rememberMe"]').attr("checked", true);
+        $('input[name="username"]').val(username);
+    }
+    </script>
+{% endblock %}
+

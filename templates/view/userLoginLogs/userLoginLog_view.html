@@ -1,0 +1,73 @@
+{% extends "shared/base.html" %}
+
+{% block link %}
+{% endblock %}
+
+{% block title %}
+    <title>{{ _('title_view_user_login_log') }}</title>
+{% endblock %}
+
+{% block main %}
+<header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+    <div class="container-xl px-4">
+        <div class="page-header-content">
+            <div class="row align-items-center justify-content-between pt-3">
+                <div class="col-auto mb-3">
+                    <h1 class="page-header-title">
+                        <div class="page-header-icon"><i data-feather="user-check"></i></div>
+                        {{ _('title_view_user_login_log') }}
+                    </h1>
+                </div>
+                <div class="col-12 col-xl-auto mb-3">
+                    <a class="btn btn-sm btn-light text-primary" href="javascript:history.back();">
+                        <i class="me-1" data-feather="arrow-left"></i>
+                        {{ _('back') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main page content-->
+<div class="container-fluid px-4">
+    <div class="card rounded-lg overflow-hidden mb-5">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table mb-0 table-striped">
+                    <tbody>
+                        <tr>
+                            <th class="p-3" scope="row">{{ _('id') }}</th>
+                            <td class="p-3">{{ userLoginLog.id }}</td>
+                        </tr>
+                        <tr>
+                            <th class="p-3" scope="row">{{ _('user') }}</th>
+                            <td class="p-3">{{ userLoginLog.user_email }}</td>
+                        </tr>
+                        <tr>
+                            <th class="p-3" scope="row">{{ _('ip') }}</th>
+                            <td class="p-3">{{ userLoginLog.ip }}</td>
+                        </tr>
+                        <tr>
+                            <th class="p-3" scope="row">{{ _('country_code') }}</th>
+                            <td class="p-3">{{ userLoginLog.country_code }}</td>
+                        </tr>
+                        <tr>
+                            <th class="p-3" scope="row">{{ _('ua') }}</th>
+                            <td class="p-3">{{ userLoginLog.ua }}</td>
+                        </tr>
+                        <tr>
+                            <th class="p-3" scope="row">{{ _('login_time') }}</th>
+                            <td class="p-3">{{ userLoginLog.login_time }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}
+

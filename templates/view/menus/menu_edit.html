@@ -1,0 +1,132 @@
+{% extends "shared/base.html" %}
+
+{% block link %}
+{% endblock %}
+
+{% block title %}
+    <title>{{ _('title_edit_menu') }}</title>
+{% endblock %}
+
+{% block main %}
+<header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+    <div class="container-xl px-4">
+        <div class="page-header-content">
+            <div class="row align-items-center justify-content-between pt-3">
+                <div class="col-auto mb-3">
+                    <h1 class="page-header-title">
+                        <div class="page-header-icon"><i data-feather="menu"></i></div>
+                        {{ _('title_edit_menu') }}
+                    </h1>
+                </div>
+                <div class="col-12 col-xl-auto mb-3">
+                    <a class="btn btn-sm btn-light text-primary" href="javascript:history.back();">
+                        <i class="me-1" data-feather="arrow-left"></i>
+                        {{ _('back') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main page content-->
+<div class="container-fluid px-4">
+    <div class="row">
+        <div class="col-xl-12">
+            <!-- Account details card-->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <label>{{ _('id') }}: {{ menu.id }}</label>
+                </div>
+                <div class="card-body">
+                    <form action="/menus/{{ menu.id }}/modify" enctype="application/x-www-form-urlencoded" method="POST">
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (first name)-->
+                            <div class="col-md-6">
+                                <label>{{ _('id') }}</label>
+                                <input class="form-control" type="text" name="menu_id"  id="menu_id" value="{{ menu.id }}" aria-label="Disabled input example" readonly>
+                            </div>
+                        </div>
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="path">{{ _('path') }}</label>
+                                <input class="form-control" id="path" name="path" type="text"
+                                       placeholder="/example_path" value="{{ menu.path }}">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="parent_id">{{ _('parent') }}</label>
+                                <input class="form-control" id="parent_id" name="parent_id" type="text" placeholder=""
+                                       value="{{ menu.parent_id }}">
+                            </div>
+
+                        </div>
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="redirect">{{ _('redirect') }}</label>
+                                <input class="form-control" id="redirect" name="redirect" type="text" placeholder=""
+                                       value="{{ menu.redirect }}">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="menu_type">{{ _('type') }}</label>
+                                <input class="form-control" id="menu_type" name="menu_type" type="text"
+                                       placeholder="" value="{{ menu.type }}">
+                            </div>
+                        </div>
+                        <div class="row gx-3 mb-3">
+                             <div class="col-md-6">
+                                <label class="small mb-1" for="icon">{{ _('icon') }}</label>
+                                <input class="form-control" id="icon" name="icon" type="text"
+                                       placeholder="" value="{{ menu.icon }}">
+                            </div>
+
+                            <div class="col-md-6">
+                            <label class="small mb-1">{{ _('hidden') }}</label>
+                            <select class="form-select" name="hidden" aria-label="Default select Menu Hidden Param">
+                                <option selected disabled>{{ _('--------') }}</option>
+                                <option value="0" {% if menu.hidden==0 %}selected{% endif %}>{{ _('hidden') }}</option>
+                                <option value="1" {% if menu.hidden==1 %}selected{% endif %}>{{ _('shown') }}</option>
+                            </select>
+                        </div>
+                        </div>
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="component">{{ _('component') }}</label>
+                                <input class="form-control" id="component" name="component" type="text" placeholder=""
+                                       value="{{ menu.component }}">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1">{{ _('sort') }}</label>
+                                <select class="form-select" name="sort" aria-label="Default select Menu Sort">
+                                    <option selected disabled>{{ _('--------') }}</option>
+                                    <option value="0" {% if menu.sort==0 %}selected{% endif %}>{{ _('desc') }}</option>
+                                    <option value="1" {% if menu.sort==1 %}selected{% endif %}>{{ _('asc') }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="level">{{ _('level') }}</label>
+                                <input class="form-control" id="level" name="level" type="text" placeholder="" value="{{ menu.level }}">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1">{{ _('status') }}</label>
+                                <select class="form-select" name="menu_status" aria-label="Default select Menu status">
+                                    <option selected disabled>{{ _('--------') }}</option>
+                                    <option value="0" {% if menu.status==0 %}selected{% endif %}>{{ _('disable') }}</option>
+                                    <option value="1" {% if menu.status==1 %}selected{% endif %}>{{ _('enable') }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" type="submit">{{ _('submit') }}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}
+

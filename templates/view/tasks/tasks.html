@@ -1,0 +1,78 @@
+{% extends "shared/base.html" %}
+
+{% block link %}
+{% endblock %}
+
+{% block title %}
+    <title>{{ _('title_tasks') }}</title>
+{% endblock %}
+
+{% block main %}
+<header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+    <div class="container-fluid px-4">
+        <div class="page-header-content">
+            <div class="row align-items-center justify-content-between pt-3">
+                <div class="col-auto mb-3">
+                    <h1 class="page-header-title">
+                        <div class="page-header-icon"><i data-feather="compass"></i></div>
+                        {{ _('title_tasks') }}
+                    </h1>
+                </div>
+                <div class="col-12 col-xl-auto mb-3">
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main page content-->
+<div class="container-fluid px-4">
+    <div class="card mb-4">
+        <div class="card-header"></div>
+        <div class="card-body">
+            <table id="datatablesSimple" class="table table-hover table-borderless align-middle datatable-table">
+                <thead>
+                        <tr>
+                            <th>{{ _('id') }}</th>
+                            <th>{{ _('uid') }}</th>
+                            <th>{{ _('type') }}</th>
+                            <th>{{ _('status') }}</th>
+                            <th>{{ _('create_by') }}</th>
+                            <th>{{ _('create_time') }}</th>
+                            <th>{{ _('update_time') }}</th>
+                            <th>{{ _('action') }}</th>
+                        </tr>
+                </thead>
+                <tbody>
+                        {% for task in task_list %}
+                        <tr>
+                            <td>{{ task.id }}</td>
+                            <td>{{ task.uid }}</td>
+                            <td>{{ task.type }}</td>
+                            <td>{{ task.status }}</td>
+                            <td>{{ task.create_by }}</td>
+                            <td>{{ task.create_time }}</td>
+                            <td>{{ task.update_time }}</td>
+                            <td>
+                                <form action="/tasks/{{ task.id }}/view" method="GET" style="display: inline-block;">
+                                    <input type="submit" class="btn btn-primary btn-sm" value="{{ _('view') }}">
+                                </form>
+                                <form action="/tasks/{{ task.id }}/modify" method="GET" style="display: inline-block;">
+                                    <input type="submit" class="btn btn-primary btn-sm" value="{{ _('edit') }}">
+                                </form>
+                                <form action="/tasks/{{ task.id }}/delete" method="POST" style="display: inline-block;">
+                                    <input type="submit" class="btn btn-danger btn-sm" value="{{ _('delete') }}">
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}
+

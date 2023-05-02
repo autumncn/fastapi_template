@@ -1,0 +1,76 @@
+{% extends "shared/base.html" %}
+
+{% block link %}
+{% endblock %}
+
+{% block title %}
+    <title>{{ _('title_dictionary') }}</title>
+{% endblock %}
+
+{% block main %}
+<header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+    <div class="container-fluid px-4">
+        <div class="page-header-content">
+            <div class="row align-items-center justify-content-between pt-3">
+                <div class="col-auto mb-3">
+                    <h1 class="page-header-title">
+                        <div class="page-header-icon"><i data-feather="book"></i></div>
+                        {{ _('title_dictionary') }}
+                    </h1>
+                </div>
+                <div class="col-12 col-xl-auto mb-3">
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main page content-->
+<div class="container-fluid px-4">
+    <div class="card mb-4">
+        <div class="card-header">
+            <button class="btn btn-primary" type="button" onclick="location.href='/dictionary/create'">
+                <i class="icon-on-right"></i>{{ _('create') }}
+            </button>
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple" class="table table-hover table-borderless align-middle datatable-table">
+                <thead>
+                    <tr>
+                        <th>{{ _('id') }}</th>
+                        <th>{{ _('name') }}</th>
+                        <th>{{ _('value') }}</th>
+                        <th>{{ _('type') }}</th>
+                        <th>{{ _('action') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        {% for dictionary in dictionary_list %}
+                    <tr>
+                        <td>{{ dictionary.id }}</td>
+                        <td>{{ dictionary.name }}</td>
+                        <td>{{ dictionary.value }}</td>
+                        <td>{{ dictionary.type }}</td>
+                        <td>
+                            <form action="/dictionary/{{ dictionary.id }}/view" method="GET" style="display: inline-block;">
+                                <input type="submit" class="btn btn-primary btn-sm" value="{{ _('view') }}">
+                            </form>
+                            <form action="/dictionary/{{ dictionary.id }}/modify" method="GET" style="display: inline-block;">
+                                <input type="submit" class="btn btn-primary btn-sm" value="{{ _('edit') }}">
+                            </form>
+                            <form action="/dictionary/{{ dictionary.id }}/delete" method="POST" style="display: inline-block;">
+                                <input type="submit" class="btn btn-danger btn-sm" value="{{ _('delete') }}">
+                            </form>
+                        </td>
+                    </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}
+

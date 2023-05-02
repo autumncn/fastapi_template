@@ -1,0 +1,77 @@
+{% extends "shared/base.html" %}
+
+{% block link %}
+{% endblock %}
+
+{% block title %}
+    <title>{{ _('title_view_permission') }}</title>
+{% endblock %}
+
+{% block main %}
+<header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+    <div class="container-xl px-4">
+        <div class="page-header-content">
+            <div class="row align-items-center justify-content-between pt-3">
+                <div class="col-auto mb-3">
+                    <h1 class="page-header-title">
+                        <div class="page-header-icon"><i data-feather="permission"></i></div>
+                        {{ _('title_view_permission') }}
+                    </h1>
+                </div>
+                <div class="col-12 col-xl-auto mb-3">
+                    <a class="btn btn-sm btn-light text-primary" href="javascript:history.back();">
+                        <i class="me-1" data-feather="arrow-left"></i>
+                        {{ _('back') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main page content-->
+<div class="container-fluid px-4">
+    <div class="card rounded-lg overflow-hidden mb-5">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table mb-0 table-striped">
+                    <tbody>
+                        <tr>
+                            <th class="p-3" scope="row">{{ _('id') }}</th>
+                            <td class="p-3">{{ permission.id }}</td>
+                        </tr>
+                        <tr>
+                            <th class="p-3" scope="row">{{ _('name') }}</th>
+                            <td class="p-3">{{ permission.name }}</td>
+                        </tr>
+                        <tr>
+                            <th class="p-3" scope="row">{{ _('description') }}</th>
+                            <td class="p-3">{{ permission.description }}</td>
+                        </tr>
+                        <tr>
+                            <th class="p-3" scope="row">{{ _('users') }}</th>
+                            <td>
+                                {% for user_name in permission.user_name_list %}
+                                    <span class="badge bg-blue-soft text-blue" style="font-size: 14px">{{ user_name }}</span>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="p-3" scope="row">{{ _('menus') }}</th>
+                            <td class="p-3">
+                                {% for menu_name in permission.menu_name_list %}
+                                    <span class="badge bg-green-soft text-green" style="font-size: 14px">{{ menu_name }}</span>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}
+

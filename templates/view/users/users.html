@@ -1,0 +1,84 @@
+{% extends "shared/base.html" %}
+
+{% block link %}
+{% endblock %}
+
+{% block title %}
+    <title>{{ _('title_users') }}</title>
+{% endblock %}
+
+{% block main %}
+<header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+    <div class="container-fluid px-4">
+        <div class="page-header-content">
+            <div class="row align-items-center justify-content-between pt-3">
+                <div class="col-auto mb-3">
+                    <h1 class="page-header-title">
+                        <div class="page-header-icon"><i data-feather="user"></i></div>
+                        {{ _('title_users') }}
+                    </h1>
+                </div>
+                <div class="col-12 col-xl-auto mb-3">
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main page content-->
+<div class="container-fluid px-4">
+    <div class="card mb-4">
+        <div class="card-header">
+            <button class="btn btn-primary" type="button" onclick="location.href='/users/create'">
+                <i class="icon-on-right"></i>{{ _('create') }}
+            </button>
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple" class="table table-hover table-borderless align-middle datatable-table">
+                <thead>
+                    <tr>
+                        <th>{{ _('id') }}</th>
+                        <th>{{ _('email') }}</th>
+                        <th>{{ _('status') }}</th>
+                        <th>{{ _('user_type') }}</th>
+                        <th>{{ _('action') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        {% for user in user_list %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>
+                            {% if user.is_active == 1 %}<span class="badge bg-green-soft text-green" style="font-size: 14px">{{ _('active') }}</span>
+                            {% else %}<span class="badge bg-red-soft text-red" style="font-size: 14px">{{ _('inactive') }}</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if user.is_superuser == 1 %}<span class="badge bg-green-soft text-green" style="font-size: 14px">{{ _('user_type_admin') }}</span>
+                            {% else %}<span class="badge bg-red-soft text-red" style="font-size: 14px">{{ _('user_type_normal') }}</span>
+                            {% endif %}
+                            </td>
+                        <td>
+                            <form action="/users/{{ user.id }}/view" method="GET" style="display: inline-block;">
+                                <input type="submit" class="btn btn-primary btn-sm" value="{{ _('view') }}">
+                            </form>
+                            <form action="/users/{{ user.id }}/modify" method="GET" style="display: inline-block;">
+                                <input type="submit" class="btn btn-primary btn-sm" value="{{ _('edit') }}">
+                            </form>
+                            <form action="/users/{{ user.id }}/delete" method="POST" style="display: inline-block;">
+                                <input type="submit" class="btn btn-danger btn-sm" value="{{ _('delete') }}">
+                            </form>
+                        </td>
+                    </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}
+

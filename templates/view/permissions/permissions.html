@@ -1,0 +1,78 @@
+{% extends "shared/base.html" %}
+
+{% block link %}
+{% endblock %}
+
+{% block title %}
+    <title>{{ _('title_permissions') }}</title>
+{% endblock %}
+
+{% block main %}
+<header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+    <div class="container-fluid px-4">
+        <div class="page-header-content">
+            <div class="row align-items-center justify-content-between pt-3">
+                <div class="col-auto mb-3">
+                    <h1 class="page-header-title">
+                        <div class="page-header-icon"><i data-feather="terminal"></i></div>
+                        {{ _('title_permissions') }}
+                    </h1>
+                </div>
+                <div class="col-12 col-xl-auto mb-3">
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main page content-->
+<div class="container-fluid px-4">
+    <div class="card mb-4">
+        <div class="card-header">
+            <button class="btn btn-primary" type="button" onclick="location.href='/permissions/create'">
+                <i class="icon-on-right"></i>{{ _('create') }}
+            </button>
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple" class="table table-hover table-borderless align-middle datatable-table">
+                <thead>
+                    <tr>
+                        <th>{{ _('id') }}</th>
+                        <th>{{ _('name') }}</th>
+                        <th>{{ _('description') }}</th>
+<!--                        <th>{{ _('users') }}</th>-->
+<!--                        <th>{{ _('menus') }}</th>-->
+                        <th>{{ _('action') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        {% for permission in permission_list %}
+                    <tr>
+                        <td>{{ permission.id }}</td>
+                        <td>{{ permission.name }}</td>
+                        <td>{{ permission.description }}</td>
+<!--                        <td>{{ permission.user_ids }}</td>-->
+<!--                        <td>{{ permission.menu_ids }}</td>-->
+                        <td>
+                            <form action="/permissions/{{ permission.id }}/view" method="GET" style="display: inline-block;">
+                                <input type="submit" class="btn btn-primary btn-sm" value="{{ _('view') }}">
+                            </form>
+                            <form action="/permissions/{{ permission.id }}/modify" method="GET" style="display: inline-block;">
+                                <input type="submit" class="btn btn-primary btn-sm" value="{{ _('edit') }}">
+                            </form>
+                            <form action="/permissions/{{ permission.id }}/delete" method="POST" style="display: inline-block;">
+                                <input type="submit" class="btn btn-danger btn-sm" value="{{ _('delete') }}">
+                            </form>
+                        </td>
+                    </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}
+

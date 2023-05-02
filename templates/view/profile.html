@@ -1,0 +1,94 @@
+{% extends "shared/base.html" %}
+
+{% block link %}
+{% endblock %}
+
+{% block title %}
+    <title>{{ _('title_profile') }}</title>
+{% endblock %}
+
+{% block main %}
+<header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+    <div class="container-xl px-4">
+        <div class="page-header-content">
+            <div class="row align-items-center justify-content-between pt-3">
+                <div class="col-auto mb-3">
+                    <h1 class="page-header-title">
+                        <div class="page-header-icon"><i data-feather="user"></i></div>
+                        {{ _('title_profile') }}
+                    </h1>
+                </div>
+                <div class="col-12 col-xl-auto mb-3">
+                    <a class="btn btn-sm btn-light text-primary" href="javascript:history.back();">
+                        <i class="me-1" data-feather="arrow-left"></i>
+                        {{ _('back') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main page content-->
+<div class="container-fluid px-4">
+    <div class="card rounded-lg overflow-hidden mb-5">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table mb-0">
+
+                    <tbody>
+                        <tr class="bg-gray-100">
+                            <th class="p-3" scope="row">{{ _('id') }}</th>
+                            <td class="p-3">{{ user.id }}</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th class="p-3" scope="row">{{ _('email') }}</th>
+                            <td class="p-3">{{ user.email }}</td>
+                            <td></td>
+                       </tr>
+                        <tr class="bg-gray-100">
+                            <th class="p-3" scope="row">{{ _('status') }}</th>
+                            <td class="p-3">{{ user.is_active }}</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th class="p-3" scope="row">{{ _('user_type') }}</th>
+                            <td class="p-3">{{ user.is_superuser }}</td>
+                             <td></td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                            <th class="p-3" scope="row">{{ _('language') }}</th>
+                            <td class="p-3">{{ user.language }}</td>
+                            <td><button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal"  onclick="edit_lang(this)">{{ _('edit') }}</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function edit_lang(button) {
+    // 获取modal和数据元素
+    var modal = document.getElementById('modal');
+    console.log(modal);
+    var titleElement = document.getElementById('modal_title');
+    var descriptionElement = document.getElementById('modal_body');
+    var modal_body_html = document.getElementById("modal_insert").innerHTML;
+    var modal_dialog = document.getElementById('modal_dialog');
+    var modal_footer_div = document.getElementById('modal_footer');
+
+    // 填充数据
+    titleElement.textContent = "{{ _('change_user_lang') }}";
+    new_html = '<form action="/profile" enctype="application/x-www-form-urlencoded" method="POST"><div class="mb-0"><label class="mb-1 small text-muted">{{ _("language") }}</label><select class="form-select" name="set_lang" aria-label="Default select User Language"><option selected disabled>{{ _("--------") }}</option><option value="en" {% if user.language=='en' %}selected{% endif %}>{{ _("english") }}</option><option value="zh" {% if user.language=='zh' %}selected{% endif %}>{{ _("chinese") }}</option></select></div>';
+    footer_html = '<div class="modal-footer"><button class="btn btn-secondary" type="button" data-bs-dismiss="modal">{{ _("close") }}</button><button class="btn btn-primary" type="submit">{{ _("save") }}</button></div></form>';
+    console.log(new_html + footer_html)
+    descriptionElement.innerHTML = new_html + footer_html;
+    modal_footer_div.remove();
+}
+</script>
+{% endblock %}
+

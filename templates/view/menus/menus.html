@@ -1,0 +1,94 @@
+{% extends "shared/base.html" %}
+
+{% block link %}
+{% endblock %}
+
+{% block title %}
+    <title>{{ _('title_menus') }}</title>
+{% endblock %}
+
+{% block main %}
+<header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+    <div class="container-fluid px-4">
+        <div class="page-header-content">
+            <div class="row align-items-center justify-content-between pt-3">
+                <div class="col-auto mb-3">
+                    <h1 class="page-header-title">
+                        <div class="page-header-icon"><i data-feather="menu"></i></div>
+                        {{ _('title_menus') }}
+                    </h1>
+                </div>
+                <div class="col-12 col-xl-auto mb-3">
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main page content-->
+<div class="container-fluid px-4">
+    <div class="card mb-4">
+        <div class="card-header">
+            <button class="btn btn-primary" type="button" onclick="location.href='/menus/create'">
+                <i class="icon-on-right"></i>{{ _('create') }}
+            </button>
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple" class="table table-hover table-borderless align-middle datatable-table">
+                <thead>
+                    <tr>
+                        <th>{{ _('id') }}</th>
+                        <th>{{ _('name') }}</th>
+                        <th>{{ _('title') }}</th>
+                        <th>{{ _('path') }}</th>
+                        <th>{{ _('parent') }}</th>
+                        <th>{{ _('icon') }}</th>
+<!--                        <th>{{ _('redirect') }}</th>-->
+                        <th>{{ _('hidden') }}</th>
+<!--                        <th>{{ _('type') }}</th>-->
+<!--                        <th>{{ _('component') }}</th>-->
+<!--                        <th>{{ _('sort') }}</th>-->
+                        <th>{{ _('level') }}</th>
+                        <th>{{ _('status') }}</th>
+                        <th>{{ _('action') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        {% for menu in menu_list %}
+                    <tr>
+                        <td>{{ menu.id }}</td>
+                        <td>{{ menu.name }}</td>
+                        <td>{{ menu.title }}</td>
+                        <td>{{ menu.path }}</td>
+                        <td>{{ menu.parent_id }}</td>
+                        <td><i class="fa-solid fa-{{ menu.icon }}"></i></td>
+<!--                        <td>{{ menu.redirect }}</td>-->
+                        <td>{{ menu.hidden }}</td>
+<!--                        <td>{{ menu.type }}</td>-->
+<!--                        <td>{{ menu.component }}</td>-->
+<!--                        <td>{{ menu.sort }}</td>-->
+                        <td>{{ menu.level }}</td>
+                        <td>{{ menu.status }}</td>
+                        <td>
+                            <form action="/menus/{{ menu.id }}/view" method="GET" style="display: inline-block;">
+                                <input type="submit" class="btn btn-primary btn-sm" value="{{ _('view') }}">
+                            </form>
+                            <form action="/menus/{{ menu.id }}/modify" method="GET" style="display: inline-block;">
+                                <input type="submit" class="btn btn-primary btn-sm" value="{{ _('edit') }}">
+                            </form>
+                            <form action="/menus/{{ menu.id }}/delete" method="POST" style="display: inline-block;">
+                                <input type="submit" class="btn btn-danger btn-sm" value="{{ _('delete') }}">
+                            </form>
+                        </td>
+                    </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}
+

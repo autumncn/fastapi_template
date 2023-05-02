@@ -1,0 +1,63 @@
+{% extends "shared/base.html" %}
+
+{% block link %}
+{% endblock %}
+
+{% block title %}
+    <title>{{ _('title_home') }}</title>
+{% endblock %}
+
+{% block main %}
+<header class="page-header page-header-dark bg-gradient-primary-to-secondary mb-4">
+    <div class="container-xl px-4">
+        <div class="page-header-content pt-4">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-auto mt-4">
+                    <h1 class="page-header-title">
+                        <div class="page-header-icon"><i data-feather="life-buoy"></i></div>
+                        {{ _('title_home') }}
+                    </h1>
+                    <div class="page-header-subtitle">What are you looking for? Our knowledge base is here to help.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main page content-->
+<div class="container-xl px-4">
+    <!-- Knowledge base article-->
+    <div class="card mb-4">
+        <div class="card-header d-flex align-items-center">
+            <a class="btn btn-transparent-dark btn-icon" href="knowledge-base-category.html"><i data-feather="arrow-left"></i></a>
+            <div class="ms-3"><h2 class="my-3">Knowledge base article example</h2></div>
+        </div>
+        <div class="card-body">
+          {{ _('home_page_display_text') }}
+        </div>
+    </div>
+    <!-- Knowledge base rating-->
+    <div class="text-center mt-5">
+        <h4 class="mb-3">Was this page helpful?</h4>
+        <div class="mb-3">
+            <button class="btn btn-primary mx-2 px-3" role="button">
+                <i class="me-2" data-feather="thumbs-up"></i>
+                Yes
+            </button>
+            <button class="btn btn-primary mx-2 px-3" role="button">
+                <i class="me-2" data-feather="thumbs-down"></i>
+                No
+            </button>
+        </div>
+        <div class="text-small text-muted"><em>29 people found this page helpful so far!</em></div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}
+
+</body>
+
+

@@ -1,0 +1,70 @@
+<nav class="sidenav shadow-right sidenav-light">
+    <div class="sidenav-menu">
+        <div class="nav accordion" id="accordionSidenav">
+            {% for statics in request.state.menu_items %}
+            <!-- Sidenav Menu Heading (Core)-->
+            <div class="sidenav-menu-heading">{{ statics.title }}</div>
+                {% if statics.children %}
+                    {% for items in statics.children %}
+                    <!-- Sidenav Accordion-->
+                        {% if items.children %}
+                        <a class="nav-link collapse {% if items.path==request.state.currenty_menus.grand_parent_menu %}active {% endif %}" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapse{{ items.icon }}" aria-expanded="false" aria-controls="collapse{{ items.icon }}">
+                            <div class="nav-link-icon"><i class="fa-solid fa-{{ items.icon }}"></i></div>
+                            {{ items.title }}
+                            <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse {% if items.path==request.state.currenty_menus.grand_parent_menu %}active show{% endif %}" id="collapse{{ items.icon }}" data-bs-parent="#accordionSidenav">
+                            <nav class="sidenav-menu-nested nav accordion" id="collapse{{ items.icon }}Menu">
+                                <!-- Nested Sidenav Accordion (Apps -> Knowledge Base)-->
+                            {% for item in items.children %}
+                                {% if item.children %}
+                                <a class="nav-link {% if item.path==request.state.currenty_menus.parent_menu %}active{% endif %}" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#appsCollapse{{ item.icon }}" aria-expanded="false" aria-controls="appsCollapse{{ item.icon }}">
+                                        {{ item.title }}
+                                    <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse {% if item.path==request.state.currenty_menus.parent_menu %}show{% endif %}" id="appsCollapse{{ item.icon }}" data-bs-parent="#appsCollapse{{ item.icon }}">
+                                    <nav class="sidenav-menu-nested nav">
+                                    {% for menu in item.children %}
+                                    <a class="nav-link {% if menu.path==request.state.currenty_menus.menu %}active{% endif %}" href="{{ menu.path }}">{{ menu.title }}</a>
+                                    {% endfor %}
+                                    </nav>
+                                </div>
+                                {% else %}<a class="nav-link {% if item.path==request.state.currenty_menus.parent_menu %}active{% endif %}" href="{{ item.path }}">{{ item.title }}</a>
+                                {% endif %}
+                            {% endfor %}
+                            </nav>
+                        </div>
+                        {% else %}
+                        <a class="nav-link {% if items.path==request.state.currenty_menus.grand_parent_menu %}active{% endif %}" href="{{ items.path }}">
+                            <div class="nav-link-icon"><i class="fa-solid fa-{{ items.icon }}"></i></div>
+                            {{ items.title }}
+                        </a>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <!-- Sidenav Footer-->
+    <div class="sidenav-footer">
+        <div class="sidenav-footer-content">
+            <div class="sidenav-footer-subtitle">{{ _('login_as') }}:</div>
+            <div class="sidenav-footer-title">{{ request.state.login_as }}</div>
+        </div>
+    </div>
+</nav>
+<div style="display:None">
+    {{ _('system') }}{{ _('create') }}{{ _('menus') }}{{ _('configuration') }}{{ _('permisions') }}{{ _('utilities') }}
+    {{ _('tools') }}{{ _('stable_diffusion') }}{{ _('tasks') }}{{ _('items') }}{{ _('users') }}{{ _('nodes') }}
+    {{ _('applications') }}{{ _('home') }}{{ _('dashboard') }}{{ _('core') }}{{ _('dictionary') }}{{ _('ai_design') }}
+    {{ _('management') }}{{ _('custom') }}{{ _('administrative') }}{{ _('user_login_log') }}{{ _('tool_ip') }}{{ _('create') }}
+
+    {{ _('system') }}{{ _('create') }}{{ _('system') }}{{ _('create') }}{{ _('system') }}{{ _('create') }}
+    {{ _('system') }}{{ _('create') }}{{ _('system') }}{{ _('create') }}{{ _('system') }}{{ _('create') }}
+    {{ _('system') }}{{ _('create') }}{{ _('system') }}{{ _('create') }}{{ _('system') }}{{ _('create') }}
+    {{ _('system') }}{{ _('create') }}{{ _('system') }}{{ _('create') }}{{ _('system') }}{{ _('create') }}
+    {{ _('system') }}{{ _('create') }}{{ _('system') }}{{ _('create') }}{{ _('system') }}{{ _('create') }}
+
+</div>

@@ -1,0 +1,126 @@
+{% extends "shared/base.html" %}
+
+{% block link %}
+{% endblock %}
+
+{% block title %}
+    <title>{{ _('title_view_users') }}</title>
+{% endblock %}
+
+{% block main %}
+<header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+    <div class="container-xl px-4">
+        <div class="page-header-content">
+            <div class="row align-items-center justify-content-between pt-3">
+                <div class="col-auto mb-3">
+                    <h1 class="page-header-title">
+                        <div class="page-header-icon"><i data-feather="user"></i></div>
+                        {{ _('title_view_users') }}
+                    </h1>
+                </div>
+                <div class="col-12 col-xl-auto mb-3">
+                    <a class="btn btn-sm btn-light text-primary" href="javascript:history.back();">
+                        <i class="me-1" data-feather="arrow-left"></i>
+                        {{ _('back') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main page content-->
+<div class="container-fluid px-4">
+    <div class="card rounded-lg overflow-hidden mb-5">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table mb-0 table-striped">
+                    <tbody>
+                        <tr>
+                            <th class="p-3" scope="row">{{ _('id') }}</th>
+                            <td class="p-3">{{ user.id }}</td>
+                        </tr>
+                        <tr>
+                            <th class="p-3" scope="row">{{ _('first_name') }}</th>
+                            <td class="p-3">{{ user.first_name }}</td>
+                        </tr>
+                        <tr>
+                            <th class="p-3" scope="row">{{ _('last_name') }}</th>
+                            <td class="p-3">{{ user.last_name }}</td>
+                        </tr>
+                        <tr>
+                            <th class="p-3" scope="row">{{ _('email') }}</th>
+                            <td class="p-3">{{ user.email }}</td>
+                        </tr>
+                        <tr>
+                            <th class="p-3" scope="row">{{ _('status') }}</th>
+                            <td class="p-3">
+                                {% if user.is_active == 1 %}
+                                    <span class="badge bg-green-soft text-green" style="font-size: 14px">{{ _('active') }}</span>
+                                {% else %}
+                                    <span class="badge bg-red-soft text-red" style="font-size: 14px">{{ _('inactive') }}</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="p-3" scope="row">{{ _('user_type') }}</th>
+                            <td class="p-3">
+                                {% if user.is_superuser == 1 %}
+                                    <span class="badge bg-green-soft text-green" style="font-size: 14px">{{ _('user_type_admin') }}</span>
+                                {% elif user.is_superuser == 0 %}
+                                    <span class="badge bg-red-soft text-red" style="font-size: 14px">{{ _('user_type_normal') }}</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        </tr>
+                        <tr>
+                            <th class="p-3" scope="row">{{ _('user_role_id') }}</th>
+                            <td class="p-3">
+                                <span class="badge bg-green-soft text-green" style="font-size: 14px">{{ user.permission_name }}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="p-3" scope="row">{{ _('language') }}</th>
+                            <td class="p-3">
+                                {% if user.language == 'en' %}
+                                    <span class="badge bg-purple-soft text-purple" style="font-size: 14px">{{ _('english') }}</span>
+                                {% elif user.language == 'vi' %}
+                                    <span class="badge bg-red-soft text-red" style="font-size: 14px">{{ _('chinese') }}</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="p-3" scope="row">{{ _('create_by') }}</th>
+                            <td class="p-3">{{ user.create_by }}</td>
+                        </tr>
+                        <tr>
+                            <th class="p-3" scope="row">{{ _('create_time') }}</th>
+                            <td class="p-3">{{ user.create_time }}</td>
+                        </tr>
+                        <tr>
+                            <th class="p-3" scope="row">{{ _('modify_by') }}</th>
+                            <td class="p-3">{{ user.modify_by }}</td>
+                        </tr>
+                        <tr>
+                            <th class="p-3" scope="row">{{ _('modify_time') }}</th>
+                            <td class="p-3">{{ user.modify_time }}</td>
+                        </tr>
+                        <tr>
+                            <th class="p-3" scope="row">{{ _('deleted') }}</th>
+                            <td class="p-3">{{ user.deleted }}</td>
+                        </tr>
+                        <tr>
+                            <th class="p-3" scope="row">{{ _('date_entered') }}</th>
+                            <td class="p-3">{{ user.date_entered }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}
+
