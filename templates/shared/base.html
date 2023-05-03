@@ -14,7 +14,8 @@
     <script src="{{ url_for('static', path='fontawesome/js/all.min.js') }}" defer></script>
     {% endblock %}
 
-    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+<!--    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />-->
+    <link href="{{ url_for('static', path='starbootstrap/css/simple-datatables.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
 
