@@ -13,10 +13,8 @@ from dependencies import templates
 from starlette import status
 from libs.fastapi_babel import _
 
-from db.crud.items import create_user_item
 from db.crud.users import get_user, create_user, get_user_by_email, get_users, delete_user_by_id, create_superuser, modify_user
 from db.database import get_db
-from db.schemas.items import ItemCreate, Item
 from db.schemas.users import UserCreate, User, UserModify
 from logs.logger import logger
 from utils.JsonUtil import object_to_json

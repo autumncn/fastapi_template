@@ -15,7 +15,6 @@ from dependencies import templates
 from starlette import status
 
 from db.database import get_db
-from db.schemas.items import ItemCreate, Item
 from logs.logger import logger
 from utils.JsonUtil import object_to_json
 

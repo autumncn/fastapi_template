@@ -12,7 +12,6 @@ from libs.fastapi_babel import _
 
 from db.crud.dictionary import get_dictionary, create_dictionary, get_dictionary, delete_dictionary_by_id, modify_dictionary, get_dictionary_by_name, get_dictionarys
 from db.database import get_db
-from db.schemas.items import ItemCreate, Item
 from db.schemas.dictionary import DictionaryCreate, Dictionary, DictionaryModify
 from logs.logger import logger
 from utils.JsonUtil import object_to_json

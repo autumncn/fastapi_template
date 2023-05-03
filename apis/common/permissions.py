@@ -15,7 +15,6 @@ from libs.fastapi_babel import _
 
 from db.crud.permissions import get_permission, create_permission, get_permissions, modify_permission, get_permission_by_name, delete_permission_by_id
 from db.database import get_db
-from db.schemas.items import ItemCreate, Item
 from db.schemas.permissions import PermissionCreate, Permission, PermissionModify
 from logs.logger import logger
 from service.menuService import menu_list_id_name, get_menu_name_by_id_list

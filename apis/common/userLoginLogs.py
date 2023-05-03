@@ -12,7 +12,6 @@ from libs.fastapi_babel import _
 
 from db.crud.userLoginLogs import get_userLoginLog, delete_userLoginLog_by_id, get_userLoginLogs
 from db.database import get_db
-from db.schemas.items import ItemCreate, Item
 from db.schemas.userLoginLogs import UserLoginLogCreate, UserLoginLog, UserLoginLogModify
 from logs.logger import logger
 from service.userService import get_user_email_id_map

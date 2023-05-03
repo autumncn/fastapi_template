@@ -12,7 +12,6 @@ from libs.fastapi_babel import _
 
 from db.crud.menus import get_menu, create_menu, get_menus, delete_menu_by_id, modify_menu, get_menu_by_name
 from db.database import get_db
-from db.schemas.items import ItemCreate, Item
 from db.schemas.menus import MenuCreate, Menu, MenuModify
 from logs.logger import logger
 from service.ipService import read_ip_detail, ipv4_check

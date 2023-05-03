@@ -1,8 +1,6 @@
 from typing import List, Optional, Union
 from pydantic import BaseModel, EmailStr
 
-from db.schemas.items import Item
-
 class PermissionBase(BaseModel):
     pass
 
