@@ -11,7 +11,7 @@
     {% block baselink %}
     <link href="{{ url_for('static', path='starbootstrap/css/styles.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', path='images/favicon.png') }}" rel="icon" type="image/x-icon" >
-    <script src="{{ url_for('static', path='fontawesome/js/all.min.js') }}" defer></script>
+    <script src="{{ url_for('static', path='fontawesome/js/all.min.js') }}" async defer></script>
     {% endblock %}
 
 <!--    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />-->
@@ -61,10 +61,10 @@
 
     <!-- plugins:js -->
      {% block basescripts %}
-    <script src="{{ url_for('static', path='bootstrap/js/bootstrap.bundle.min.js') }}" defer></script>
-    <script src="{{ url_for('static', path='starbootstrap/js/scripts.js') }}" defer></script>
-    <script src="{{ url_for('static', path='starbootstrap/js/datatables/datatables-simple-demo.js') }}" defer></script>
-    <script src="{{ url_for('static', path='starbootstrap/js/litepicker.js') }}" defer></script>
+    <script src="{{ url_for('static', path='bootstrap/js/bootstrap.bundle.min.js') }}" async defer></script>
+    <script src="{{ url_for('static', path='starbootstrap/js/scripts.js') }}" async defer></script>
+    <script src="{{ url_for('static', path='starbootstrap/js/datatables/datatables-simple-demo.js') }}" async defer></script>
+    <script src="{{ url_for('static', path='starbootstrap/js/litepicker.js') }}" async defer></script>
     {% endblock %}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" crossorigin="anonymous"></script>

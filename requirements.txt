@@ -1,5 +1,5 @@
-fastapi
-uvicorn
+fastapi~=0.97.0
+uvicorn~=0.22.0
 
 #for template
 jinja2
@@ -8,18 +8,18 @@ jinja2
 aiofiles
 
 #for database   #new
-sqlalchemy
+sqlalchemy~=2.0.13
 #psycopg2
 
 #for loading environment variables  #new
-#python-dotenv
+python-dotenv~=0.21.1
 
 #for email validation            #new
-pydantic[email]
+pydantic[email]~=1.10.7
 email_validator
 
 #hashing              #new
-passlib[bcrypt]
+passlib[bcrypt]~=1.7.4
 
 #for creating jwt tokens
 python-jose
@@ -32,10 +32,33 @@ python-multipart
 
 rich
 anyio
-httpx
-aioredis
+httpx~=0.23.3
+aioredis~=2.0.1
 pycryptodome
-captcha
+captcha~=0.4
 
 click
 fastapi_babel
+
+opencv-python~=4.7.0.72
+bottle~=0.12.25
+msal~=1.22.0
+pandas~=1.5.3
+apscheduler~=3.10.1
+python-telegram-bot
+
+openai~=0.27.6
+itsdangerous
+celery~=5.2.7
+pymysql~=1.0.2
+loguru~=0.7.0
+starlette~=0.27.0
+kombu~=5.2.4
+numpy~=1.23.5
+pillow~=9.5.0
+requests~=2.28.2
+lxml~=4.9.2
+gunicorn~=20.1.0
+deepl~=1.14.0
+selenium~=4.9.0
+langchain~=0.0.202

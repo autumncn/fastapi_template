@@ -3,19 +3,18 @@ from libs.fastapi_babel import Babel, BabelConfigs, _
 from core.config import settings
 from dependencies import templates
 from logs.logger import logger
-
 DEFAULT_LANGUAGE = "en"
 # SUPPORTED_LANGUAGE = ["ja", "fa", "en", "zh ", "ko"]
 SUPPORTED_LANGUAGE = ["en", "zh"]
 
-def get_lang(request: Request):
+async def get_lang(request: Request):
     lang = request.headers.get("Accept-Language", DEFAULT_LANGUAGE)
     lang = lang[:2]
     lang = DEFAULT_LANGUAGE if lang not in SUPPORTED_LANGUAGE else lang
     return lang
 
 
-def check_trans(babel: Babel):
+async def check_trans(babel: Babel):
     print(babel.locale)
     print(babel.config.ROOT_DIR)
     print(babel.config.BABEL_TRANSLATION_DIRECTORY)

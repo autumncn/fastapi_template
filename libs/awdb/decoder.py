@@ -12,35 +12,35 @@ class Decoder(object):
         self._buffer = database_buffer
         self._pointer_base = pointer_base
 
-    def _decode_array(self, size, offset):
+    async def _decode_array(self, size, offset):
         array = []
         for _ in range(size):
             (value, offset) = self.decode(offset)
             array.append(value)
         return array, offset
 
-    def _decode_boolean(self, size, offset):
+    async def _decode_boolean(self, size, offset):
         return size != 0, offset
 
-    def _decode_bytes(self, size, offset):
+    async def _decode_bytes(self, size, offset):
         new_offset = offset + size
         return self._buffer[offset:new_offset], new_offset
 
-    def _decode_double(self, size, offset):
+    async def _decode_double(self, size, offset):
         self._verify_size(size, 8)
         new_offset = offset + size
         packed_bytes = self._buffer[offset:new_offset]
         (value, ) = struct.unpack(b'!d', packed_bytes)
         return value, new_offset
 
-    def _decode_float(self, size, offset):
+    async def _decode_float(self, size, offset):
         self._verify_size(size, 4)
         new_offset = offset + size
         packed_bytes = self._buffer[offset:new_offset]
         (value, ) = struct.unpack(b'!f', packed_bytes)
         return value, new_offset
 
-    def _decode_int32(self, size, offset):
+    async def _decode_int32(self, size, offset):
         if size == 0:
             return 0, offset
         new_offset = offset + size
@@ -51,7 +51,7 @@ class Decoder(object):
         (value, ) = struct.unpack(b'!i', packed_bytes)
         return value, new_offset
 
-    def _decode_map(self, size, offset):
+    async def _decode_map(self, size, offset):
         container = {}
         for _ in range(size):
             (key, offset) = self.decode(offset)
@@ -59,7 +59,7 @@ class Decoder(object):
             container[key] = value
         return container, offset
 
-    def _decode_pointer(self, size, offset):
+    async def _decode_pointer(self, size, offset):
         pointer_size = (size >> 3) + 1
 
         buf = self._buffer[offset:offset + pointer_size]
@@ -83,12 +83,12 @@ class Decoder(object):
         (value, _) = self.decode(pointer)
         return value, new_offset
 
-    def _decode_uint(self, size, offset):
+    async def _decode_uint(self, size, offset):
         new_offset = offset + size
         uint_bytes = self._buffer[offset:new_offset]
         return int_from_bytes(uint_bytes), new_offset
 
-    def _decode_utf8_string(self, size, offset):
+    async def _decode_utf8_string(self, size, offset):
         new_offset = offset + size
         return self._buffer[offset:new_offset].decode('utf-8'), new_offset
 
@@ -108,7 +108,7 @@ class Decoder(object):
         15: _decode_float,
     }
 
-    def decode(self, offset):
+    async def decode(self, offset):
         new_offset = offset + 1
         ctrl_byte = int_from_byte(self._buffer[offset])
         type_num = ctrl_byte >> 5
@@ -125,7 +125,7 @@ class Decoder(object):
                                                        type_num)
         return decoder(self, size, new_offset)
 
-    def _read_extended(self, offset):
+    async def _read_extended(self, offset):
         next_byte = int_from_byte(self._buffer[offset])
         type_num = next_byte + 7
         if type_num < 7:
@@ -135,13 +135,13 @@ class Decoder(object):
                 '({type})'.format(type=type_num))
         return type_num, offset + 1
 
-    def _verify_size(self, expected, actual):
+    async def _verify_size(self, expected, actual):
         if expected != actual:
             raise InvalidDatabaseError(
                 'The AW DB file\'s data section contains bad data '
                 '(unknown data type or corrupt data)')
 
-    def _size_from_ctrl_byte(self, ctrl_byte, offset, type_num):
+    async def _size_from_ctrl_byte(self, ctrl_byte, offset, type_num):
         size = ctrl_byte & 0x1f
         if type_num == 1 or size < 29:
             return size, offset

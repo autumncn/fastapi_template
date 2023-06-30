@@ -59,7 +59,7 @@
                        <div class="row gx-3 mb-3">
                             <div class="col-md-6">
                                 <label class="small mb-1">{{ _('user_type') }}</label>
-                                <select class="form-select" name="user_type" aria-label="Default select User Type">
+                                <select class="form-select" name="user_type" aria-label="default select User Type">
                                     <option selected disabled>{{ _('--------') }}</option>
                                     <option value="0">{{ _('user_type_normal') }}</option>
                                     <option value="1">{{ _('user_type_admin') }}</option>
@@ -67,7 +67,7 @@
                             </div>
                             <div class="col-md-6">
                                <label class="small mb-1">{{ _('language') }}</label>
-                                <select class="form-select" name="user_lang" aria-label="Default select User Language">
+                                <select class="form-select" name="user_lang" aria-label="default select User Language">
                                     <option selected disabled>{{ _('--------') }}</option>
                                     <option value="en">{{ _('english') }}</option>
                                     <option value="zh">{{ _('chinese') }}</option>
@@ -76,7 +76,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="small mb-1">{{ _('user_role_id') }}</label>
-                            <select class="form-select" name="user_role_id" aria-label="Default select User Role ID">
+                            <select class="form-select" name="user_role_id" aria-label="default select User Role ID">
                                 <option selected disabled>{{ _('--------') }}</option>
                                 {% for role in user_role_list %}
                                     <option value="{{ role.id }}">{{ role.name }}</option>

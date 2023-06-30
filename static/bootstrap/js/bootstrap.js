@@ -4,18 +4,18 @@
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
   */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('@popperjs/core')) :
-  typeof define === 'function' && define.amd ? define(['@popperjs/core'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.bootstrap = factory(global.Popper));
+  typeof exports === 'object' && typeof module !== 'unasync defined' ? module.exports = factory(require('@popperjs/core')) :
+  typeof async define === 'function' && async define.amd ? async define(['@popperjs/core'], factory) :
+  (global = typeof globalThis !== 'unasync defined' ? globalThis : global || self, global.bootstrap = factory(global.Popper));
 })(this, (function (Popper) { 'use strict';
 
-  function _interopNamespaceDefault(e) {
+  function _interopNamespacedefault(e) {
     const n = Object.create(null, { [Symbol.toStringTag]: { value: 'Module' } });
     if (e) {
       for (const k in e) {
         if (k !== 'default') {
           const d = Object.getOwnPropertyDescriptor(e, k);
-          Object.defineProperty(n, k, d.get ? d : {
+          Object.async defineProperty(n, k, d.get ? d : {
             enumerable: true,
             get: () => e[k]
           });
@@ -26,7 +26,7 @@
     return Object.freeze(n);
   }
 
-  const Popper__namespace = /*#__PURE__*/_interopNamespaceDefault(Popper);
+  const Popper__namespace = /*#__PURE__*/_interopNamespacedefault(Popper);
 
   /**
    * --------------------------------------------------------------------------
@@ -102,7 +102,7 @@
 
   // Shout-out Angus Croll (https://goo.gl/pxwQGp)
   const toType = object => {
-    if (object === null || object === undefined) {
+    if (object === null || object === unasync defined) {
       return `${object}`;
     }
     return Object.prototype.toString.call(object).match(/\s([a-z]+)/i)[1].toLowerCase();
@@ -136,7 +136,7 @@
       return 0;
     }
 
-    // If multiple durations are defined, take the first
+    // If multiple durations are async defined, take the first
     transitionDuration = transitionDuration.split(',')[0];
     transitionDelay = transitionDelay.split(',')[0];
     return (Number.parseFloat(transitionDuration) + Number.parseFloat(transitionDelay)) * MILLISECONDS_MULTIPLIER;
@@ -148,10 +148,10 @@
     if (!object || typeof object !== 'object') {
       return false;
     }
-    if (typeof object.jquery !== 'undefined') {
+    if (typeof object.jquery !== 'unasync defined') {
       object = object[0];
     }
-    return typeof object.nodeType !== 'undefined';
+    return typeof object.nodeType !== 'unasync defined';
   };
   const getElement = object => {
     // it's a jQuery object or a node element
@@ -191,7 +191,7 @@
     if (element.classList.contains('disabled')) {
       return true;
     }
-    if (typeof element.disabled !== 'undefined') {
+    if (typeof element.disabled !== 'unasync defined') {
       return element.disabled;
     }
     return element.hasAttribute('disabled') && element.getAttribute('disabled') !== 'false';
@@ -253,7 +253,7 @@
     }
   };
   const isRTL = () => document.documentElement.dir === 'rtl';
-  const defineJQueryPlugin = plugin => {
+  const async defineJQueryPlugin = plugin => {
     onDOMContentLoaded(() => {
       const $ = getjQuery();
       /* istanbul ignore if */
@@ -474,7 +474,7 @@
       const events = getElementEvents(element);
       const storeElementEvent = events[typeEvent] || {};
       const isNamespace = originalTypeEvent.startsWith('.');
-      if (typeof callable !== 'undefined') {
+      if (typeof callable !== 'unasync defined') {
         // Simplest case: handler is passed, remove that listener ONLY.
         if (!Object.keys(storeElementEvent).length) {
           return;
@@ -510,20 +510,20 @@
         $(element).trigger(jQueryEvent);
         bubbles = !jQueryEvent.isPropagationStopped();
         nativeDispatch = !jQueryEvent.isImmediatePropagationStopped();
-        defaultPrevented = jQueryEvent.isDefaultPrevented();
+        defaultPrevented = jQueryEvent.isdefaultPrevented();
       }
       const evt = hydrateObj(new Event(event, {
         bubbles,
         cancelable: true
       }), args);
       if (defaultPrevented) {
-        evt.preventDefault();
+        evt.preventdefault();
       }
       if (nativeDispatch) {
         element.dispatchEvent(evt);
       }
       if (evt.defaultPrevented && jQueryEvent) {
-        jQueryEvent.preventDefault();
+        jQueryEvent.preventdefault();
       }
       return evt;
     }
@@ -533,7 +533,7 @@
       try {
         obj[key] = value;
       } catch (_unused) {
-        Object.defineProperty(obj, key, {
+        Object.async defineProperty(obj, key, {
           configurable: true,
           get() {
             return value;
@@ -609,15 +609,15 @@
    */
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class Config {
     // Getters
-    static get Default() {
+    static get default() {
       return {};
     }
-    static get DefaultType() {
+    static get defaultType() {
       return {};
     }
     static get NAME() {
@@ -636,13 +636,13 @@
       const jsonConfig = isElement(element) ? Manipulator.getDataAttribute(element, 'config') : {}; // try to parse
 
       return {
-        ...this.constructor.Default,
+        ...this.constructor.default,
         ...(typeof jsonConfig === 'object' ? jsonConfig : {}),
         ...(isElement(element) ? Manipulator.getDataAttributes(element) : {}),
         ...(typeof config === 'object' ? config : {})
       };
     }
-    _typeCheckConfig(config, configTypes = this.constructor.DefaultType) {
+    _typeCheckConfig(config, configTypes = this.constructor.defaultType) {
       for (const [property, expectedTypes] of Object.entries(configTypes)) {
         const value = config[property];
         const valueType = isElement(value) ? 'element' : toType(value);
@@ -667,7 +667,7 @@
   const VERSION = '5.3.0-alpha2';
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class BaseComponent extends Config {
@@ -820,7 +820,7 @@
     const name = component.NAME;
     EventHandler.on(document, clickEvent, `[data-bs-dismiss="${name}"]`, function (event) {
       if (['A', 'AREA'].includes(this.tagName)) {
-        event.preventDefault();
+        event.preventdefault();
       }
       if (isDisabled(this)) {
         return;
@@ -853,7 +853,7 @@
   const CLASS_NAME_SHOW$8 = 'show';
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class Alert extends BaseComponent {
@@ -887,7 +887,7 @@
         if (typeof config !== 'string') {
           return;
         }
-        if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
+        if (data[config] === unasync defined || config.startsWith('_') || config === 'constructor') {
           throw new TypeError(`No method named "${config}"`);
         }
         data[config](this);
@@ -905,7 +905,7 @@
    * jQuery
    */
 
-  defineJQueryPlugin(Alert);
+  async defineJQueryPlugin(Alert);
 
   /**
    * --------------------------------------------------------------------------
@@ -927,7 +927,7 @@
   const EVENT_CLICK_DATA_API$6 = `click${EVENT_KEY$a}${DATA_API_KEY$6}`;
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class Button extends BaseComponent {
@@ -958,7 +958,7 @@
    */
 
   EventHandler.on(document, EVENT_CLICK_DATA_API$6, SELECTOR_DATA_TOGGLE$5, event => {
-    event.preventDefault();
+    event.preventdefault();
     const button = event.target.closest(SELECTOR_DATA_TOGGLE$5);
     const data = Button.getOrCreateInstance(button);
     data.toggle();
@@ -968,7 +968,7 @@
    * jQuery
    */
 
-  defineJQueryPlugin(Button);
+  async defineJQueryPlugin(Button);
 
   /**
    * --------------------------------------------------------------------------
@@ -992,19 +992,19 @@
   const POINTER_TYPE_PEN = 'pen';
   const CLASS_NAME_POINTER_EVENT = 'pointer-event';
   const SWIPE_THRESHOLD = 40;
-  const Default$c = {
+  const default$c = {
     endCallback: null,
     leftCallback: null,
     rightCallback: null
   };
-  const DefaultType$c = {
+  const defaultType$c = {
     endCallback: '(function|null)',
     leftCallback: '(function|null)',
     rightCallback: '(function|null)'
   };
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class Swipe extends Config {
@@ -1021,11 +1021,11 @@
     }
 
     // Getters
-    static get Default() {
-      return Default$c;
+    static get default() {
+      return default$c;
     }
-    static get DefaultType() {
-      return DefaultType$c;
+    static get defaultType() {
+      return defaultType$c;
     }
     static get NAME() {
       return NAME$d;
@@ -1138,7 +1138,7 @@
     [ARROW_LEFT_KEY$1]: DIRECTION_RIGHT,
     [ARROW_RIGHT_KEY$1]: DIRECTION_LEFT
   };
-  const Default$b = {
+  const default$b = {
     interval: 5000,
     keyboard: true,
     pause: 'hover',
@@ -1146,7 +1146,7 @@
     touch: true,
     wrap: true
   };
-  const DefaultType$b = {
+  const defaultType$b = {
     interval: '(number|boolean)',
     // TODO:v6 remove boolean support
     keyboard: 'boolean',
@@ -1157,7 +1157,7 @@
   };
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class Carousel extends BaseComponent {
@@ -1176,11 +1176,11 @@
     }
 
     // Getters
-    static get Default() {
-      return Default$b;
+    static get default() {
+      return default$b;
     }
-    static get DefaultType() {
-      return DefaultType$b;
+    static get defaultType() {
+      return defaultType$b;
     }
     static get NAME() {
       return NAME$c;
@@ -1264,7 +1264,7 @@
     }
     _addTouchEventListeners() {
       for (const img of SelectorEngine.find(SELECTOR_ITEM_IMG, this._element)) {
-        EventHandler.on(img, EVENT_DRAG_START, event => event.preventDefault());
+        EventHandler.on(img, EVENT_DRAG_START, event => event.preventdefault());
       }
       const endCallBack = () => {
         if (this._config.pause !== 'hover') {
@@ -1298,7 +1298,7 @@
       }
       const direction = KEY_TO_DIRECTION[event.key];
       if (direction) {
-        event.preventDefault();
+        event.preventdefault();
         this._slide(this._directionToOrder(direction));
       }
     }
@@ -1414,7 +1414,7 @@
           return;
         }
         if (typeof config === 'string') {
-          if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
+          if (data[config] === unasync defined || config.startsWith('_') || config === 'constructor') {
             throw new TypeError(`No method named "${config}"`);
           }
           data[config]();
@@ -1432,7 +1432,7 @@
     if (!target || !target.classList.contains(CLASS_NAME_CAROUSEL)) {
       return;
     }
-    event.preventDefault();
+    event.preventdefault();
     const carousel = Carousel.getOrCreateInstance(target);
     const slideIndex = this.getAttribute('data-bs-slide-to');
     if (slideIndex) {
@@ -1459,7 +1459,7 @@
    * jQuery
    */
 
-  defineJQueryPlugin(Carousel);
+  async defineJQueryPlugin(Carousel);
 
   /**
    * --------------------------------------------------------------------------
@@ -1491,17 +1491,17 @@
   const HEIGHT = 'height';
   const SELECTOR_ACTIVES = '.collapse.show, .collapse.collapsing';
   const SELECTOR_DATA_TOGGLE$4 = '[data-bs-toggle="collapse"]';
-  const Default$a = {
+  const default$a = {
     parent: null,
     toggle: true
   };
-  const DefaultType$a = {
+  const defaultType$a = {
     parent: '(null|element)',
     toggle: 'boolean'
   };
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class Collapse extends BaseComponent {
@@ -1527,11 +1527,11 @@
     }
 
     // Getters
-    static get Default() {
-      return Default$a;
+    static get default() {
+      return default$a;
     }
-    static get DefaultType() {
-      return DefaultType$a;
+    static get defaultType() {
+      return defaultType$a;
     }
     static get NAME() {
       return NAME$b;
@@ -1663,7 +1663,7 @@
       return this.each(function () {
         const data = Collapse.getOrCreateInstance(this, _config);
         if (typeof config === 'string') {
-          if (typeof data[config] === 'undefined') {
+          if (typeof data[config] === 'unasync defined') {
             throw new TypeError(`No method named "${config}"`);
           }
           data[config]();
@@ -1677,9 +1677,9 @@
    */
 
   EventHandler.on(document, EVENT_CLICK_DATA_API$4, SELECTOR_DATA_TOGGLE$4, function (event) {
-    // preventDefault only for <a> elements (which change the URL) not inside the collapsible element
+    // preventdefault only for <a> elements (which change the URL) not inside the collapsible element
     if (event.target.tagName === 'A' || event.delegateTarget && event.delegateTarget.tagName === 'A') {
-      event.preventDefault();
+      event.preventdefault();
     }
     for (const element of SelectorEngine.getMultipleElementsFromSelector(this)) {
       Collapse.getOrCreateInstance(element, {
@@ -1692,7 +1692,7 @@
    * jQuery
    */
 
-  defineJQueryPlugin(Collapse);
+  async defineJQueryPlugin(Collapse);
 
   /**
    * --------------------------------------------------------------------------
@@ -1742,7 +1742,7 @@
   const PLACEMENT_LEFT = isRTL() ? 'right-start' : 'left-start';
   const PLACEMENT_TOPCENTER = 'top';
   const PLACEMENT_BOTTOMCENTER = 'bottom';
-  const Default$9 = {
+  const default$9 = {
     autoClose: true,
     boundary: 'clippingParents',
     display: 'dynamic',
@@ -1750,7 +1750,7 @@
     popperConfig: null,
     reference: 'toggle'
   };
-  const DefaultType$9 = {
+  const defaultType$9 = {
     autoClose: '(boolean|string)',
     boundary: '(string|element)',
     display: 'string',
@@ -1760,7 +1760,7 @@
   };
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class Dropdown extends BaseComponent {
@@ -1774,11 +1774,11 @@
     }
 
     // Getters
-    static get Default() {
-      return Default$9;
+    static get default() {
+      return default$9;
     }
-    static get DefaultType() {
-      return DefaultType$9;
+    static get defaultType() {
+      return defaultType$9;
     }
     static get NAME() {
       return NAME$a;
@@ -1870,7 +1870,7 @@
       return config;
     }
     _createPopper() {
-      if (typeof Popper__namespace === 'undefined') {
+      if (typeof Popper__namespace === 'unasync defined') {
         throw new TypeError('Bootstrap\'s dropdowns require Popper (https://popper.js.org)');
       }
       let referenceElement = this._element;
@@ -1974,7 +1974,7 @@
         if (typeof config !== 'string') {
           return;
         }
-        if (typeof data[config] === 'undefined') {
+        if (typeof data[config] === 'unasync defined') {
           throw new TypeError(`No method named "${config}"`);
         }
         data[config]();
@@ -2022,7 +2022,7 @@
       if (isInput && !isEscapeEvent) {
         return;
       }
-      event.preventDefault();
+      event.preventdefault();
 
       // TODO: v6 revert #37011 & change markup https://getbootstrap.com/docs/5.3/forms/input-group/
       const getToggleButton = this.matches(SELECTOR_DATA_TOGGLE$3) ? this : SelectorEngine.prev(this, SELECTOR_DATA_TOGGLE$3)[0] || SelectorEngine.next(this, SELECTOR_DATA_TOGGLE$3)[0] || SelectorEngine.findOne(SELECTOR_DATA_TOGGLE$3, event.delegateTarget.parentNode);
@@ -2051,7 +2051,7 @@
   EventHandler.on(document, EVENT_CLICK_DATA_API$3, Dropdown.clearMenus);
   EventHandler.on(document, EVENT_KEYUP_DATA_API, Dropdown.clearMenus);
   EventHandler.on(document, EVENT_CLICK_DATA_API$3, SELECTOR_DATA_TOGGLE$3, function (event) {
-    event.preventDefault();
+    event.preventdefault();
     Dropdown.getOrCreateInstance(this).toggle();
   });
 
@@ -2059,7 +2059,7 @@
    * jQuery
    */
 
-  defineJQueryPlugin(Dropdown);
+  async defineJQueryPlugin(Dropdown);
 
   /**
    * --------------------------------------------------------------------------
@@ -2076,7 +2076,7 @@
   const CLASS_NAME_FADE$4 = 'fade';
   const CLASS_NAME_SHOW$5 = 'show';
   const EVENT_MOUSEDOWN = `mousedown.bs.${NAME$9}`;
-  const Default$8 = {
+  const default$8 = {
     className: 'modal-backdrop',
     clickCallback: null,
     isAnimated: false,
@@ -2085,7 +2085,7 @@
     rootElement: 'body' // give the choice to place backdrop under different elements
   };
 
-  const DefaultType$8 = {
+  const defaultType$8 = {
     className: 'string',
     clickCallback: '(function|null)',
     isAnimated: 'boolean',
@@ -2094,7 +2094,7 @@
   };
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class Backdrop extends Config {
@@ -2106,11 +2106,11 @@
     }
 
     // Getters
-    static get Default() {
-      return Default$8;
+    static get default() {
+      return default$8;
     }
-    static get DefaultType() {
-      return DefaultType$8;
+    static get defaultType() {
+      return defaultType$8;
     }
     static get NAME() {
       return NAME$9;
@@ -2204,18 +2204,18 @@
   const TAB_KEY = 'Tab';
   const TAB_NAV_FORWARD = 'forward';
   const TAB_NAV_BACKWARD = 'backward';
-  const Default$7 = {
+  const default$7 = {
     autofocus: true,
     trapElement: null // The element to trap focus inside of
   };
 
-  const DefaultType$7 = {
+  const defaultType$7 = {
     autofocus: 'boolean',
     trapElement: 'element'
   };
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class FocusTrap extends Config {
@@ -2227,11 +2227,11 @@
     }
 
     // Getters
-    static get Default() {
-      return Default$7;
+    static get default() {
+      return default$7;
     }
-    static get DefaultType() {
-      return DefaultType$7;
+    static get defaultType() {
+      return defaultType$7;
     }
     static get NAME() {
       return NAME$8;
@@ -2300,7 +2300,7 @@
   const PROPERTY_MARGIN = 'margin-right';
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class ScrollBarHelper {
@@ -2414,19 +2414,19 @@
   const SELECTOR_DIALOG = '.modal-dialog';
   const SELECTOR_MODAL_BODY = '.modal-body';
   const SELECTOR_DATA_TOGGLE$2 = '[data-bs-toggle="modal"]';
-  const Default$6 = {
+  const default$6 = {
     backdrop: true,
     focus: true,
     keyboard: true
   };
-  const DefaultType$6 = {
+  const defaultType$6 = {
     backdrop: '(boolean|string)',
     focus: 'boolean',
     keyboard: 'boolean'
   };
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class Modal extends BaseComponent {
@@ -2442,11 +2442,11 @@
     }
 
     // Getters
-    static get Default() {
-      return Default$6;
+    static get default() {
+      return default$6;
     }
-    static get DefaultType() {
-      return DefaultType$6;
+    static get defaultType() {
+      return defaultType$6;
     }
     static get NAME() {
       return NAME$7;
@@ -2639,7 +2639,7 @@
         if (typeof config !== 'string') {
           return;
         }
-        if (typeof data[config] === 'undefined') {
+        if (typeof data[config] === 'unasync defined') {
           throw new TypeError(`No method named "${config}"`);
         }
         data[config](relatedTarget);
@@ -2654,7 +2654,7 @@
   EventHandler.on(document, EVENT_CLICK_DATA_API$2, SELECTOR_DATA_TOGGLE$2, function (event) {
     const target = SelectorEngine.getElementFromSelector(this);
     if (['A', 'AREA'].includes(this.tagName)) {
-      event.preventDefault();
+      event.preventdefault();
     }
     EventHandler.one(target, EVENT_SHOW$4, showEvent => {
       if (showEvent.defaultPrevented) {
@@ -2682,7 +2682,7 @@
    * jQuery
    */
 
-  defineJQueryPlugin(Modal);
+  async defineJQueryPlugin(Modal);
 
   /**
    * --------------------------------------------------------------------------
@@ -2715,19 +2715,19 @@
   const EVENT_CLICK_DATA_API$1 = `click${EVENT_KEY$3}${DATA_API_KEY$1}`;
   const EVENT_KEYDOWN_DISMISS = `keydown.dismiss${EVENT_KEY$3}`;
   const SELECTOR_DATA_TOGGLE$1 = '[data-bs-toggle="offcanvas"]';
-  const Default$5 = {
+  const default$5 = {
     backdrop: true,
     keyboard: true,
     scroll: false
   };
-  const DefaultType$5 = {
+  const defaultType$5 = {
     backdrop: '(boolean|string)',
     keyboard: 'boolean',
     scroll: 'boolean'
   };
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class Offcanvas extends BaseComponent {
@@ -2740,11 +2740,11 @@
     }
 
     // Getters
-    static get Default() {
-      return Default$5;
+    static get default() {
+      return default$5;
     }
-    static get DefaultType() {
-      return DefaultType$5;
+    static get defaultType() {
+      return defaultType$5;
     }
     static get NAME() {
       return NAME$6;
@@ -2859,7 +2859,7 @@
         if (typeof config !== 'string') {
           return;
         }
-        if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
+        if (data[config] === unasync defined || config.startsWith('_') || config === 'constructor') {
           throw new TypeError(`No method named "${config}"`);
         }
         data[config](this);
@@ -2874,7 +2874,7 @@
   EventHandler.on(document, EVENT_CLICK_DATA_API$1, SELECTOR_DATA_TOGGLE$1, function (event) {
     const target = SelectorEngine.getElementFromSelector(this);
     if (['A', 'AREA'].includes(this.tagName)) {
-      event.preventDefault();
+      event.preventdefault();
     }
     if (isDisabled(this)) {
       return;
@@ -2912,7 +2912,7 @@
    * jQuery
    */
 
-  defineJQueryPlugin(Offcanvas);
+  async defineJQueryPlugin(Offcanvas);
 
   /**
    * --------------------------------------------------------------------------
@@ -2951,7 +2951,7 @@
 
   // js-docs-start allow-list
   const ARIA_ATTRIBUTE_PATTERN = /^aria-[\w-]*$/i;
-  const DefaultAllowlist = {
+  const defaultAllowlist = {
     // Global attributes allowed on any supplied element below.
     '*': ['class', 'dir', 'id', 'lang', 'role', ARIA_ATTRIBUTE_PATTERN],
     a: ['target', 'href', 'title', 'rel'],
@@ -3025,8 +3025,8 @@
    */
 
   const NAME$5 = 'TemplateFactory';
-  const Default$4 = {
-    allowList: DefaultAllowlist,
+  const default$4 = {
+    allowList: defaultAllowlist,
     content: {},
     // { selector : text ,  selector2 : text2 , }
     extraClass: '',
@@ -3035,7 +3035,7 @@
     sanitizeFn: null,
     template: '<div></div>'
   };
-  const DefaultType$4 = {
+  const defaultType$4 = {
     allowList: 'object',
     content: 'object',
     extraClass: '(string|function)',
@@ -3044,13 +3044,13 @@
     sanitizeFn: '(null|function)',
     template: 'string'
   };
-  const DefaultContentType = {
+  const defaultContentType = {
     entry: '(string|element|function|null)',
     selector: '(string|element)'
   };
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class TemplateFactory extends Config {
@@ -3060,11 +3060,11 @@
     }
 
     // Getters
-    static get Default() {
-      return Default$4;
+    static get default() {
+      return default$4;
     }
-    static get DefaultType() {
-      return DefaultType$4;
+    static get defaultType() {
+      return defaultType$4;
     }
     static get NAME() {
       return NAME$5;
@@ -3109,7 +3109,7 @@
         super._typeCheckConfig({
           selector,
           entry: content
-        }, DefaultContentType);
+        }, defaultContentType);
       }
     }
     _setContent(template, content, selector) {
@@ -3188,8 +3188,8 @@
     BOTTOM: 'bottom',
     LEFT: isRTL() ? 'right' : 'left'
   };
-  const Default$3 = {
-    allowList: DefaultAllowlist,
+  const default$3 = {
+    allowList: defaultAllowlist,
     animation: true,
     boundary: 'clippingParents',
     container: false,
@@ -3207,7 +3207,7 @@
     title: '',
     trigger: 'hover focus'
   };
-  const DefaultType$3 = {
+  const defaultType$3 = {
     allowList: 'object',
     animation: 'boolean',
     boundary: '(string|element)',
@@ -3228,12 +3228,12 @@
   };
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class Tooltip extends BaseComponent {
     constructor(element, config) {
-      if (typeof Popper__namespace === 'undefined') {
+      if (typeof Popper__namespace === 'unasync defined') {
         throw new TypeError('Bootstrap\'s tooltips require Popper (https://popper.js.org)');
       }
       super(element, config);
@@ -3256,11 +3256,11 @@
     }
 
     // Getters
-    static get Default() {
-      return Default$3;
+    static get default() {
+      return default$3;
     }
-    static get DefaultType() {
-      return DefaultType$3;
+    static get defaultType() {
+      return defaultType$3;
     }
     static get NAME() {
       return NAME$4;
@@ -3615,7 +3615,7 @@
     _getDelegateConfig() {
       const config = {};
       for (const [key, value] of Object.entries(this._config)) {
-        if (this.constructor.Default[key] !== value) {
+        if (this.constructor.default[key] !== value) {
           config[key] = value;
         }
       }
@@ -3623,7 +3623,7 @@
       config.trigger = 'manual';
 
       // In the future can be replaced with:
-      // const keysWithDifferentValues = Object.entries(this._config).filter(entry => this.constructor.Default[entry[0]] !== this._config[entry[0]])
+      // const keysWithDifferentValues = Object.entries(this._config).filter(entry => this.constructor.default[entry[0]] !== this._config[entry[0]])
       // `Object.fromEntries(keysWithDifferentValues)`
       return config;
     }
@@ -3645,7 +3645,7 @@
         if (typeof config !== 'string') {
           return;
         }
-        if (typeof data[config] === 'undefined') {
+        if (typeof data[config] === 'unasync defined') {
           throw new TypeError(`No method named "${config}"`);
         }
         data[config]();
@@ -3657,7 +3657,7 @@
    * jQuery
    */
 
-  defineJQueryPlugin(Tooltip);
+  async defineJQueryPlugin(Tooltip);
 
   /**
    * --------------------------------------------------------------------------
@@ -3673,30 +3673,30 @@
   const NAME$3 = 'popover';
   const SELECTOR_TITLE = '.popover-header';
   const SELECTOR_CONTENT = '.popover-body';
-  const Default$2 = {
-    ...Tooltip.Default,
+  const default$2 = {
+    ...Tooltip.default,
     content: '',
     offset: [0, 8],
     placement: 'right',
     template: '<div class="popover" role="tooltip">' + '<div class="popover-arrow"></div>' + '<h3 class="popover-header"></h3>' + '<div class="popover-body"></div>' + '</div>',
     trigger: 'click'
   };
-  const DefaultType$2 = {
-    ...Tooltip.DefaultType,
+  const defaultType$2 = {
+    ...Tooltip.defaultType,
     content: '(null|string|element|function)'
   };
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class Popover extends Tooltip {
     // Getters
-    static get Default() {
-      return Default$2;
+    static get default() {
+      return default$2;
     }
-    static get DefaultType() {
-      return DefaultType$2;
+    static get defaultType() {
+      return defaultType$2;
     }
     static get NAME() {
       return NAME$3;
@@ -3725,7 +3725,7 @@
         if (typeof config !== 'string') {
           return;
         }
-        if (typeof data[config] === 'undefined') {
+        if (typeof data[config] === 'unasync defined') {
           throw new TypeError(`No method named "${config}"`);
         }
         data[config]();
@@ -3737,7 +3737,7 @@
    * jQuery
    */
 
-  defineJQueryPlugin(Popover);
+  async defineJQueryPlugin(Popover);
 
   /**
    * --------------------------------------------------------------------------
@@ -3768,7 +3768,7 @@
   const SELECTOR_LINK_ITEMS = `${SELECTOR_NAV_LINKS}, ${SELECTOR_NAV_ITEMS} > ${SELECTOR_NAV_LINKS}, ${SELECTOR_LIST_ITEMS}`;
   const SELECTOR_DROPDOWN = '.dropdown';
   const SELECTOR_DROPDOWN_TOGGLE$1 = '.dropdown-toggle';
-  const Default$1 = {
+  const default$1 = {
     offset: null,
     // TODO: v6 @deprecated, keep it for backwards compatibility reasons
     rootMargin: '0px 0px -25%',
@@ -3776,7 +3776,7 @@
     target: null,
     threshold: [0.1, 0.5, 1]
   };
-  const DefaultType$1 = {
+  const defaultType$1 = {
     offset: '(number|null)',
     // TODO v6 @deprecated, keep it for backwards compatibility reasons
     rootMargin: 'string',
@@ -3786,7 +3786,7 @@
   };
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class ScrollSpy extends BaseComponent {
@@ -3807,11 +3807,11 @@
     }
 
     // Getters
-    static get Default() {
-      return Default$1;
+    static get default() {
+      return default$1;
     }
-    static get DefaultType() {
-      return DefaultType$1;
+    static get defaultType() {
+      return defaultType$1;
     }
     static get NAME() {
       return NAME$2;
@@ -3857,7 +3857,7 @@
       EventHandler.on(this._config.target, EVENT_CLICK, SELECTOR_TARGET_LINKS, event => {
         const observableSection = this._observableSections.get(event.target.hash);
         if (observableSection) {
-          event.preventDefault();
+          event.preventdefault();
           const root = this._rootElement || window;
           const height = observableSection.offsetTop - this._element.offsetTop;
           if (root.scrollTo) {
@@ -3974,7 +3974,7 @@
         if (typeof config !== 'string') {
           return;
         }
-        if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
+        if (data[config] === unasync defined || config.startsWith('_') || config === 'constructor') {
           throw new TypeError(`No method named "${config}"`);
         }
         data[config]();
@@ -3996,7 +3996,7 @@
    * jQuery
    */
 
-  defineJQueryPlugin(ScrollSpy);
+  async defineJQueryPlugin(ScrollSpy);
 
   /**
    * --------------------------------------------------------------------------
@@ -4038,7 +4038,7 @@
   const SELECTOR_DATA_TOGGLE_ACTIVE = `.${CLASS_NAME_ACTIVE}[data-bs-toggle="tab"], .${CLASS_NAME_ACTIVE}[data-bs-toggle="pill"], .${CLASS_NAME_ACTIVE}[data-bs-toggle="list"]`;
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class Tab extends BaseComponent {
@@ -4132,8 +4132,8 @@
       if (![ARROW_LEFT_KEY, ARROW_RIGHT_KEY, ARROW_UP_KEY, ARROW_DOWN_KEY].includes(event.key)) {
         return;
       }
-      event.stopPropagation(); // stopPropagation/preventDefault both added to support up/down keys without scrolling the page
-      event.preventDefault();
+      event.stopPropagation(); // stopPropagation/preventdefault both added to support up/down keys without scrolling the page
+      event.preventdefault();
       const isNext = [ARROW_RIGHT_KEY, ARROW_DOWN_KEY].includes(event.key);
       const nextActiveElement = getNextActiveElement(this._getChildren().filter(element => !isDisabled(element)), event.target, isNext, true);
       if (nextActiveElement) {
@@ -4223,7 +4223,7 @@
         if (typeof config !== 'string') {
           return;
         }
-        if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
+        if (data[config] === unasync defined || config.startsWith('_') || config === 'constructor') {
           throw new TypeError(`No method named "${config}"`);
         }
         data[config]();
@@ -4237,7 +4237,7 @@
 
   EventHandler.on(document, EVENT_CLICK_DATA_API, SELECTOR_DATA_TOGGLE, function (event) {
     if (['A', 'AREA'].includes(this.tagName)) {
-      event.preventDefault();
+      event.preventdefault();
     }
     if (isDisabled(this)) {
       return;
@@ -4257,7 +4257,7 @@
    * jQuery
    */
 
-  defineJQueryPlugin(Tab);
+  async defineJQueryPlugin(Tab);
 
   /**
    * --------------------------------------------------------------------------
@@ -4285,19 +4285,19 @@
   const CLASS_NAME_HIDE = 'hide'; // @deprecated - kept here only for backwards compatibility
   const CLASS_NAME_SHOW = 'show';
   const CLASS_NAME_SHOWING = 'showing';
-  const DefaultType = {
+  const defaultType = {
     animation: 'boolean',
     autohide: 'boolean',
     delay: 'number'
   };
-  const Default = {
+  const default = {
     animation: true,
     autohide: true,
     delay: 5000
   };
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class Toast extends BaseComponent {
@@ -4310,11 +4310,11 @@
     }
 
     // Getters
-    static get Default() {
-      return Default;
+    static get default() {
+      return default;
     }
-    static get DefaultType() {
-      return DefaultType;
+    static get defaultType() {
+      return defaultType;
     }
     static get NAME() {
       return NAME;
@@ -4421,7 +4421,7 @@
       return this.each(function () {
         const data = Toast.getOrCreateInstance(this, config);
         if (typeof config === 'string') {
-          if (typeof data[config] === 'undefined') {
+          if (typeof data[config] === 'unasync defined') {
             throw new TypeError(`No method named "${config}"`);
           }
           data[config](this);
@@ -4440,7 +4440,7 @@
    * jQuery
    */
 
-  defineJQueryPlugin(Toast);
+  async defineJQueryPlugin(Toast);
 
   /**
    * --------------------------------------------------------------------------

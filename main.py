@@ -12,7 +12,6 @@ from register.exception import register_exception
 from register.middleware import register_middleware
 from register.mount import register_mount
 from register.routers import register_router
-from service.menuService import get_menu_list
 
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
 

@@ -68,7 +68,7 @@
                        <div class="row gx-3 mb-3">
                             <div class="col-md-6">
                                 <label class="small mb-1">{{ _('status') }}</label>
-                                <select class="form-select" name="user_status" aria-label="Default select User Status">
+                                <select class="form-select" name="user_status" aria-label="default select User Status">
                                     <option selected disabled>{{ _('--------') }}</option>
                                     <option value="0" {% if user.is_active == 0 %}selected{% endif %}>{{ _('disable') }}</option>
                                     <option value="1" {% if user.is_active == 1 %}selected{% endif %}>{{ _('enable') }}</option>
@@ -76,7 +76,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="small mb-1">{{ _('user_type') }}</label>
-                                <select class="form-select" name="user_type" aria-label="Default select User Type">
+                                <select class="form-select" name="user_type" aria-label="default select User Type">
                                     <option selected disabled>{{ _('--------') }}</option>
                                     <option value="0" {% if user.is_superuser == 0 %}selected{% endif %}>{{ _('user_type_normal') }}</option>
                                     <option value="1" {% if user.is_superuser == 1 %}selected{% endif %}>{{ _('user_type_admin') }}</option>
@@ -86,7 +86,7 @@
                        <div class="row gx-3 mb-3">
                              <div class="col-md-6">
                                <label class="small mb-1">{{ _('language') }}</label>
-                                <select class="form-select" name="user_lang" aria-label="Default select User Language">
+                                <select class="form-select" name="user_lang" aria-label="default select User Language">
                                     <option selected disabled>{{ _('--------') }}</option>
                                     <option value="en" {% if user.language=='en' %}selected{% endif %}>{{ _('english') }}</option>
                                     <option value="zh" {% if user.language=='zh' %}selected{% endif %}>{{ _('chinese') }}</option>
@@ -94,7 +94,7 @@
                              </div>
                              <div class="col-md-6">
                                  <label class="small mb-1">{{ _('user_role_id') }}</label>
-                                <select class="form-select" name="user_role_id" aria-label="Default select User Role ID">
+                                <select class="form-select" name="user_role_id" aria-label="default select User Role ID">
                                     <option selected disabled>{{ _('--------') }}</option>
                                     {% for role in user_role_list %}
                                     <option value="{{ role.id }}" {% if user.user_role_id == role.id %}selected{% endif %}>{{ role.name }}</option>

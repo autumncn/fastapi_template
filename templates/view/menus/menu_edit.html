@@ -81,7 +81,7 @@
 
                             <div class="col-md-6">
                             <label class="small mb-1">{{ _('hidden') }}</label>
-                            <select class="form-select" name="hidden" aria-label="Default select Menu Hidden Param">
+                            <select class="form-select" name="hidden" aria-label="default select Menu Hidden Param">
                                 <option selected disabled>{{ _('--------') }}</option>
                                 <option value="0" {% if menu.hidden==0 %}selected{% endif %}>{{ _('hidden') }}</option>
                                 <option value="1" {% if menu.hidden==1 %}selected{% endif %}>{{ _('shown') }}</option>
@@ -96,7 +96,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="small mb-1">{{ _('sort') }}</label>
-                                <select class="form-select" name="sort" aria-label="Default select Menu Sort">
+                                <select class="form-select" name="sort" aria-label="default select Menu Sort">
                                     <option selected disabled>{{ _('--------') }}</option>
                                     <option value="0" {% if menu.sort==0 %}selected{% endif %}>{{ _('desc') }}</option>
                                     <option value="1" {% if menu.sort==1 %}selected{% endif %}>{{ _('asc') }}</option>
@@ -110,7 +110,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="small mb-1">{{ _('status') }}</label>
-                                <select class="form-select" name="menu_status" aria-label="Default select Menu status">
+                                <select class="form-select" name="menu_status" aria-label="default select Menu status">
                                     <option selected disabled>{{ _('--------') }}</option>
                                     <option value="0" {% if menu.status==0 %}selected{% endif %}>{{ _('disable') }}</option>
                                     <option value="1" {% if menu.status==1 %}selected{% endif %}>{{ _('enable') }}</option>

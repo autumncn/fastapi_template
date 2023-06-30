@@ -1,31 +1,32 @@
 from fastapi import HTTPException
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Session
 
 from core.security import get_password_hash
 from db.models.users import User
 from db.schemas.users import UserCreate, UserModify, UpdateUserLogin, UpdateUserRole, UpdateUserLang
 
-def get_user(db: Session, user_id: int):
+async def get_user(db: AsyncSession, user_id: int):
     return db.query(User).filter(User.id == user_id).first()
 
 
-def get_user_by_username(username: str, db: Session):
+async def get_user_by_username(username: str, db: AsyncSession):
     user = db.query(User).filter(User.email == username).first()
     return user
 
-def get_user_by_email(email: str, db: Session):
+async def get_user_by_email(email: str, db: AsyncSession):
     user = db.query(User).filter(User.email == email).first()
     return user
 
-def get_users(db: Session, skip: int = 0, limit: int = 100):
+async def get_users(db: AsyncSession, skip: int = 0, limit: int = 100):
     return db.query(User).offset(skip).limit(limit).all()
 
-def get_users_by_ids(db: Session, user_ids=[]):
+async def get_users_by_ids(db: AsyncSession, user_ids=[]):
     users = db.query(User).filter(User.id.in_(user_ids)).all()
     return users
     # return db.query(User).filter(User.id in tuple(user_ids)).offset(0).limit(100).all()
 
-def modify_user(db: Session, user: UserModify):
+async def modify_user(db: AsyncSession, user: UserModify):
     db_user = get_user(db, user.id)
     db_user.email = user.email
     db_user.username = user.username
@@ -41,7 +42,7 @@ def modify_user(db: Session, user: UserModify):
     db.refresh(db_user)
     return db_user
 
-def update_user_role(db: Session, user: UpdateUserRole):
+async def update_user_role(db: AsyncSession, user: UpdateUserRole):
     db_user = get_user(db, user.id)
     db_user.user_role_id = user.user_role_id
     db_user.modify_by = user.modify_by
@@ -50,7 +51,7 @@ def update_user_role(db: Session, user: UpdateUserRole):
     db.refresh(db_user)
     return db_user
 
-def update_user_lang(db: Session, user: UpdateUserLang):
+async def update_user_lang(db: AsyncSession, user: UpdateUserLang):
     db_user = get_user(db, user.id)
     db_user.language = user.language
     db_user.modify_by = user.modify_by
@@ -59,14 +60,14 @@ def update_user_lang(db: Session, user: UpdateUserLang):
     db.refresh(db_user)
     return db_user
 
-def update_user_login(db: Session, user: UpdateUserLogin):
+async def update_user_login(db: AsyncSession, user: UpdateUserLogin):
     db_user = get_user(db, user.id)
     db_user.date_entered = user.date_entered
     db.commit()
     db.refresh(db_user)
     return db_user
 
-def create_user(db: Session, user: UserCreate):
+async def create_user(db: AsyncSession, user: UserCreate):
     # fake_hashed_password = user.password + "notreallyhashed"
     # db_user = User(email=user.email, hashed_password=fake_hashed_password)
     new_hashed_password = get_password_hash(user.password)
@@ -80,7 +81,7 @@ def create_user(db: Session, user: UserCreate):
     db.refresh(db_user)
     return db_user
 
-def create_superuser(db: Session, user: UserCreate):
+async def create_superuser(db: AsyncSession, user: UserCreate):
     # fake_hashed_password = user.password + "notreallyhashed"
     # db_user = User(email=user.email, hashed_password=fake_hashed_password)
     new_hashed_password = get_password_hash(user.password)
@@ -94,7 +95,7 @@ def create_superuser(db: Session, user: UserCreate):
     db.refresh(db_user)
     return db_user
 
-def delete_user_by_id(db: Session, id: int):
+async def delete_user_by_id(db: AsyncSession, id: int):
     db_user = get_user(db, id)
     db.delete(db_user)
     db.commit()

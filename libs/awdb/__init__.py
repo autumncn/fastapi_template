@@ -11,7 +11,7 @@ from libs.awdb.const import (MODE_AUTO, MODE_MMAP, MODE_MMAP_EXT, MODE_FILE,
 # from libs.awdb.decoder import InvalidDatabaseError
 
 
-def open_database(database, mode=MODE_AUTO):
+async def open_database(database, mode=MODE_AUTO):
     has_extension = extension and hasattr(extension,
                                                     'Reader')
     if (mode == MODE_AUTO and has_extension) or mode == MODE_MMAP_EXT:
@@ -25,7 +25,7 @@ def open_database(database, mode=MODE_AUTO):
     raise ValueError('Unsupported open mode: {0}'.format(mode))
 
 
-def Reader(database):  
+async def Reader(database):  
     return open_database(database)
 
 

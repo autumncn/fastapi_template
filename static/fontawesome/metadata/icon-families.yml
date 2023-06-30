@@ -31622,7 +31622,7 @@ not-equal:
       - math
   unicode: f53e
   voted: true
-notdef:
+notasync def:
   changes:
     - 6.0.0-beta1
     - 6.2.0
@@ -31636,7 +31636,7 @@ notdef:
     pro:
       - family: classic
         style: solid
-  label: Notdef
+  label: Notasync def
   search:
     terms:
       - close
@@ -39059,8 +39059,8 @@ shield:
       - award
       - block
       - cleric
-      - defend
-      - defense
+      - async defend
+      - async defense
       - holy
       - paladin
       - protect
@@ -39148,8 +39148,8 @@ shield-halved:
       - award
       - block
       - cleric
-      - defend
-      - defense
+      - async defend
+      - async defense
       - holy
       - paladin
       - security

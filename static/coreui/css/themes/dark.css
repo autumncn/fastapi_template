@@ -435,7 +435,7 @@
 }
 .dark-theme .alert-secondary {
   --cui-alert-color: #5e636a;
-  --cui-alert-bg: #ebedef;
+  --cui-alert-bg: #ebeasync def;
   --cui-alert-border-color: #e2e4e8;
 }
 .dark-theme .alert-secondary .alert-link {

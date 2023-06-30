@@ -6,6 +6,7 @@ import captcha
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi import Depends, APIRouter, Response, Request, status, HTTPException, Form
 from jose import jwt, JWTError
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Session
 from datetime import timedelta
 from fastapi.responses import HTMLResponse
@@ -24,8 +25,8 @@ from fastapi.security import OAuth2PasswordRequestForm,OAuth2PasswordBearer
 from db.schemas.userLoginLogs import UserLoginLogCreate
 from db.schemas.users import UserCreate, UserModify, UpdateUserLogin, UpdateUserLang
 from dependencies import templates
-from service.ipService import read_ip_detail
-from service.menuService import get_menu_list_by_user_permission, get_menu_path_by_user_permission
+from service.ipService import IpService
+from service.menuService import MenuService
 from utils.CaptchaUtil import gen_captcha_text_and_image
 from utils.CyptoUtil import get_uuid
 from utils.JsonUtil import obj_as_dict, obj_as_json
@@ -55,7 +56,7 @@ async def login(request: Request):
     return response_to_dashboad
 
 @router.get('/captcha')
-def get_captcha(request: Request):
+async def get_captcha(request: Request):
     # img, text = img_captcha()
     text, img = gen_captcha_text_and_image(save=False)
     uuid = str(get_uuid())
@@ -68,7 +69,7 @@ def get_captcha(request: Request):
 async def login_for_access_token(request: Request,
                                  form_data: OAuth2PasswordRequestForm = Depends(),
                                  remember: str = Form(None),
-                                 db: Session= Depends(get_db)):
+                                 db: AsyncSession= Depends(get_db)):
     user = authenticate_user(form_data.username, form_data.password,db)
     # print(remember)
     # user username in the form as email
@@ -87,9 +88,9 @@ async def login_for_access_token(request: Request,
                 context={"request": request, "error": _("user_is_not_exist")},
             )
 
-    user_allow_menu_path = get_menu_path_by_user_permission(user_login_email=user.email, db=next(get_db()))
+    user_allow_menu_path = await MenuService().get_menu_path_by_user_permission(user_login_email=user.email)
     await request.app.state.redis.set(user.email + '_user_allow_menu_path', json.dumps(user_allow_menu_path))
-    menu_items = get_menu_list_by_user_permission(user_login_email=user.email, skip=0, limit=100, db=next(get_db()))
+    menu_items = await MenuService().get_menu_list_by_user_permission(user_login_email=user.email, skip=0, limit=100)
     await request.app.state.redis.set(user.email + '_menu_items', json.dumps(menu_items))
 
     access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
@@ -121,7 +122,7 @@ async def login_for_access_token(request: Request,
     update_user_login(db, new_user)
 
     try:
-        get_ip_detail = read_ip_detail(request.client.host)
+        get_ip_detail = await IpService().read_ip_detail(request.client.host)
         login_from = get_ip_detail['result']['areacode']
         if login_from is None:
             login_from = "-"
@@ -143,7 +144,7 @@ async def login_for_access_token(request: Request,
 
 
 #new function, It works as a dependency
-async def get_current_user_from_token(token: str = Depends(oauth2_scheme),db: Session=Depends(get_db)):
+async def get_current_user_from_token(token: str = Depends(oauth2_scheme),db: AsyncSession=Depends(get_db)):
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
@@ -201,7 +202,7 @@ async def register_with_email(request: Request,response: Response,
                                  email: str = Form(None),
                                  password: str = Form(None),
                                  re_password: str = Form(None),
-                                 db: Session= Depends(get_db),
+                                 db: AsyncSession= Depends(get_db),
                                  ):
     return templates.TemplateResponse(
         "view/registration.html",
@@ -210,7 +211,7 @@ async def register_with_email(request: Request,response: Response,
     )
 
 @router.get("/forget_password", response_class=HTMLResponse)
-async def forget_password_page(request: Request, db: Session = Depends(get_db)):
+async def forget_password_page(request: Request, db: AsyncSession = Depends(get_db)):
     get_login_user_email = request.cookies.get("login")
 
     user = get_user_by_email(email=get_login_user_email, db=db)
@@ -219,7 +220,7 @@ async def forget_password_page(request: Request, db: Session = Depends(get_db)):
 
 
 @router.get("/profile")
-async def read_profile_by_login(request: Request, db: Session = Depends(get_db)):
+async def read_profile_by_login(request: Request, db: AsyncSession = Depends(get_db)):
     get_login_user_email = request.cookies.get("login")
 
     user = get_user_by_email(email=get_login_user_email, db=db)
@@ -231,7 +232,7 @@ async def set_profile_by_login(
         request: Request,
         set_email: Optional[str] = Form(None),
         set_lang: Optional[str] = Form(None),
-        db: Session = Depends(get_db)):
+        db: AsyncSession = Depends(get_db)):
     get_login_user_email = request.cookies.get("login")
     user = get_user_by_email(email=get_login_user_email, db=db)
     print(set_email, set_lang)

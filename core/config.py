@@ -18,6 +18,7 @@ class Settings:
     SQL_PORT: str = os.getenv("SQL_PORT")
     SQL_DB: str = os.getenv("SQL_DB")
     SQL_DATABASE_URL = "mysql://{0}:{1}@{2}:{3}/{4}?charset=utf8".format(SQL_USER, SQL_PASSWORD, SQL_SERVER, SQL_PORT, SQL_DB)
+    SQL_SYNC_DATABASE_URL = "mysql+asyncmy://{0}:{1}@{2}:{3}/{4}?charset=utf8".format(SQL_USER, SQL_PASSWORD, SQL_SERVER, SQL_PORT, SQL_DB)
 
     REDIS_HOST: str = os.getenv("REDIS_HOST")
     REDIS_PORT: str = os.getenv("REDIS_PORT")

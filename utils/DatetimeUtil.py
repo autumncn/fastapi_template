@@ -1,9 +1,9 @@
 import json, datetime
-def datetime_to_timestamp():
+async def datetime_to_timestamp():
     get_timestamp = datetime.datetime.now().timestamp()
     return str(int(get_timestamp))
 
-def get_current_time():
+async def get_current_time():
     get_time = datetime.datetime.now()
     return get_time
 

@@ -68,14 +68,14 @@ class Reader(object):
             self._DATA_SECTION_SEPARATOR_SIZE)
         self.closed = False
 
-    def metadata(self):
+    async def metadata(self):
         return self._metadata
 
-    def get(self, ip_address):
+    async def get(self, ip_address):
         (record, _) = self.get_with_prefix_len(ip_address)
         return record
 
-    def get_with_prefix_len(self, ip_address):
+    async def get_with_prefix_len(self, ip_address):
         if isinstance(ip_address, string_type):
             address = compat_ip_address(ip_address)
         else:
@@ -97,7 +97,7 @@ class Reader(object):
             return self._resolve_data_pointer(pointer), prefix_len
         return None, prefix_len
 
-    def _find_address_in_tree(self, packed):
+    async def _find_address_in_tree(self, packed):
         bit_count = len(packed) * 8
         node = self._start_node(bit_count)
         node_count = self._metadata.node_count
@@ -115,7 +115,7 @@ class Reader(object):
 
         raise InvalidDatabaseError('Invalid node in search tree')
 
-    def _start_node(self, length):
+    async def _start_node(self, length):
         if self._metadata.ip_version != 6 or length == 128:
             return 0
 
@@ -130,7 +130,7 @@ class Reader(object):
         self._ipv4_start = node
         return node
 
-    def _read_node(self, node_number, index):
+    async def _read_node(self, node_number, index):
         base_offset = node_number * self._metadata.node_byte_size
 
         record_size = self._metadata.record_size
@@ -153,7 +153,7 @@ class Reader(object):
                 'Unknown record size: {0}'.format(record_size))
         return struct.unpack(b'!I', node_bytes)[0]
 
-    def _resolve_data_pointer(self, pointer):
+    async def _resolve_data_pointer(self, pointer):
         resolved = pointer - self._metadata.node_count + \
             self._metadata.search_tree_size
 
@@ -164,7 +164,7 @@ class Reader(object):
         (data, _) = self._decoder.decode(resolved)
         return data
 
-    def close(self):
+    async def close(self):
         if type(self._buffer) not in (str, bytes):
             self._buffer.close()
         self.closed = True
@@ -193,11 +193,11 @@ class Metadata(object):
         self.description = kwargs['description']
 
     @property
-    def node_byte_size(self):
+    async def node_byte_size(self):
         return self.record_size // 4
 
     @property
-    def search_tree_size(self):
+    async def search_tree_size(self):
         return self.node_count * self.node_byte_size
 
     def __repr__(self):

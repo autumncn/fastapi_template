@@ -6,7 +6,7 @@ from bottle import basestring
 
 if sys.version_info[0] == 2:
 
-    def compat_ip_address(address):
+    async def compat_ip_address(address):
         if isinstance(address, bytes):
             address = address.decode()
         return ipaddress.ip_address(address)
@@ -15,7 +15,7 @@ if sys.version_info[0] == 2:
 
     FileNotFoundError = IOError
 
-    def int_from_bytes(b):
+    async def int_from_bytes(b):
         if b:
             return int(b.encode("hex"), 16)
         return 0
@@ -26,7 +26,7 @@ if sys.version_info[0] == 2:
 
 else:
 
-    def compat_ip_address(address):
+    async def compat_ip_address(address):
         return ipaddress.ip_address(address)
 
     int_from_byte = lambda x: x

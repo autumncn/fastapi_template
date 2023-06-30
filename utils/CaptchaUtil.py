@@ -21,7 +21,7 @@ CAPTCHA_HEIGHT = 60     # 验证码高度
 CAPTCHA_WIDTH = 160     # 验证码宽度
 
 
-def random_captcha_text(char_set=CAPTCHA_LIST, captcha_size=CAPTCHA_LEN):
+async def random_captcha_text(char_set=CAPTCHA_LIST, captcha_size=CAPTCHA_LEN):
     """
     随机生成定长字符串
     :param char_set: 备选字符串列表
@@ -32,7 +32,7 @@ def random_captcha_text(char_set=CAPTCHA_LIST, captcha_size=CAPTCHA_LEN):
     return ''.join(captcha_text)
 
 
-def gen_captcha_text_and_image(width=CAPTCHA_WIDTH, height=CAPTCHA_HEIGHT, save=None):
+async def gen_captcha_text_and_image(width=CAPTCHA_WIDTH, height=CAPTCHA_HEIGHT, save=None):
     """
     生成随机验证码
     :param width: 验证码图片宽度
@@ -54,7 +54,7 @@ def gen_captcha_text_and_image(width=CAPTCHA_WIDTH, height=CAPTCHA_HEIGHT, save=
     captcha_image = pil_base64(captcha_image)
     return captcha_text, captcha_image
 
-# def convert_nparray_to_base64(nparray):
+# async def convert_nparray_to_base64(nparray):
 #     img_str = base64.b64encode(nparray)
 #     #
 #     # bytesio = BytesIO()
@@ -63,7 +63,7 @@ def gen_captcha_text_and_image(width=CAPTCHA_WIDTH, height=CAPTCHA_HEIGHT, save=
 #     # print(content)
 #     # b64_code = base64.b64encode(content)
 #     return img_str
-def pil_base64(image):
+async def pil_base64(image):
     img_buffer = BytesIO()
     image.save(img_buffer, format='JPEG')
     byte_data = img_buffer.getvalue()

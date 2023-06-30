@@ -145,37 +145,37 @@ def register_exception(app: FastAPI):
         # return resp_500(msg="服务器内部错误")
         return resp_500_error_page(request, "500_error_message")
 
-def resp_400_error_page(request: Request, error_code_msg: str = "400_error_message"):
+async def resp_400_error_page(request: Request, error_code_msg: str = "400_error_message"):
     request.session["error_code_msg"] = _(error_code_msg)
     return templates.TemplateResponse(
         "errors/error-400.html", status_code=status.HTTP_400_BAD_REQUEST, context={"request": request}
     )
 
-def resp_401_error_page(request: Request, error_code_msg: str = "401_error_message"):
+async def resp_401_error_page(request: Request, error_code_msg: str = "401_error_message"):
     request.session["error_code_msg"] = _(error_code_msg)
     return templates.TemplateResponse(
         "errors/error-401.html", status_code=status.HTTP_401_UNAUTHORIZED, context={"request": request}
     )
 
-def resp_403_error_page(request: Request, error_code_msg: str = "403_error_message"):
+async def resp_403_error_page(request: Request, error_code_msg: str = "403_error_message"):
     request.session["error_code_msg"] = _(error_code_msg)
     return templates.TemplateResponse(
         "errors/error-403.html", status_code=status.HTTP_403_FORBIDDEN, context={"request": request}
     )
 
-def resp_404_error_page(request: Request, error_code_msg: str = "404_error_message"):
+async def resp_404_error_page(request: Request, error_code_msg: str = "404_error_message"):
     request.session["error_code_msg"] = _(error_code_msg)
     return templates.TemplateResponse(
         "errors/error-404.html", status_code=status.HTTP_404_NOT_FOUND, context={"request": request}
     )
 
-def resp_422_error_page(request: Request, error_code_msg: str = "422_error_message"):
+async def resp_422_error_page(request: Request, error_code_msg: str = "422_error_message"):
     request.session["error_code_msg"] = _(error_code_msg)
     return templates.TemplateResponse(
         "errors/error-422.html", status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, context={"request": request}
     )
 
-def resp_500_error_page(request: Request, error_code_msg: str = "500_error_message"):
+async def resp_500_error_page(request: Request, error_code_msg: str = "500_error_message"):
     request.session["error_code_msg"] = _(error_code_msg)
     return templates.TemplateResponse(
         "errors/error-500.html",
@@ -183,7 +183,7 @@ def resp_500_error_page(request: Request, error_code_msg: str = "500_error_messa
         context={"request": request},
     )
 
-def resp_502_error_page(request: Request, error_code_msg: str = "502_error_message"):
+async def resp_502_error_page(request: Request, error_code_msg: str = "502_error_message"):
     request.session["error_code_msg"] = _(error_code_msg)
     return templates.TemplateResponse(
         "errors/error-502.html",
@@ -191,7 +191,7 @@ def resp_502_error_page(request: Request, error_code_msg: str = "502_error_messa
         context={"request": request},
     )
 
-def resp_503_error_page(request: Request, error_code_msg: str = "503_error_message"):
+async def resp_503_error_page(request: Request, error_code_msg: str = "503_error_message"):
     request.session["error_code_msg"] = _(error_code_msg)
     return templates.TemplateResponse(
         "errors/error-503.html",
@@ -199,7 +199,7 @@ def resp_503_error_page(request: Request, error_code_msg: str = "503_error_messa
         context={"request": request},
     )
 
-def resp_504_error_page(request: Request, error_code_msg: str = "504_error_message"):
+async def resp_504_error_page(request: Request, error_code_msg: str = "504_error_message"):
     request.session["error_code_msg"] = _(error_code_msg)
     return templates.TemplateResponse(
         "errors/error-504.html",

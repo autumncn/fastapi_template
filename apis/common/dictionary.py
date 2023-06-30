@@ -2,6 +2,7 @@ import datetime
 import time
 from fastapi.params import Form
 from fastapi import Depends, APIRouter, HTTPException
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Session
 from typing import List, Optional, Dict, Type
 from starlette.responses import RedirectResponse, FileResponse
@@ -20,13 +21,13 @@ from utils.ResponseUtil import JsonResponse
 router = APIRouter()
 
 @router.get("/", response_model=List[Dictionary])
-def read_dictionary_list(request: Request, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+async def read_dictionary_list(request: Request, skip: int = 0, limit: int = 100, db: AsyncSession = Depends(get_db)):
     dictionary = get_dictionarys(db, skip=skip, limit=limit)
     new_dictionary = DictionaryCreate
     return templates.TemplateResponse("view/dictionary/dictionary.html", {"request": request, "dictionary_list": dictionary, "new_dictionary": new_dictionary})
 
 @router.get("/create", response_model=Dictionary)
-def create_dictionary_get(request: Request, db: Session = Depends(get_db)):
+async def create_dictionary_get(request: Request, db: AsyncSession = Depends(get_db)):
     new_dictionary = DictionaryCreate
     return templates.TemplateResponse("view/dictionary/dictionary_create.html", {"request": request, "new_dictionary": new_dictionary})
 
@@ -35,7 +36,7 @@ async def create_dictionary_post(request: Request,
         dictionary_name: str = Form(...),
         dictionary_value: str = Form(...),
         dictionary_type: Optional[str] = Form(...),
-        db: Session = Depends(get_db)
+        db: AsyncSession = Depends(get_db)
 ):
     db_dictionary = get_dictionary_by_name(dictionary_name=dictionary_name, db=db)
     if db_dictionary:
@@ -55,7 +56,7 @@ async def create_dictionary_post(request: Request,
     return response
 
 @router.get("/{id}/view")
-async def read_dictionary_by_id(request: Request, id: str, db: Session = Depends(get_db)):
+async def read_dictionary_by_id(request: Request, id: str, db: AsyncSession = Depends(get_db)):
     dictionary = get_dictionary(db, dictionary_id=int(id))
     if dictionary is None:
         request.session["error"] = _("dictionary_not_found")
@@ -65,7 +66,7 @@ async def read_dictionary_by_id(request: Request, id: str, db: Session = Depends
     return templates.TemplateResponse("view/dictionary/dictionary_view.html", {"request": request, "dictionary": new_dictionary})
 
 @router.get("/{id}/modify")
-async def edit_dictionary_by_id_get(request: Request, id: str, db: Session = Depends(get_db)):
+async def edit_dictionary_by_id_get(request: Request, id: str, db: AsyncSession = Depends(get_db)):
     dictionary = get_dictionary(db, dictionary_id=int(id))
     if dictionary is None:
         request.session["error"] = _("dictionary_not_found")
@@ -80,7 +81,7 @@ async def edit_dictionary_by_id_post(request: Request,
         dictionary_name: str = Form(...),
         dictionary_value: str = Form(...),
         dictionary_type: Optional[str] = Form(...),
-        db: Session = Depends(get_db)):
+        db: AsyncSession = Depends(get_db)):
     dictionary = get_dictionary(db, dictionary_id=int(dictionary_id))
     if dictionary is None:
         request.session["error"] = _("dictionary_not_found")
@@ -99,7 +100,7 @@ async def edit_dictionary_by_id_post(request: Request,
     return RedirectResponse('/dictionary', status_code=status.HTTP_302_FOUND)
 
 @router.post("/{id}/delete", response_model=Dictionary)
-async def delete_dictionary(request: Request, id: str, db: Session = Depends(get_db)
+async def delete_dictionary(request: Request, id: str, db: AsyncSession = Depends(get_db)
 ):
     delete_dictionary_by_id(db, id)
     request.session["message"] = _("success_deleted")

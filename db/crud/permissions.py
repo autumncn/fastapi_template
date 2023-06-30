@@ -1,21 +1,22 @@
 from fastapi import HTTPException
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Session
 
 from db.models.permissions import Permission
 from db.schemas.permissions import PermissionModify, PermissionCreate
 
-def get_permission(db: Session, permission_id: int):
+async def get_permission(db: AsyncSession, permission_id: int):
     return db.query(Permission).filter(Permission.id == permission_id).first()
 
 
-def get_permission_by_name(permission_name: str, db: Session):
+async def get_permission_by_name(permission_name: str, db: AsyncSession):
     permission = db.query(Permission).filter(Permission.name == permission_name).first()
     return permission
 
-def get_permissions(db: Session, skip: int = 0, limit: int = 100):
+async def get_permissions(db: AsyncSession, skip: int = 0, limit: int = 100):
     return db.query(Permission).offset(skip).limit(limit).all()
 
-def modify_permission(db: Session, permission: PermissionModify):
+async def modify_permission(db: AsyncSession, permission: PermissionModify):
     db_permission = get_permission(db, permission.id)
     db_permission.name = permission.name
     db_permission.description = permission.description
@@ -34,7 +35,7 @@ def modify_permission(db: Session, permission: PermissionModify):
     create_by: str
     create_time: str
 
-def create_permission(db: Session, permission: PermissionCreate):
+async def create_permission(db: AsyncSession, permission: PermissionCreate):
     db_permission = Permission(
         name=permission.name, description=permission.description,  user_ids=permission.user_ids,
         menu_ids=permission.menu_ids, create_by=permission.create_by, create_time=permission.create_time)
@@ -43,7 +44,7 @@ def create_permission(db: Session, permission: PermissionCreate):
     db.refresh(db_permission)
     return db_permission
 
-def delete_permission_by_id(db: Session, id: int):
+async def delete_permission_by_id(db: AsyncSession, id: int):
     db_permission = get_permission(db, id)
     db.delete(db_permission)
     db.commit()

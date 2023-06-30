@@ -4,18 +4,18 @@
   * Licensed under MIT (https://coreui.io)
   */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('date-fns'), require('@popperjs/core')) :
-  typeof define === 'function' && define.amd ? define(['date-fns', '@popperjs/core'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.coreui = factory(global.dateFns, global.Popper));
+  typeof exports === 'object' && typeof module !== 'unasync defined' ? module.exports = factory(require('date-fns'), require('@popperjs/core')) :
+  typeof async define === 'function' && async define.amd ? async define(['date-fns', '@popperjs/core'], factory) :
+  (global = typeof globalThis !== 'unasync defined' ? globalThis : global || self, global.coreui = factory(global.dateFns, global.Popper));
 })(this, (function (dateFns, Popper) { 'use strict';
 
-  function _interopNamespaceDefault(e) {
+  function _interopNamespacedefault(e) {
     const n = Object.create(null, { [Symbol.toStringTag]: { value: 'Module' } });
     if (e) {
       for (const k in e) {
         if (k !== 'default') {
           const d = Object.getOwnPropertyDescriptor(e, k);
-          Object.defineProperty(n, k, d.get ? d : {
+          Object.async defineProperty(n, k, d.get ? d : {
             enumerable: true,
             get: () => e[k]
           });
@@ -26,7 +26,7 @@
     return Object.freeze(n);
   }
 
-  const Popper__namespace = /*#__PURE__*/_interopNamespaceDefault(Popper);
+  const Popper__namespace = /*#__PURE__*/_interopNamespacedefault(Popper);
 
   /**
    * --------------------------------------------------------------------------
@@ -57,7 +57,7 @@
 
   // Shout-out Angus Croll (https://goo.gl/pxwQGp)
   const toType = object => {
-    if (object === null || object === undefined) {
+    if (object === null || object === unasync defined) {
       return `${object}`;
     }
     return Object.prototype.toString.call(object).match(/\s([a-z]+)/i)[1].toLowerCase();
@@ -91,7 +91,7 @@
       return 0;
     }
 
-    // If multiple durations are defined, take the first
+    // If multiple durations are async defined, take the first
     transitionDuration = transitionDuration.split(',')[0];
     transitionDelay = transitionDelay.split(',')[0];
     return (Number.parseFloat(transitionDuration) + Number.parseFloat(transitionDelay)) * MILLISECONDS_MULTIPLIER;
@@ -103,10 +103,10 @@
     if (!object || typeof object !== 'object') {
       return false;
     }
-    if (typeof object.jquery !== 'undefined') {
+    if (typeof object.jquery !== 'unasync defined') {
       object = object[0];
     }
-    return typeof object.nodeType !== 'undefined';
+    return typeof object.nodeType !== 'unasync defined';
   };
   const getElement = object => {
     // it's a jQuery object or a node element
@@ -146,7 +146,7 @@
     if (element.classList.contains('disabled')) {
       return true;
     }
-    if (typeof element.disabled !== 'undefined') {
+    if (typeof element.disabled !== 'unasync defined') {
       return element.disabled;
     }
     return element.hasAttribute('disabled') && element.getAttribute('disabled') !== 'false';
@@ -208,7 +208,7 @@
     }
   };
   const isRTL = () => document.documentElement.dir === 'rtl';
-  const defineJQueryPlugin = plugin => {
+  const async defineJQueryPlugin = plugin => {
     onDOMContentLoaded(() => {
       const $ = getjQuery();
       /* istanbul ignore if */
@@ -432,7 +432,7 @@
       const events = getElementEvents(element);
       const storeElementEvent = events[typeEvent] || {};
       const isNamespace = originalTypeEvent.startsWith('.');
-      if (typeof callable !== 'undefined') {
+      if (typeof callable !== 'unasync defined') {
         // Simplest case: handler is passed, remove that listener ONLY.
         if (!Object.keys(storeElementEvent).length) {
           return;
@@ -468,7 +468,7 @@
         $(element).trigger(jQueryEvent);
         bubbles = !jQueryEvent.isPropagationStopped();
         nativeDispatch = !jQueryEvent.isImmediatePropagationStopped();
-        defaultPrevented = jQueryEvent.isDefaultPrevented();
+        defaultPrevented = jQueryEvent.isdefaultPrevented();
       }
       let evt = new Event(event, {
         bubbles,
@@ -476,13 +476,13 @@
       });
       evt = hydrateObj(evt, args);
       if (defaultPrevented) {
-        evt.preventDefault();
+        evt.preventdefault();
       }
       if (nativeDispatch) {
         element.dispatchEvent(evt);
       }
       if (evt.defaultPrevented && jQueryEvent) {
-        jQueryEvent.preventDefault();
+        jQueryEvent.preventdefault();
       }
       return evt;
     }
@@ -492,7 +492,7 @@
       try {
         obj[key] = value;
       } catch (_unused) {
-        Object.defineProperty(obj, key, {
+        Object.async defineProperty(obj, key, {
           configurable: true,
           get() {
             return value;
@@ -625,15 +625,15 @@
    */
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class Config {
     // Getters
-    static get Default() {
+    static get default() {
       return {};
     }
-    static get DefaultType() {
+    static get defaultType() {
       return {};
     }
     static get NAME() {
@@ -652,13 +652,13 @@
       const jsonConfig = isElement(element) ? Manipulator.getDataAttribute(element, 'config') : {}; // try to parse
 
       return {
-        ...this.constructor.Default,
+        ...this.constructor.default,
         ...(typeof jsonConfig === 'object' ? jsonConfig : {}),
         ...(isElement(element) ? Manipulator.getDataAttributes(element) : {}),
         ...(typeof config === 'object' ? config : {})
       };
     }
-    _typeCheckConfig(config, configTypes = this.constructor.DefaultType) {
+    _typeCheckConfig(config, configTypes = this.constructor.defaultType) {
       for (const [property, expectedTypes] of Object.entries(configTypes)) {
         const value = config[property];
         const valueType = isElement(value) ? 'element' : toType(value);
@@ -686,7 +686,7 @@
   const VERSION = '4.5.0';
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class BaseComponent extends Config {
@@ -845,7 +845,7 @@
     const name = component.NAME;
     EventHandler.on(document, clickEvent, `[data-coreui-dismiss="${name}"]`, function (event) {
       if (['A', 'AREA'].includes(this.tagName)) {
-        event.preventDefault();
+        event.preventdefault();
       }
       if (isDisabled(this)) {
         return;
@@ -881,7 +881,7 @@
   const CLASS_NAME_SHOW$b = 'show';
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class Alert extends BaseComponent {
@@ -915,7 +915,7 @@
         if (typeof config !== 'string') {
           return;
         }
-        if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
+        if (data[config] === unasync defined || config.startsWith('_') || config === 'constructor') {
           throw new TypeError(`No method named "${config}"`);
         }
         data[config](this);
@@ -933,7 +933,7 @@
    * jQuery
    */
 
-  defineJQueryPlugin(Alert);
+  async defineJQueryPlugin(Alert);
 
   /**
    * --------------------------------------------------------------------------
@@ -958,7 +958,7 @@
   const EVENT_CLICK_DATA_API$9 = `click${EVENT_KEY$j}${DATA_API_KEY$d}`;
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class Button extends BaseComponent {
@@ -989,7 +989,7 @@
    */
 
   EventHandler.on(document, EVENT_CLICK_DATA_API$9, SELECTOR_DATA_TOGGLE$9, event => {
-    event.preventDefault();
+    event.preventdefault();
     const button = event.target.closest(SELECTOR_DATA_TOGGLE$9);
     const data = Button.getOrCreateInstance(button);
     data.toggle();
@@ -999,7 +999,7 @@
    * jQuery
    */
 
-  defineJQueryPlugin(Button);
+  async defineJQueryPlugin(Button);
 
   const createGroupsInArray = (arr, numberOfGroups) => {
     const perGroup = Math.ceil(arr.length / numberOfGroups);
@@ -1170,7 +1170,7 @@
   const CLASS_NAME_CALENDAR = 'calendar';
   const SELECTOR_CALENDAR = '.calendar';
   const SELECTOR_CALENDAR_CELL_INNER = '.calendar-cell-inner';
-  const Default$l = {
+  const default$l = {
     calendarDate: new Date(),
     calendars: 1,
     disabledDates: null,
@@ -1186,7 +1186,7 @@
     startDate: null,
     weekdayFormat: 2
   };
-  const DefaultType$l = {
+  const defaultType$l = {
     calendarDate: '(date|string|null)',
     calendars: 'number',
     disabledDates: '(array|null)',
@@ -1205,7 +1205,7 @@
 
   /**
   * ------------------------------------------------------------------------
-  * Class Definition
+  * Class async definition
   * ------------------------------------------------------------------------
   */
 
@@ -1224,11 +1224,11 @@
     }
     // Getters
 
-    static get Default() {
-      return Default$l;
+    static get default() {
+      return default$l;
     }
-    static get DefaultType() {
-      return DefaultType$l;
+    static get defaultType() {
+      return defaultType$l;
     }
     static get NAME() {
       return NAME$m;
@@ -1237,7 +1237,7 @@
     // Private
     _addEventListeners() {
       EventHandler.on(this._element, 'click', SELECTOR_CALENDAR_CELL_INNER, event => {
-        event.preventDefault();
+        event.preventdefault();
         if (event.target.parentElement.classList.contains('disabled')) {
           return;
         }
@@ -1265,7 +1265,7 @@
         this._updateCalendar();
       });
       EventHandler.on(this._element, EVENT_MOUSEENTER$2, SELECTOR_CALENDAR_CELL_INNER, event => {
-        event.preventDefault();
+        event.preventdefault();
         if (event.target.parentElement.classList.contains('disabled')) {
           return;
         }
@@ -1278,7 +1278,7 @@
         });
       });
       EventHandler.on(this._element, EVENT_MOUSELEAVE$2, SELECTOR_CALENDAR_CELL_INNER, event => {
-        event.preventDefault();
+        event.preventdefault();
         this._hoverDate = null;
         EventHandler.trigger(this._element, EVENT_CELL_HOVER, {
           date: null
@@ -1287,29 +1287,29 @@
 
       // Navigation
       EventHandler.on(this._element, 'click', '.btn-prev', event => {
-        event.preventDefault();
+        event.preventdefault();
         this._modifyCalendarDate(0, -1);
       });
       EventHandler.on(this._element, 'click', '.btn-double-prev', event => {
-        event.preventDefault();
+        event.preventdefault();
         this._modifyCalendarDate(this._view === 'years' ? -10 : -1);
       });
       EventHandler.on(this._element, 'click', '.btn-next', event => {
-        event.preventDefault();
+        event.preventdefault();
         this._modifyCalendarDate(0, 1);
       });
       EventHandler.on(this._element, 'click', '.btn-double-next', event => {
-        event.preventDefault();
+        event.preventdefault();
         this._modifyCalendarDate(this._view === 'years' ? 10 : 1);
       });
       EventHandler.on(this._element, 'click', '.btn-month', event => {
-        event.preventDefault();
+        event.preventdefault();
         this._view = 'months';
         this._element.innerHTML = '';
         this._createCalendarPanel();
       });
       EventHandler.on(this._element, 'click', '.btn-year', event => {
-        event.preventDefault();
+        event.preventdefault();
         this._view = 'years';
         this._element.innerHTML = '';
         this._createCalendarPanel();
@@ -1504,7 +1504,7 @@
     }
     _getConfig(config) {
       config = {
-        ...this.constructor.Default,
+        ...this.constructor.default,
         ...Manipulator.getDataAttributes(this._element),
         ...config
       };
@@ -1516,7 +1516,7 @@
     static calendarInterface(element, config) {
       const data = Calendar.getOrCreateInstance(element, config);
       if (typeof config === 'string') {
-        if (typeof data[config] === 'undefined') {
+        if (typeof data[config] === 'unasync defined') {
           throw new TypeError(`No method named "${config}"`);
         }
         data[config]();
@@ -1528,7 +1528,7 @@
         if (typeof config !== 'string') {
           return;
         }
-        if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
+        if (data[config] === unasync defined || config.startsWith('_') || config === 'constructor') {
           throw new TypeError(`No method named "${config}"`);
         }
         data[config](this);
@@ -1555,7 +1555,7 @@
   * add .Calendar to jQuery only if jQuery is present
   */
 
-  defineJQueryPlugin(Calendar);
+  async defineJQueryPlugin(Calendar);
 
   /**
    * --------------------------------------------------------------------------
@@ -1582,19 +1582,19 @@
   const POINTER_TYPE_PEN = 'pen';
   const CLASS_NAME_POINTER_EVENT = 'pointer-event';
   const SWIPE_THRESHOLD = 40;
-  const Default$k = {
+  const default$k = {
     endCallback: null,
     leftCallback: null,
     rightCallback: null
   };
-  const DefaultType$k = {
+  const defaultType$k = {
     endCallback: '(function|null)',
     leftCallback: '(function|null)',
     rightCallback: '(function|null)'
   };
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class Swipe extends Config {
@@ -1611,11 +1611,11 @@
     }
 
     // Getters
-    static get Default() {
-      return Default$k;
+    static get default() {
+      return default$k;
     }
-    static get DefaultType() {
-      return DefaultType$k;
+    static get defaultType() {
+      return defaultType$k;
     }
     static get NAME() {
       return NAME$l;
@@ -1731,7 +1731,7 @@
     [ARROW_LEFT_KEY$1]: DIRECTION_RIGHT,
     [ARROW_RIGHT_KEY$1]: DIRECTION_LEFT
   };
-  const Default$j = {
+  const default$j = {
     interval: 5000,
     keyboard: true,
     pause: 'hover',
@@ -1739,7 +1739,7 @@
     touch: true,
     wrap: true
   };
-  const DefaultType$j = {
+  const defaultType$j = {
     interval: '(number|boolean)',
     // TODO:v6 remove boolean support
     keyboard: 'boolean',
@@ -1750,7 +1750,7 @@
   };
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class Carousel extends BaseComponent {
@@ -1769,11 +1769,11 @@
     }
 
     // Getters
-    static get Default() {
-      return Default$j;
+    static get default() {
+      return default$j;
     }
-    static get DefaultType() {
-      return DefaultType$j;
+    static get defaultType() {
+      return defaultType$j;
     }
     static get NAME() {
       return NAME$k;
@@ -1857,7 +1857,7 @@
     }
     _addTouchEventListeners() {
       for (const img of SelectorEngine.find(SELECTOR_ITEM_IMG, this._element)) {
-        EventHandler.on(img, EVENT_DRAG_START, event => event.preventDefault());
+        EventHandler.on(img, EVENT_DRAG_START, event => event.preventdefault());
       }
       const endCallBack = () => {
         if (this._config.pause !== 'hover') {
@@ -1891,7 +1891,7 @@
       }
       const direction = KEY_TO_DIRECTION[event.key];
       if (direction) {
-        event.preventDefault();
+        event.preventdefault();
         this._slide(this._directionToOrder(direction));
       }
     }
@@ -2007,7 +2007,7 @@
           return;
         }
         if (typeof config === 'string') {
-          if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
+          if (data[config] === unasync defined || config.startsWith('_') || config === 'constructor') {
             throw new TypeError(`No method named "${config}"`);
           }
           data[config]();
@@ -2025,7 +2025,7 @@
     if (!target || !target.classList.contains(CLASS_NAME_CAROUSEL)) {
       return;
     }
-    event.preventDefault();
+    event.preventdefault();
     const carousel = Carousel.getOrCreateInstance(target);
     const slideIndex = this.getAttribute('data-coreui-slide-to');
     if (slideIndex) {
@@ -2052,7 +2052,7 @@
    * jQuery
    */
 
-  defineJQueryPlugin(Carousel);
+  async defineJQueryPlugin(Carousel);
 
   /**
    * --------------------------------------------------------------------------
@@ -2087,17 +2087,17 @@
   const HEIGHT = 'height';
   const SELECTOR_ACTIVES = '.collapse.show, .collapse.collapsing';
   const SELECTOR_DATA_TOGGLE$8 = '[data-coreui-toggle="collapse"]';
-  const Default$i = {
+  const default$i = {
     parent: null,
     toggle: true
   };
-  const DefaultType$i = {
+  const defaultType$i = {
     parent: '(null|element)',
     toggle: 'boolean'
   };
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class Collapse extends BaseComponent {
@@ -2123,11 +2123,11 @@
     }
 
     // Getters
-    static get Default() {
-      return Default$i;
+    static get default() {
+      return default$i;
     }
-    static get DefaultType() {
-      return DefaultType$i;
+    static get defaultType() {
+      return defaultType$i;
     }
     static get NAME() {
       return NAME$j;
@@ -2259,7 +2259,7 @@
       return this.each(function () {
         const data = Collapse.getOrCreateInstance(this, _config);
         if (typeof config === 'string') {
-          if (typeof data[config] === 'undefined') {
+          if (typeof data[config] === 'unasync defined') {
             throw new TypeError(`No method named "${config}"`);
           }
           data[config]();
@@ -2273,9 +2273,9 @@
    */
 
   EventHandler.on(document, EVENT_CLICK_DATA_API$7, SELECTOR_DATA_TOGGLE$8, function (event) {
-    // preventDefault only for <a> elements (which change the URL) not inside the collapsible element
+    // preventdefault only for <a> elements (which change the URL) not inside the collapsible element
     if (event.target.tagName === 'A' || event.delegateTarget && event.delegateTarget.tagName === 'A') {
-      event.preventDefault();
+      event.preventdefault();
     }
     for (const element of SelectorEngine.getMultipleElementsFromSelector(this)) {
       Collapse.getOrCreateInstance(element, {
@@ -2288,7 +2288,7 @@
    * jQuery
    */
 
-  defineJQueryPlugin(Collapse);
+  async defineJQueryPlugin(Collapse);
 
   /**
    * --------------------------------------------------------------------------
@@ -2341,7 +2341,7 @@
   const PLACEMENT_LEFT = isRTL() ? 'right-start' : 'left-start';
   const PLACEMENT_TOPCENTER = 'top';
   const PLACEMENT_BOTTOMCENTER = 'bottom';
-  const Default$h = {
+  const default$h = {
     autoClose: true,
     boundary: 'clippingParents',
     display: 'dynamic',
@@ -2349,7 +2349,7 @@
     popperConfig: null,
     reference: 'toggle'
   };
-  const DefaultType$h = {
+  const defaultType$h = {
     autoClose: '(boolean|string)',
     boundary: '(string|element)',
     display: 'string',
@@ -2359,7 +2359,7 @@
   };
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class Dropdown extends BaseComponent {
@@ -2373,11 +2373,11 @@
     }
 
     // Getters
-    static get Default() {
-      return Default$h;
+    static get default() {
+      return default$h;
     }
-    static get DefaultType() {
-      return DefaultType$h;
+    static get defaultType() {
+      return defaultType$h;
     }
     static get NAME() {
       return NAME$i;
@@ -2469,7 +2469,7 @@
       return config;
     }
     _createPopper() {
-      if (typeof Popper__namespace === 'undefined') {
+      if (typeof Popper__namespace === 'unasync defined') {
         throw new TypeError('Bootstrap\'s dropdowns require Popper (https://popper.js.org)');
       }
       let referenceElement = this._element;
@@ -2573,7 +2573,7 @@
         if (typeof config !== 'string') {
           return;
         }
-        if (typeof data[config] === 'undefined') {
+        if (typeof data[config] === 'unasync defined') {
           throw new TypeError(`No method named "${config}"`);
         }
         data[config]();
@@ -2621,7 +2621,7 @@
       if (isInput && !isEscapeEvent) {
         return;
       }
-      event.preventDefault();
+      event.preventdefault();
 
       // todo: v6 revert #37011 & change markup https://getbootstrap.com/docs/5.2/forms/input-group/
       const getToggleButton = this.matches(SELECTOR_DATA_TOGGLE$7) ? this : SelectorEngine.prev(this, SELECTOR_DATA_TOGGLE$7)[0] || SelectorEngine.next(this, SELECTOR_DATA_TOGGLE$7)[0] || SelectorEngine.findOne(SELECTOR_DATA_TOGGLE$7, event.delegateTarget.parentNode);
@@ -2650,7 +2650,7 @@
   EventHandler.on(document, EVENT_CLICK_DATA_API$6, Dropdown.clearMenus);
   EventHandler.on(document, EVENT_KEYUP_DATA_API$1, Dropdown.clearMenus);
   EventHandler.on(document, EVENT_CLICK_DATA_API$6, SELECTOR_DATA_TOGGLE$7, function (event) {
-    event.preventDefault();
+    event.preventdefault();
     Dropdown.getOrCreateInstance(this).toggle();
   });
 
@@ -2658,7 +2658,7 @@
    * jQuery
    */
 
-  defineJQueryPlugin(Dropdown);
+  async defineJQueryPlugin(Dropdown);
 
   /**
    * --------------------------------------------------------------------------
@@ -2677,7 +2677,7 @@
   const DATA_KEY$d = 'coreui.picker';
   const EVENT_KEY$d = `.${DATA_KEY$d}`;
   const EVENT_CANCEL = `onCancelClick${EVENT_KEY$d}`;
-  const Default$g = {
+  const default$g = {
     cancelButton: 'Cancel',
     cancelButtonClasses: ['btn', 'btn-sm', 'btn-ghost-primary'],
     confirmButton: 'OK',
@@ -2686,7 +2686,7 @@
     disabled: false,
     footer: false
   };
-  const DefaultType$g = {
+  const defaultType$g = {
     cancelButton: '(boolean|string)',
     cancelButtonClasses: '(array|string)',
     confirmButton: '(boolean|string)',
@@ -2698,7 +2698,7 @@
 
   /**
   * ------------------------------------------------------------------------
-  * Class Definition
+  * Class async definition
   * ------------------------------------------------------------------------
   */
 
@@ -2716,11 +2716,11 @@
     }
     // Getters
 
-    static get Default() {
-      return Default$g;
+    static get default() {
+      return default$g;
     }
-    static get DefaultType() {
-      return DefaultType$g;
+    static get defaultType() {
+      return defaultType$g;
     }
     static get NAME() {
       return NAME$h;
@@ -2791,7 +2791,7 @@
     }
     _getConfig(config) {
       config = {
-        ...this.constructor.Default,
+        ...this.constructor.default,
         ...Manipulator.getDataAttributes(this._element),
         ...(typeof config === 'object' ? config : {})
       };
@@ -2880,8 +2880,8 @@
   const EVENT_TIME_CHANGE = `timeChange${EVENT_KEY$c}`;
   const EVENT_LOAD_DATA_API$8 = `load${EVENT_KEY$c}${DATA_API_KEY$8}`;
   const SELECTOR_DATA_TOGGLE$6 = '[data-coreui-toggle="time-picker"]';
-  const Default$f = {
-    ...Picker.Default,
+  const default$f = {
+    ...Picker.default,
     cleaner: true,
     container: 'dropdown',
     disabled: false,
@@ -2896,8 +2896,8 @@
     valid: false,
     variant: 'roll'
   };
-  const DefaultType$f = {
-    ...Picker.DefaultType,
+  const defaultType$f = {
+    ...Picker.defaultType,
     cleaner: 'boolean',
     indicator: 'boolean',
     inputReadOnly: 'boolean',
@@ -2912,7 +2912,7 @@
 
   /**
   * ------------------------------------------------------------------------
-  * Class Definition
+  * Class async definition
   * ------------------------------------------------------------------------
   */
 
@@ -2970,11 +2970,11 @@
 
     // Getters
 
-    static get Default() {
-      return Default$f;
+    static get default() {
+      return default$f;
     }
-    static get DefaultType() {
-      return DefaultType$f;
+    static get defaultType() {
+      return defaultType$f;
     }
     static get NAME() {
       return NAME$g;
@@ -3220,7 +3220,7 @@
     }
     _getConfig(config) {
       config = {
-        ...this.constructor.Default,
+        ...this.constructor.default,
         ...Manipulator.getDataAttributes(this._element),
         ...(typeof config === 'object' ? config : {})
       };
@@ -3242,7 +3242,7 @@
     static timePickerInterface(element, config) {
       const data = TimePicker.getOrCreateInstance(element, config);
       if (typeof config === 'string') {
-        if (typeof data[config] === 'undefined') {
+        if (typeof data[config] === 'unasync defined') {
           throw new TypeError(`No method named "${config}"`);
         }
         data[config]();
@@ -3254,7 +3254,7 @@
         if (typeof config !== 'string') {
           return;
         }
-        if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
+        if (data[config] === unasync defined || config.startsWith('_') || config === 'constructor') {
           throw new TypeError(`No method named "${config}"`);
         }
         data[config](this);
@@ -3282,7 +3282,7 @@
   * add .TimePicker to jQuery only if jQuery is present
   */
 
-  defineJQueryPlugin(TimePicker);
+  async defineJQueryPlugin(TimePicker);
 
   /**
    * --------------------------------------------------------------------------
@@ -3305,8 +3305,8 @@
   const EVENT_START_DATE_CHANGE = `startDateChange${EVENT_KEY$b}`;
   const EVENT_LOAD_DATA_API$7 = `load${EVENT_KEY$b}${DATA_API_KEY$7}`;
   const SELECTOR_DATA_TOGGLE$5 = '[data-coreui-toggle="date-range-picker"]';
-  const Default$e = {
-    ...Picker.Default,
+  const default$e = {
+    ...Picker.default,
     calendars: 2,
     cleaner: true,
     calendarDate: null,
@@ -3336,8 +3336,8 @@
     todayButtonClasses: ['btn', 'btn-sm', 'btn-primary', 'me-auto'],
     valid: false
   };
-  const DefaultType$e = {
-    ...Picker.DefaultType,
+  const defaultType$e = {
+    ...Picker.defaultType,
     calendars: 'number',
     cleaner: 'boolean',
     calendarDate: '(date|string|null)',
@@ -3370,7 +3370,7 @@
 
   /**
   * ------------------------------------------------------------------------
-  * Class Definition
+  * Class async definition
   * ------------------------------------------------------------------------
   */
 
@@ -3404,11 +3404,11 @@
 
     // Getters
 
-    static get Default() {
-      return Default$e;
+    static get default() {
+      return default$e;
     }
-    static get DefaultType() {
-      return DefaultType$e;
+    static get defaultType() {
+      return defaultType$e;
     }
     static get NAME() {
       return NAME$f;
@@ -3521,7 +3521,7 @@
           }
           EventHandler.trigger(this._element, EVENT_START_DATE_CHANGE, {
             date: event.date,
-            formatedDate: event.date ? this._formatDate(event.date) : undefined
+            formatedDate: event.date ? this._formatDate(event.date) : unasync defined
           });
         });
         EventHandler.on(calendar, 'endDateChange.coreui.calendar', event => {
@@ -3534,7 +3534,7 @@
           }
           EventHandler.trigger(this._element, EVENT_END_DATE_CHANGE, {
             date: event.date,
-            formatedDate: event.date ? this._formatDate(event.date) : undefined
+            formatedDate: event.date ? this._formatDate(event.date) : unasync defined
           });
         });
         EventHandler.on(calendar, 'cellHover.coreui.calendar', event => {
@@ -3777,7 +3777,7 @@
     }
     _getConfig(config) {
       config = {
-        ...this.constructor.Default,
+        ...this.constructor.default,
         ...Manipulator.getDataAttributes(this._element),
         ...(typeof config === 'object' ? config : {})
       };
@@ -3798,7 +3798,7 @@
     static dateRangePickerInterface(element, config) {
       const data = DateRangePicker.getOrCreateInstance(element, config);
       if (typeof config === 'string') {
-        if (typeof data[config] === 'undefined') {
+        if (typeof data[config] === 'unasync defined') {
           throw new TypeError(`No method named "${config}"`);
         }
         data[config]();
@@ -3810,7 +3810,7 @@
         if (typeof config !== 'string') {
           return;
         }
-        if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
+        if (data[config] === unasync defined || config.startsWith('_') || config === 'constructor') {
           throw new TypeError(`No method named "${config}"`);
         }
         data[config](this);
@@ -3838,7 +3838,7 @@
   * add .DateRangePicker to jQuery only if jQuery is present
   */
 
-  defineJQueryPlugin(DateRangePicker);
+  async defineJQueryPlugin(DateRangePicker);
 
   /**
    * --------------------------------------------------------------------------
@@ -3860,32 +3860,32 @@
   const EVENT_DATE_CHANGE = `dateChange${EVENT_KEY$a}`;
   const EVENT_LOAD_DATA_API$6 = `load${EVENT_KEY$a}${DATA_API_KEY$6}`;
   const SELECTOR_DATA_TOGGLE$4 = '[data-coreui-toggle="date-picker"]';
-  const Default$d = {
-    ...DateRangePicker.Default,
+  const default$d = {
+    ...DateRangePicker.default,
     calendars: 1,
     placeholder: ['Select date'],
     range: false,
     separator: false
   };
-  const DefaultType$d = {
-    ...DateRangePicker.DefaultType,
+  const defaultType$d = {
+    ...DateRangePicker.defaultType,
     date: '(date|string|null)'
   };
 
   /**
   * ------------------------------------------------------------------------
-  * Class Definition
+  * Class async definition
   * ------------------------------------------------------------------------
   */
 
   class DatePicker extends DateRangePicker {
     // Getters
 
-    static get Default() {
-      return Default$d;
+    static get default() {
+      return default$d;
     }
-    static get DefaultType() {
-      return DefaultType$d;
+    static get defaultType() {
+      return defaultType$d;
     }
     static get NAME() {
       return NAME$e;
@@ -3903,7 +3903,7 @@
           this._updateCalendars();
           EventHandler.trigger(this._element, EVENT_DATE_CHANGE, {
             date: event.date,
-            formatedDate: event.date ? this._formatDate(event.date) : undefined
+            formatedDate: event.date ? this._formatDate(event.date) : unasync defined
           });
         });
       }
@@ -3914,7 +3914,7 @@
     static datePickerInterface(element, config) {
       const data = DatePicker.getOrCreateInstance(element, config);
       if (typeof config === 'string') {
-        if (typeof data[config] === 'undefined') {
+        if (typeof data[config] === 'unasync defined') {
           throw new TypeError(`No method named "${config}"`);
         }
         data[config]();
@@ -3926,7 +3926,7 @@
         if (typeof config !== 'string') {
           return;
         }
-        if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
+        if (data[config] === unasync defined || config.startsWith('_') || config === 'constructor') {
           throw new TypeError(`No method named "${config}"`);
         }
         data[config](this);
@@ -3954,7 +3954,7 @@
   * add .DatePicker to jQuery only if jQuery is present
   */
 
-  defineJQueryPlugin(DatePicker);
+  async defineJQueryPlugin(DatePicker);
 
   /**
    * --------------------------------------------------------------------------
@@ -3976,13 +3976,13 @@
   const EVENT_STOP = `stop${EVENT_KEY$9}`;
   const CLASS_NAME_IS_LOADING = 'is-loading';
   const CLASS_NAME_LOADING_BUTTON_SPINNER = 'btn-loading-spinner';
-  const Default$c = {
+  const default$c = {
     disabledOnLoading: false,
     spinner: true,
     spinnerType: 'border',
     timeout: false
   };
-  const DefaultType$c = {
+  const defaultType$c = {
     disabledOnLoading: 'boolean',
     spinner: 'boolean',
     spinnerType: 'string',
@@ -3991,7 +3991,7 @@
 
   /**
    * ------------------------------------------------------------------------
-   * Class Definition
+   * Class async definition
    * ------------------------------------------------------------------------
    */
 
@@ -4009,11 +4009,11 @@
 
     // Getters
 
-    static get Default() {
-      return Default$c;
+    static get default() {
+      return default$c;
     }
-    static get DefaultType() {
-      return DefaultType$c;
+    static get defaultType() {
+      return defaultType$c;
     }
     static get DATA_KEY() {
       return DATA_KEY$9;
@@ -4064,7 +4064,7 @@
     }
     _getConfig(config) {
       config = {
-        ...Default$c,
+        ...default$c,
         ...Manipulator.getDataAttributes(this._element),
         ...(typeof config === 'object' ? config : {})
       };
@@ -4093,7 +4093,7 @@
     static loadingButtonInterface(element, config) {
       const data = LoadingButton.getOrCreateInstance(element, config);
       if (typeof config === 'string') {
-        if (typeof data[config] === 'undefined') {
+        if (typeof data[config] === 'unasync defined') {
           throw new TypeError(`No method named "${config}"`);
         }
         data[config]();
@@ -4113,7 +4113,7 @@
    * add .LoadingButton to jQuery only if jQuery is present
    */
 
-  defineJQueryPlugin(LoadingButton);
+  async defineJQueryPlugin(LoadingButton);
 
   /**
    * --------------------------------------------------------------------------
@@ -4135,7 +4135,7 @@
   const PROPERTY_MARGIN = 'margin-right';
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class ScrollBarHelper {
@@ -4233,7 +4233,7 @@
   const CLASS_NAME_FADE$4 = 'fade';
   const CLASS_NAME_SHOW$8 = 'show';
   const EVENT_MOUSEDOWN = `mousedown.coreui.${NAME$c}`;
-  const Default$b = {
+  const default$b = {
     className: 'modal-backdrop',
     clickCallback: null,
     isAnimated: false,
@@ -4242,7 +4242,7 @@
     rootElement: 'body' // give the choice to place backdrop under different elements
   };
 
-  const DefaultType$b = {
+  const defaultType$b = {
     className: 'string',
     clickCallback: '(function|null)',
     isAnimated: 'boolean',
@@ -4251,7 +4251,7 @@
   };
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class Backdrop extends Config {
@@ -4263,11 +4263,11 @@
     }
 
     // Getters
-    static get Default() {
-      return Default$b;
+    static get default() {
+      return default$b;
     }
-    static get DefaultType() {
-      return DefaultType$b;
+    static get defaultType() {
+      return defaultType$b;
     }
     static get NAME() {
       return NAME$c;
@@ -4364,18 +4364,18 @@
   const TAB_KEY$1 = 'Tab';
   const TAB_NAV_FORWARD = 'forward';
   const TAB_NAV_BACKWARD = 'backward';
-  const Default$a = {
+  const default$a = {
     autofocus: true,
     trapElement: null // The element to trap focus inside of
   };
 
-  const DefaultType$a = {
+  const defaultType$a = {
     autofocus: 'boolean',
     trapElement: 'element'
   };
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class FocusTrap extends Config {
@@ -4387,11 +4387,11 @@
     }
 
     // Getters
-    static get Default() {
-      return Default$a;
+    static get default() {
+      return default$a;
     }
-    static get DefaultType() {
-      return DefaultType$a;
+    static get defaultType() {
+      return defaultType$a;
     }
     static get NAME() {
       return NAME$b;
@@ -4480,19 +4480,19 @@
   const SELECTOR_DIALOG = '.modal-dialog';
   const SELECTOR_MODAL_BODY = '.modal-body';
   const SELECTOR_DATA_TOGGLE$3 = '[data-coreui-toggle="modal"]';
-  const Default$9 = {
+  const default$9 = {
     backdrop: true,
     focus: true,
     keyboard: true
   };
-  const DefaultType$9 = {
+  const defaultType$9 = {
     backdrop: '(boolean|string)',
     focus: 'boolean',
     keyboard: 'boolean'
   };
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class Modal extends BaseComponent {
@@ -4508,11 +4508,11 @@
     }
 
     // Getters
-    static get Default() {
-      return Default$9;
+    static get default() {
+      return default$9;
     }
-    static get DefaultType() {
-      return DefaultType$9;
+    static get defaultType() {
+      return defaultType$9;
     }
     static get NAME() {
       return NAME$a;
@@ -4611,7 +4611,7 @@
           return;
         }
         if (this._config.keyboard) {
-          event.preventDefault();
+          event.preventdefault();
           this.hide();
           return;
         }
@@ -4707,7 +4707,7 @@
         if (typeof config !== 'string') {
           return;
         }
-        if (typeof data[config] === 'undefined') {
+        if (typeof data[config] === 'unasync defined') {
           throw new TypeError(`No method named "${config}"`);
         }
         data[config](relatedTarget);
@@ -4722,7 +4722,7 @@
   EventHandler.on(document, EVENT_CLICK_DATA_API$5, SELECTOR_DATA_TOGGLE$3, function (event) {
     const target = SelectorEngine.getElementFromSelector(this);
     if (['A', 'AREA'].includes(this.tagName)) {
-      event.preventDefault();
+      event.preventdefault();
     }
     EventHandler.one(target, EVENT_SHOW$6, showEvent => {
       if (showEvent.defaultPrevented) {
@@ -4750,7 +4750,7 @@
    * jQuery
    */
 
-  defineJQueryPlugin(Modal);
+  async defineJQueryPlugin(Modal);
 
   /**
    * --------------------------------------------------------------------------
@@ -4812,7 +4812,7 @@
   const CLASS_NAME_TAG = 'form-multi-select-tag';
   const CLASS_NAME_TAG_DELETE = 'form-multi-select-tag-delete';
   const CLASS_NAME_LABEL = 'label';
-  const Default$8 = {
+  const default$8 = {
     cleaner: true,
     disabled: false,
     invalid: false,
@@ -4829,7 +4829,7 @@
     selectionTypeCounterText: 'item(s) selected',
     valid: false
   };
-  const DefaultType$8 = {
+  const defaultType$8 = {
     cleaner: 'boolean',
     disabled: 'boolean',
     invalid: 'boolean',
@@ -4849,7 +4849,7 @@
 
   /**
    * ------------------------------------------------------------------------
-   * Class Definition
+   * Class async definition
    * ------------------------------------------------------------------------
    */
 
@@ -4875,11 +4875,11 @@
 
     // Getters
 
-    static get Default() {
-      return Default$8;
+    static get default() {
+      return default$8;
     }
-    static get DefaultType() {
-      return DefaultType$8;
+    static get defaultType() {
+      return defaultType$8;
     }
     static get DATA_KEY() {
       return DATA_KEY$6;
@@ -4964,18 +4964,18 @@
         }
       });
       EventHandler.on(this._selectAllElement, EVENT_CLICK$2, event => {
-        event.preventDefault();
+        event.preventdefault();
         event.stopPropagation();
         this.selectAll();
       });
       EventHandler.on(this._optionsElement, EVENT_CLICK$2, event => {
-        event.preventDefault();
+        event.preventdefault();
         event.stopPropagation();
         this._onOptionsClick(event.target);
       });
       EventHandler.on(this._selectionCleanerElement, EVENT_CLICK$2, event => {
         if (!this._config.disabled) {
-          event.preventDefault();
+          event.preventdefault();
           event.stopPropagation();
           this.deselectAll();
         }
@@ -4990,7 +4990,7 @@
     }
     _getConfig(config) {
       config = {
-        ...Default$8,
+        ...default$8,
         ...Manipulator.getDataAttributes(this._element),
         ...(typeof config === 'object' ? config : {})
       };
@@ -5026,7 +5026,7 @@
     _getSelectedOptions(options) {
       const selected = [];
       for (const e of options) {
-        if (typeof e.value === 'undefined') {
+        if (typeof e.value === 'unasync defined') {
           this._getSelectedOptions(e.options);
           continue;
         }
@@ -5052,7 +5052,7 @@
     }
     _createNativeOptions(parentElement, options) {
       for (const option of options) {
-        if (typeof option.options === 'undefined') {
+        if (typeof option.options === 'unasync defined') {
           const opt = document.createElement('OPTION');
           opt.value = option.value;
           if (option.disabled === true) {
@@ -5158,7 +5158,7 @@
     }
     _createOptions(parentElement, options) {
       for (const option of options) {
-        if (typeof option.value !== 'undefined') {
+        if (typeof option.value !== 'unasync defined') {
           const optionDiv = document.createElement('div');
           optionDiv.classList.add(CLASS_NAME_OPTION);
           if (option.disabled) {
@@ -5172,7 +5172,7 @@
           optionDiv.innerHTML = option.text;
           parentElement.append(optionDiv);
         }
-        if (typeof option.label !== 'undefined') {
+        if (typeof option.label !== 'unasync defined') {
           const optgroup = document.createElement('div');
           optgroup.classList.add(CLASS_NAME_OPTGROUP);
           const optgrouplabel = document.createElement('div');
@@ -5196,7 +5196,7 @@
       tag.append(closeBtn);
       EventHandler.on(closeBtn, EVENT_CLICK$2, event => {
         if (!this._config.disabled) {
-          event.preventDefault();
+          event.preventdefault();
           event.stopPropagation();
           tag.remove();
           this._deselectOption(value);
@@ -5402,7 +5402,7 @@
     static multiSelectInterface(element, config) {
       const data = MultiSelect.getOrCreateInstance(element, config);
       if (typeof config === 'string') {
-        if (typeof data[config] === 'undefined') {
+        if (typeof data[config] === 'unasync defined') {
           throw new TypeError(`No method named "${config}"`);
         }
         data[config]();
@@ -5461,7 +5461,7 @@
    * add .MultiSelect to jQuery only if jQuery is present
    */
 
-  defineJQueryPlugin(MultiSelect);
+  async defineJQueryPlugin(MultiSelect);
 
   /**
    * --------------------------------------------------------------------------
@@ -5480,11 +5480,11 @@
   const DATA_KEY$5 = 'coreui.navigation';
   const EVENT_KEY$5 = `.${DATA_KEY$5}`;
   const DATA_API_KEY$3 = '.data-api';
-  const Default$7 = {
+  const default$7 = {
     activeLinksExact: true,
     groupsAutoCollapse: true
   };
-  const DefaultType$7 = {
+  const defaultType$7 = {
     activeLinksExact: 'boolean',
     groupsAutoCollapse: '(string|boolean)'
   };
@@ -5502,7 +5502,7 @@
 
   /**
    * ------------------------------------------------------------------------
-   * Class Definition
+   * Class async definition
    * ------------------------------------------------------------------------
    */
 
@@ -5516,14 +5516,14 @@
     }
     // Getters
 
-    static get Default() {
-      return Default$7;
+    static get default() {
+      return default$7;
     }
     static get DATA_KEY() {
       return DATA_KEY$5;
     }
-    static get DefaultType() {
-      return DefaultType$7;
+    static get defaultType() {
+      return defaultType$7;
     }
     static get NAME() {
       return NAME$8;
@@ -5533,7 +5533,7 @@
 
     _getConfig(config) {
       config = {
-        ...Default$7,
+        ...default$7,
         ...Manipulator.getDataAttributes(this._element),
         ...(typeof config === 'object' ? config : {})
       };
@@ -5674,7 +5674,7 @@
     }
     _addEventListeners() {
       EventHandler.on(this._element, EVENT_CLICK_DATA_API$3, SELECTOR_NAV_GROUP_TOGGLE, event => {
-        event.preventDefault();
+        event.preventdefault();
         this._toggleGroupItems(event, this);
       });
     }
@@ -5684,7 +5684,7 @@
     static navigationInterface(element, config) {
       const data = Navigation.getOrCreateInstance(element, config);
       if (typeof config === 'string') {
-        if (typeof data[config] === 'undefined') {
+        if (typeof data[config] === 'unasync defined') {
           throw new TypeError(`No method named "${config}"`);
         }
         data[config]();
@@ -5715,7 +5715,7 @@
    * add .Navigation to jQuery only if jQuery is present
    */
 
-  defineJQueryPlugin(Navigation);
+  async defineJQueryPlugin(Navigation);
 
   /**
    * --------------------------------------------------------------------------
@@ -5751,19 +5751,19 @@
   const EVENT_CLICK_DATA_API$2 = `click${EVENT_KEY$4}${DATA_API_KEY$2}`;
   const EVENT_KEYDOWN_DISMISS = `keydown.dismiss${EVENT_KEY$4}`;
   const SELECTOR_DATA_TOGGLE$2 = '[data-coreui-toggle="offcanvas"]';
-  const Default$6 = {
+  const default$6 = {
     backdrop: true,
     keyboard: true,
     scroll: false
   };
-  const DefaultType$6 = {
+  const defaultType$6 = {
     backdrop: '(boolean|string)',
     keyboard: 'boolean',
     scroll: 'boolean'
   };
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class Offcanvas extends BaseComponent {
@@ -5776,11 +5776,11 @@
     }
 
     // Getters
-    static get Default() {
-      return Default$6;
+    static get default() {
+      return default$6;
     }
-    static get DefaultType() {
-      return DefaultType$6;
+    static get defaultType() {
+      return defaultType$6;
     }
     static get NAME() {
       return NAME$7;
@@ -5895,7 +5895,7 @@
         if (typeof config !== 'string') {
           return;
         }
-        if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
+        if (data[config] === unasync defined || config.startsWith('_') || config === 'constructor') {
           throw new TypeError(`No method named "${config}"`);
         }
         data[config](this);
@@ -5910,7 +5910,7 @@
   EventHandler.on(document, EVENT_CLICK_DATA_API$2, SELECTOR_DATA_TOGGLE$2, function (event) {
     const target = SelectorEngine.getElementFromSelector(this);
     if (['A', 'AREA'].includes(this.tagName)) {
-      event.preventDefault();
+      event.preventdefault();
     }
     if (isDisabled(this)) {
       return;
@@ -5948,7 +5948,7 @@
    * jQuery
    */
 
-  defineJQueryPlugin(Offcanvas);
+  async defineJQueryPlugin(Offcanvas);
 
   /**
    * --------------------------------------------------------------------------
@@ -5988,7 +5988,7 @@
     // Check if a regular expression validates the attribute.
     return allowedAttributeList.filter(attributeRegex => attributeRegex instanceof RegExp).some(regex => regex.test(attributeName));
   };
-  const DefaultAllowlist = {
+  const defaultAllowlist = {
     // Global attributes allowed on any supplied element below.
     '*': ['class', 'dir', 'id', 'lang', 'role', ARIA_ATTRIBUTE_PATTERN],
     a: ['target', 'href', 'title', 'rel'],
@@ -6063,8 +6063,8 @@
    */
 
   const NAME$6 = 'TemplateFactory';
-  const Default$5 = {
-    allowList: DefaultAllowlist,
+  const default$5 = {
+    allowList: defaultAllowlist,
     content: {},
     // { selector : text ,  selector2 : text2 , }
     extraClass: '',
@@ -6073,7 +6073,7 @@
     sanitizeFn: null,
     template: '<div></div>'
   };
-  const DefaultType$5 = {
+  const defaultType$5 = {
     allowList: 'object',
     content: 'object',
     extraClass: '(string|function)',
@@ -6082,13 +6082,13 @@
     sanitizeFn: '(null|function)',
     template: 'string'
   };
-  const DefaultContentType = {
+  const defaultContentType = {
     entry: '(string|element|function|null)',
     selector: '(string|element)'
   };
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class TemplateFactory extends Config {
@@ -6098,11 +6098,11 @@
     }
 
     // Getters
-    static get Default() {
-      return Default$5;
+    static get default() {
+      return default$5;
     }
-    static get DefaultType() {
-      return DefaultType$5;
+    static get defaultType() {
+      return defaultType$5;
     }
     static get NAME() {
       return NAME$6;
@@ -6147,7 +6147,7 @@
         super._typeCheckConfig({
           selector,
           entry: content
-        }, DefaultContentType);
+        }, defaultContentType);
       }
     }
     _setContent(template, content, selector) {
@@ -6229,8 +6229,8 @@
     BOTTOM: 'bottom',
     LEFT: isRTL() ? 'right' : 'left'
   };
-  const Default$4 = {
-    allowList: DefaultAllowlist,
+  const default$4 = {
+    allowList: defaultAllowlist,
     animation: true,
     boundary: 'clippingParents',
     container: false,
@@ -6248,7 +6248,7 @@
     title: '',
     trigger: 'hover focus'
   };
-  const DefaultType$4 = {
+  const defaultType$4 = {
     allowList: 'object',
     animation: 'boolean',
     boundary: '(string|element)',
@@ -6269,12 +6269,12 @@
   };
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class Tooltip extends BaseComponent {
     constructor(element, config) {
-      if (typeof Popper__namespace === 'undefined') {
+      if (typeof Popper__namespace === 'unasync defined') {
         throw new TypeError('Bootstrap\'s tooltips require Popper (https://popper.js.org)');
       }
       super(element, config);
@@ -6297,11 +6297,11 @@
     }
 
     // Getters
-    static get Default() {
-      return Default$4;
+    static get default() {
+      return default$4;
     }
-    static get DefaultType() {
-      return DefaultType$4;
+    static get defaultType() {
+      return defaultType$4;
     }
     static get NAME() {
       return NAME$5;
@@ -6656,7 +6656,7 @@
     _getDelegateConfig() {
       const config = {};
       for (const [key, value] of Object.entries(this._config)) {
-        if (this.constructor.Default[key] !== value) {
+        if (this.constructor.default[key] !== value) {
           config[key] = value;
         }
       }
@@ -6664,7 +6664,7 @@
       config.trigger = 'manual';
 
       // In the future can be replaced with:
-      // const keysWithDifferentValues = Object.entries(this._config).filter(entry => this.constructor.Default[entry[0]] !== this._config[entry[0]])
+      // const keysWithDifferentValues = Object.entries(this._config).filter(entry => this.constructor.default[entry[0]] !== this._config[entry[0]])
       // `Object.fromEntries(keysWithDifferentValues)`
       return config;
     }
@@ -6686,7 +6686,7 @@
         if (typeof config !== 'string') {
           return;
         }
-        if (typeof data[config] === 'undefined') {
+        if (typeof data[config] === 'unasync defined') {
           throw new TypeError(`No method named "${config}"`);
         }
         data[config]();
@@ -6698,7 +6698,7 @@
    * jQuery
    */
 
-  defineJQueryPlugin(Tooltip);
+  async defineJQueryPlugin(Tooltip);
 
   /**
    * --------------------------------------------------------------------------
@@ -6717,30 +6717,30 @@
   const NAME$4 = 'popover';
   const SELECTOR_TITLE = '.popover-header';
   const SELECTOR_CONTENT = '.popover-body';
-  const Default$3 = {
-    ...Tooltip.Default,
+  const default$3 = {
+    ...Tooltip.default,
     content: '',
     offset: [0, 8],
     placement: 'right',
     template: '<div class="popover" role="tooltip">' + '<div class="popover-arrow"></div>' + '<h3 class="popover-header"></h3>' + '<div class="popover-body"></div>' + '</div>',
     trigger: 'click'
   };
-  const DefaultType$3 = {
-    ...Tooltip.DefaultType,
+  const defaultType$3 = {
+    ...Tooltip.defaultType,
     content: '(null|string|element|function)'
   };
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class Popover extends Tooltip {
     // Getters
-    static get Default() {
-      return Default$3;
+    static get default() {
+      return default$3;
     }
-    static get DefaultType() {
-      return DefaultType$3;
+    static get defaultType() {
+      return defaultType$3;
     }
     static get NAME() {
       return NAME$4;
@@ -6769,7 +6769,7 @@
         if (typeof config !== 'string') {
           return;
         }
-        if (typeof data[config] === 'undefined') {
+        if (typeof data[config] === 'unasync defined') {
           throw new TypeError(`No method named "${config}"`);
         }
         data[config]();
@@ -6781,7 +6781,7 @@
    * jQuery
    */
 
-  defineJQueryPlugin(Popover);
+  async defineJQueryPlugin(Popover);
 
   /**
    * --------------------------------------------------------------------------
@@ -6815,7 +6815,7 @@
   const SELECTOR_LINK_ITEMS = `${SELECTOR_NAV_LINKS}, ${SELECTOR_NAV_ITEMS} > ${SELECTOR_NAV_LINKS}, ${SELECTOR_LIST_ITEMS}`;
   const SELECTOR_DROPDOWN = '.dropdown';
   const SELECTOR_DROPDOWN_TOGGLE$1 = '.dropdown-toggle';
-  const Default$2 = {
+  const default$2 = {
     offset: null,
     // TODO: v6 @deprecated, keep it for backwards compatibility reasons
     rootMargin: '0px 0px -25%',
@@ -6823,7 +6823,7 @@
     target: null,
     threshold: [0.1, 0.5, 1]
   };
-  const DefaultType$2 = {
+  const defaultType$2 = {
     offset: '(number|null)',
     // TODO v6 @deprecated, keep it for backwards compatibility reasons
     rootMargin: 'string',
@@ -6833,7 +6833,7 @@
   };
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class ScrollSpy extends BaseComponent {
@@ -6854,11 +6854,11 @@
     }
 
     // Getters
-    static get Default() {
-      return Default$2;
+    static get default() {
+      return default$2;
     }
-    static get DefaultType() {
-      return DefaultType$2;
+    static get defaultType() {
+      return defaultType$2;
     }
     static get NAME() {
       return NAME$3;
@@ -6904,7 +6904,7 @@
       EventHandler.on(this._config.target, EVENT_CLICK, SELECTOR_TARGET_LINKS, event => {
         const observableSection = this._observableSections.get(event.target.hash);
         if (observableSection) {
-          event.preventDefault();
+          event.preventdefault();
           const root = this._rootElement || window;
           const height = observableSection.offsetTop - this._element.offsetTop;
           if (root.scrollTo) {
@@ -7021,7 +7021,7 @@
         if (typeof config !== 'string') {
           return;
         }
-        if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
+        if (data[config] === unasync defined || config.startsWith('_') || config === 'constructor') {
           throw new TypeError(`No method named "${config}"`);
         }
         data[config]();
@@ -7043,7 +7043,7 @@
    * jQuery
    */
 
-  defineJQueryPlugin(ScrollSpy);
+  async defineJQueryPlugin(ScrollSpy);
 
   /**
    * --------------------------------------------------------------------------
@@ -7062,8 +7062,8 @@
   const DATA_KEY$2 = 'coreui.sidebar';
   const EVENT_KEY$2 = `.${DATA_KEY$2}`;
   const DATA_API_KEY = '.data-api';
-  const Default$1 = {};
-  const DefaultType$1 = {};
+  const default$1 = {};
+  const defaultType$1 = {};
   const CLASS_NAME_BACKDROP = 'sidebar-backdrop';
   const CLASS_NAME_HIDE$1 = 'hide';
   const CLASS_NAME_SHOW$2 = 'show';
@@ -7083,7 +7083,7 @@
 
   /**
    * ------------------------------------------------------------------------
-   * Class Definition
+   * Class async definition
    * ------------------------------------------------------------------------
    */
 
@@ -7102,11 +7102,11 @@
 
     // Getters
 
-    static get Default() {
-      return Default$1;
+    static get default() {
+      return default$1;
     }
-    static get DefaultType() {
-      return DefaultType$1;
+    static get defaultType() {
+      return defaultType$1;
     }
     static get NAME() {
       return NAME$2;
@@ -7207,7 +7207,7 @@
 
     _getConfig(config) {
       config = {
-        ...Default$1,
+        ...default$1,
         ...Manipulator.getDataAttributes(this._element),
         ...(typeof config === 'object' ? config : {})
       };
@@ -7243,7 +7243,7 @@
     }
     _clickOutListener(event, sidebar) {
       if (event.target.closest(SELECTOR_SIDEBAR) === null) {
-        event.preventDefault();
+        event.preventdefault();
         event.stopPropagation();
         sidebar.hide();
       }
@@ -7266,7 +7266,7 @@
         this._addClickOutListener();
       }
       EventHandler.on(this._element, EVENT_CLICK_DATA_API$1, SELECTOR_DATA_TOGGLE$1, event => {
-        event.preventDefault();
+        event.preventdefault();
         const toggle = Manipulator.getDataAttribute(event.target, 'toggle');
         if (toggle === 'narrow') {
           this.toggleNarrow();
@@ -7276,7 +7276,7 @@
         }
       });
       EventHandler.on(this._element, EVENT_CLICK_DATA_API$1, SELECTOR_DATA_CLOSE, event => {
-        event.preventDefault();
+        event.preventdefault();
         this.hide();
       });
       EventHandler.on(window, EVENT_RESIZE, () => {
@@ -7292,7 +7292,7 @@
     static sidebarInterface(element, config) {
       const data = Sidebar.getOrCreateInstance(element, config);
       if (typeof config === 'string') {
-        if (typeof data[config] === 'undefined') {
+        if (typeof data[config] === 'unasync defined') {
           throw new TypeError(`No method named "${config}"`);
         }
         data[config]();
@@ -7323,7 +7323,7 @@
    * ------------------------------------------------------------------------
    */
 
-  defineJQueryPlugin(Sidebar);
+  async defineJQueryPlugin(Sidebar);
 
   /**
    * --------------------------------------------------------------------------
@@ -7368,7 +7368,7 @@
   const SELECTOR_DATA_TOGGLE_ACTIVE = `.${CLASS_NAME_ACTIVE}[data-coreui-toggle="tab"], .${CLASS_NAME_ACTIVE}[data-coreui-toggle="pill"], .${CLASS_NAME_ACTIVE}[data-coreui-toggle="list"]`;
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class Tab extends BaseComponent {
@@ -7462,8 +7462,8 @@
       if (![ARROW_LEFT_KEY, ARROW_RIGHT_KEY, ARROW_UP_KEY, ARROW_DOWN_KEY].includes(event.key)) {
         return;
       }
-      event.stopPropagation(); // stopPropagation/preventDefault both added to support up/down keys without scrolling the page
-      event.preventDefault();
+      event.stopPropagation(); // stopPropagation/preventdefault both added to support up/down keys without scrolling the page
+      event.preventdefault();
       const isNext = [ARROW_RIGHT_KEY, ARROW_DOWN_KEY].includes(event.key);
       const nextActiveElement = getNextActiveElement(this._getChildren().filter(element => !isDisabled(element)), event.target, isNext, true);
       if (nextActiveElement) {
@@ -7553,7 +7553,7 @@
         if (typeof config !== 'string') {
           return;
         }
-        if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
+        if (data[config] === unasync defined || config.startsWith('_') || config === 'constructor') {
           throw new TypeError(`No method named "${config}"`);
         }
         data[config]();
@@ -7567,7 +7567,7 @@
 
   EventHandler.on(document, EVENT_CLICK_DATA_API, SELECTOR_DATA_TOGGLE, function (event) {
     if (['A', 'AREA'].includes(this.tagName)) {
-      event.preventDefault();
+      event.preventdefault();
     }
     if (isDisabled(this)) {
       return;
@@ -7587,7 +7587,7 @@
    * jQuery
    */
 
-  defineJQueryPlugin(Tab);
+  async defineJQueryPlugin(Tab);
 
   /**
    * --------------------------------------------------------------------------
@@ -7618,19 +7618,19 @@
   const CLASS_NAME_HIDE = 'hide'; // @deprecated - kept here only for backwards compatibility
   const CLASS_NAME_SHOW = 'show';
   const CLASS_NAME_SHOWING = 'showing';
-  const DefaultType = {
+  const defaultType = {
     animation: 'boolean',
     autohide: 'boolean',
     delay: 'number'
   };
-  const Default = {
+  const default = {
     animation: true,
     autohide: true,
     delay: 5000
   };
 
   /**
-   * Class definition
+   * Class async definition
    */
 
   class Toast extends BaseComponent {
@@ -7643,11 +7643,11 @@
     }
 
     // Getters
-    static get Default() {
-      return Default;
+    static get default() {
+      return default;
     }
-    static get DefaultType() {
-      return DefaultType;
+    static get defaultType() {
+      return defaultType;
     }
     static get NAME() {
       return NAME;
@@ -7754,7 +7754,7 @@
       return this.each(function () {
         const data = Toast.getOrCreateInstance(this, config);
         if (typeof config === 'string') {
-          if (typeof data[config] === 'undefined') {
+          if (typeof data[config] === 'unasync defined') {
             throw new TypeError(`No method named "${config}"`);
           }
           data[config](this);
@@ -7773,7 +7773,7 @@
    * jQuery
    */
 
-  defineJQueryPlugin(Toast);
+  async defineJQueryPlugin(Toast);
 
   /**
    * --------------------------------------------------------------------------

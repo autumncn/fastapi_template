@@ -2,6 +2,7 @@ import datetime
 import time
 from fastapi.params import Form
 from fastapi import Depends, APIRouter, HTTPException
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Session
 from typing import List, Optional, Dict, Type
 from starlette.responses import RedirectResponse, FileResponse
@@ -14,41 +15,41 @@ from db.crud.menus import get_menu, create_menu, get_menus, delete_menu_by_id, m
 from db.database import get_db
 from db.schemas.menus import MenuCreate, Menu, MenuModify
 from logs.logger import logger
-from service.ipService import read_ip_detail, ipv4_check
-from service.menuService import get_menu_list
+from service.ipService import IpService
+from service.menuService import MenuService
 from utils.JsonUtil import object_to_json
 from utils.ResponseUtil import JsonResponse
 
 router = APIRouter()
 
 @router.get("/tool_ip")
-def read_get_user_ip(request: Request):
+async def read_get_user_ip(request: Request):
     user_ip = request.client.host
     check_the_ip = user_ip
-    ip_detail = read_ip_detail(check_the_ip)['result']
+    ip_detail = await IpService().read_ip_detail(check_the_ip)['result']
     print(ip_detail)
     print(ip_detail['latwgs'],ip_detail['lngwgs'])
     return templates.TemplateResponse("view/tools/tool_ip.html", {"request": request, "ip_detail": ip_detail, "check_the_ip": check_the_ip})
 
 @router.post("/tool_ip")
-def read_check_ip(request: Request, check_the_ip: Optional[str] = Form(...)):
+async def read_check_ip(request: Request, check_the_ip: Optional[str] = Form(...)):
     user_ip = request.client.host
     print(user_ip, check_the_ip)
     if check_the_ip is None:
         check_the_ip = user_ip
 
-    if ipv4_check(check_the_ip) is None:
+    if await IpService().ipv4_check(check_the_ip) is None:
         request.session["error"] = _("incorrect_ip_format") + ": <" + check_the_ip + ">"
         return RedirectResponse('/tools/tool_ip', status_code=status.HTTP_302_FOUND)
 
-    ip_detail = read_ip_detail(check_the_ip)['result']
+    ip_detail = IpService().read_ip_detail(check_the_ip)['result']
     print(ip_detail)
     print(ip_detail['latwgs'],ip_detail['lngwgs'])
     return templates.TemplateResponse("view/tools/tool_ip.html", {"request": request, "ip_detail": ip_detail, "check_the_ip": check_the_ip})
 
 
 @router.get("/create", response_model=Menu)
-def create_menu_get(request: Request, db: Session = Depends(get_db)):
+async def create_menu_get(request: Request, db: AsyncSession = Depends(get_db)):
     new_menu = MenuCreate
     return templates.TemplateResponse("view/menus/menu_create.html", {"request": request, "new_menu": new_menu})
 
@@ -66,7 +67,7 @@ async def create_menu_post(request: Request,
         sort: Optional[int] = Form(...),
         level: Optional[int] = Form(...),
         menu_status: int = Form(...),
-        db: Session = Depends(get_db)
+        db: AsyncSession = Depends(get_db)
 ):
     db_menu = get_menu_by_name(menu_name=menu_name, db=db)
     if db_menu:
@@ -95,7 +96,7 @@ async def create_menu_post(request: Request,
     return response
 
 @router.get("/{id}/view")
-async def read_menu_by_id(request: Request, id: str, db: Session = Depends(get_db)):
+async def read_menu_by_id(request: Request, id: str, db: AsyncSession = Depends(get_db)):
     menu = get_menu(db, menu_id=int(id))
     if menu is None:
         request.session["error"] = _("menu_not_found")
@@ -105,7 +106,7 @@ async def read_menu_by_id(request: Request, id: str, db: Session = Depends(get_d
     return templates.TemplateResponse("view/menus/menu_view.html", {"request": request, "menu": new_menu})
 
 @router.get("/{id}/modify")
-async def edit_menu_by_id_get(request: Request, id: str, db: Session = Depends(get_db)):
+async def edit_menu_by_id_get(request: Request, id: str, db: AsyncSession = Depends(get_db)):
     menu = get_menu(db, menu_id=int(id))
     if menu is None:
         request.session["error"] = _("menu_not_found")
@@ -129,7 +130,7 @@ async def edit_menu_by_id_post(request: Request,
         sort: Optional[int] = Form(...),
         level: Optional[int] = Form(...),
         menu_status: int = Form(...),
-        db: Session = Depends(get_db)):
+        db: AsyncSession = Depends(get_db)):
     menu = get_menu(db, menu_id=int(menu_id))
     if menu is None:
         request.session["error"] = _("menu_not_found")
@@ -157,7 +158,7 @@ async def edit_menu_by_id_post(request: Request,
     return RedirectResponse('/menus', status_code=status.HTTP_302_FOUND)
 
 @router.post("/{id}/delete", response_model=Menu)
-async def delete_menu(request: Request, id: str, db: Session = Depends(get_db)
+async def delete_menu(request: Request, id: str, db: AsyncSession = Depends(get_db)
 ):
     delete_menu_by_id(db, id)
     request.session["message"] = _("success_deleted")
@@ -165,7 +166,7 @@ async def delete_menu(request: Request, id: str, db: Session = Depends(get_db)
     return response
 
 @router.get("/menu_list")
-def get_sys_menus(request: Request, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    menu_items = get_menu_list(skip=skip, limit=limit, db=db)
+async def get_sys_menus(request: Request, skip: int = 0, limit: int = 100, db: AsyncSession = Depends(get_db)):
+    menu_items = await MenuService().get_menu_list(skip=skip, limit=limit)
 
     return JsonResponse(code=200, data=menu_items, message="Success")

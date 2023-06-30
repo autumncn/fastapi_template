@@ -2,6 +2,7 @@ import datetime
 import time
 from fastapi.params import Form
 from fastapi import Depends, APIRouter, HTTPException
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Session
 from typing import List
 from starlette.responses import RedirectResponse, FileResponse
@@ -21,13 +22,13 @@ from utils.JsonUtil import object_to_json
 router = APIRouter()
 
 @router.get("/", response_model=List[SdTask])
-def read_task_list(request: Request, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+async def read_task_list(request: Request, skip: int = 0, limit: int = 100, db: AsyncSession = Depends(get_db)):
     tasks = get_sd_tasks(db, skip=skip, limit=limit)
     new_task = SdTaskCreate
     return templates.TemplateResponse("view/tasks/tasks.html", {"request": request, "task_list": tasks, "new_task": new_task})
 
 @router.get("/{id}/view")
-async def read_task_by_id(request: Request, id: str, db: Session = Depends(get_db)):
+async def read_task_by_id(request: Request, id: str, db: AsyncSession = Depends(get_db)):
     task = get_sd_task(db, sdTask_id=int(id))
     if task is None:
         # raise HTTPException(status_code=404, detail=_("task_not_found"))
@@ -38,7 +39,7 @@ async def read_task_by_id(request: Request, id: str, db: Session = Depends(get_d
     return templates.TemplateResponse("view/tasks/task_view.html", {"request": request, "task": new_task})
 
 @router.get("/{id}/modify")
-async def edit_task_by_id_get(request: Request, id: str, db: Session = Depends(get_db)):
+async def edit_task_by_id_get(request: Request, id: str, db: AsyncSession = Depends(get_db)):
     task = get_sd_task(db, sdTask_id=int(id))
     if task is None:
         # raise HTTPException(status_code=404, detail=_("task_not_found"))
@@ -53,7 +54,7 @@ async def edit_task_by_id_get(request: Request, id: str, db: Session = Depends(g
 async def edit_task_by_id_post(request: Request,
         task_id: str = Form(...),
         task_status: int = Form(...),
-        db: Session = Depends(get_db)):
+        db: AsyncSession = Depends(get_db)):
     task = get_sd_task(db, sdTask_id=int(task_id))
     if task is None:
         # raise HTTPException(status_code=404, detail=_("task_not_found"))
@@ -73,7 +74,7 @@ async def edit_task_by_id_post(request: Request,
     return RedirectResponse('/tasks', status_code=status.HTTP_302_FOUND)
 
 @router.post("/{id}/delete", response_model=SdTask)
-async def delete_task(request: Request, id: str, db: Session = Depends(get_db)):
+async def delete_task(request: Request, id: str, db: AsyncSession = Depends(get_db)):
     delete_sd_task_by_id(db, int(id))
     request.session["message"] = _("success_deleted")
 

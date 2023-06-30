@@ -28,13 +28,13 @@ class aescrypt():
 
         #这里的密钥长度必须是16、24或32，目前16位的就够用了
 
-    def add_16(self,par):
+    async def add_16(self,par):
         par = par.encode(self.encode_)
         while len(par) % 16 != 0:
             par += b'\x00'
         return par
 
-    def encrypt(self,text):
+    async def encrypt(self,text):
         text = self.add_16(text)
         try:
             self.encrypt_text = self.aes.encrypt(text)
@@ -43,7 +43,7 @@ class aescrypt():
             print(e)
             return ''
 
-    def decrypt(self,text):
+    async def decrypt(self,text):
         text = base64.decodebytes(text.encode(self.encode_))
         try:
             self.decrypt_text = self.aes.decrypt(text)
@@ -63,13 +63,13 @@ class mycrypt():
         # self.key = self.add_16(key)
         # self.iv = binascii.hexlify(os.urandom(8))  # even used without binascii.hexlify)
 
-    def add_16(self,par):
+    async def add_16(self,par):
         par = par.encode(self.encode_)
         while len(par) % 16 != 0:
             par += b'\x00'
         return par
 
-    def encrypt(self, data):
+    async def encrypt(self, data):
         bs = AES.block_size
         self.iv = Random.new().read(bs)
         pad = lambda s: s + (bs - len(s) % bs) * chr(bs - len(s) % bs)
@@ -78,7 +78,7 @@ class mycrypt():
         data = self.iv + data
         return (data)
 
-    def decrypt(self, data):
+    async def decrypt(self, data):
         bs = AES.block_size
         if len(data) <= bs:
             return (data)
@@ -88,14 +88,14 @@ class mycrypt():
         data = unpad(cipher.decrypt(data[bs:]))
         return (data)
 
-def get_uuid():
+async def get_uuid():
     get_randomnumber_uuid = uuid.uuid4()  # 根据 随机数生成 uuid , 既然是随机就有可能真的遇到相同的，但这就像中奖似的，几率超小，因为是随机而且使用还方便，所以使用这个的还是比较多的。
     return get_randomnumber_uuid
 
-def get_uuid_md5(namespace,name):
+async def get_uuid_md5(namespace,name):
     get_specifiedstr_uuid = uuid.uuid3(namespace,name)  # 里面的namespace和具体的字符串都是我们指定的
     return get_specifiedstr_uuid
 
-def get_uuid_by_sha1(namespace,name):
+async def get_uuid_by_sha1(namespace,name):
     get_specifiedstr_SHA1_uuid = uuid.uuid5(namespace,name)  # 和uuid3()貌似并没有什么不同，写法一样，也是由用户来指定namespace和字符串，不过这里用的散列并不是MD5，而是SHA1.
     return get_specifiedstr_SHA1_uuid

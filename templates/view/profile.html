@@ -83,7 +83,7 @@ function edit_lang(button) {
 
     // 填充数据
     titleElement.textContent = "{{ _('change_user_lang') }}";
-    new_html = '<form action="/profile" enctype="application/x-www-form-urlencoded" method="POST"><div class="mb-0"><label class="mb-1 small text-muted">{{ _("language") }}</label><select class="form-select" name="set_lang" aria-label="Default select User Language"><option selected disabled>{{ _("--------") }}</option><option value="en" {% if user.language=='en' %}selected{% endif %}>{{ _("english") }}</option><option value="zh" {% if user.language=='zh' %}selected{% endif %}>{{ _("chinese") }}</option></select></div>';
+    new_html = '<form action="/profile" enctype="application/x-www-form-urlencoded" method="POST"><div class="mb-0"><label class="mb-1 small text-muted">{{ _("language") }}</label><select class="form-select" name="set_lang" aria-label="default select User Language"><option selected disabled>{{ _("--------") }}</option><option value="en" {% if user.language=='en' %}selected{% endif %}>{{ _("english") }}</option><option value="zh" {% if user.language=='zh' %}selected{% endif %}>{{ _("chinese") }}</option></select></div>';
     footer_html = '<div class="modal-footer"><button class="btn btn-secondary" type="button" data-bs-dismiss="modal">{{ _("close") }}</button><button class="btn btn-primary" type="submit">{{ _("save") }}</button></div></form>';
     console.log(new_html + footer_html)
     descriptionElement.innerHTML = new_html + footer_html;

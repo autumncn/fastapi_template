@@ -29,7 +29,7 @@ from core.config import settings
 from dependencies import templates
 from logs.logger import logger
 from register.exception import resp_500_error_page, resp_403_error_page
-from service.menuService import get_menu_list, find_parent_menu, get_menu_list_by_user_permission, get_menu_path_by_user_permission
+from service.menuService import MenuService
 from utils.JsonUtil import check_list_in_str, obj_as_json
 
 trust_hosts = [
@@ -176,7 +176,7 @@ def register_middleware(app: FastAPI):
             # )
             # return resp_403(msg=f'menu_is_not_accessible！')
 
-        currenty_menus = find_parent_menu('/' + current_menu, db=next(get_db()))
+        currenty_menus = await MenuService().find_parent_menu(menu_path='/' + current_menu)
         request.state.currenty_menus = currenty_menus
 
         # menu_items = get_menu_list(skip=0, limit=100, db=next(get_db()))

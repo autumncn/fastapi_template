@@ -2,6 +2,7 @@ import datetime
 import time
 from fastapi.params import Form
 from fastapi import Depends, APIRouter, HTTPException
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Session
 from typing import List
 from starlette.responses import RedirectResponse, FileResponse
@@ -22,14 +23,14 @@ from utils.JsonUtil import object_to_json
 router = APIRouter()
 
 @router.get("/", response_model=List[User])
-def read_user_list(request: Request, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+async def read_user_list(request: Request, skip: int = 0, limit: int = 100, db: AsyncSession = Depends(get_db)):
     users = get_users(db, skip=skip, limit=limit)
     print(users)
     new_user = UserCreate
     return templates.TemplateResponse("view/users/users.html", {"request": request, "user_list": users, "new_user": new_user})
 
 @router.get("/create", response_model=User)
-def create_user_get(request: Request, db: Session = Depends(get_db)):
+async def create_user_get(request: Request, db: AsyncSession = Depends(get_db)):
     new_user = UserCreate
     user_role_list = get_permision_list()
     return templates.TemplateResponse("view/users/user_create.html", {"request": request, "new_user": new_user, "user_role_list": user_role_list})
@@ -42,7 +43,7 @@ async def create_user_post(request: Request,
         user_type: str = Form(...),
         user_role_id: int = Form(...),
         user_lang: str = Form(...),
-        db: Session = Depends(get_db)
+        db: AsyncSession = Depends(get_db)
 ):
     print(email, first_name, last_name, user_type, user_role_id, user_lang)
     login_user = request.cookies.get("login")
@@ -75,7 +76,7 @@ async def create_user_post(request: Request,
     return response
 
 @router.get("/{id}/view")
-async def read_user_by_id(request: Request, id: str, db: Session = Depends(get_db)):
+async def read_user_by_id(request: Request, id: str, db: AsyncSession = Depends(get_db)):
     user = get_user(db, user_id=int(id))
     if user is None:
         # raise HTTPException(status_code=404, detail=_("user_not_found"))
@@ -91,7 +92,7 @@ async def read_user_by_id(request: Request, id: str, db: Session = Depends(get_d
     return templates.TemplateResponse("view/users/user_view.html", {"request": request, "user": new_user})
 
 @router.get("/{id}/modify")
-async def edit_user_by_id_get(request: Request, id: str, db: Session = Depends(get_db)):
+async def edit_user_by_id_get(request: Request, id: str, db: AsyncSession = Depends(get_db)):
     user = get_user(db, user_id=int(id))
     if user is None:
         # raise HTTPException(status_code=404, detail=_("user_not_found"))
@@ -114,7 +115,7 @@ async def edit_user_by_id_post(request: Request,
         first_name: str = Form(...),
         last_name: str = Form(...),
         user_role_id: int = Form(...),
-        db: Session = Depends(get_db)):
+        db: AsyncSession = Depends(get_db)):
     login_user = request.cookies.get("login")
     user = get_user(db, user_id=int(user_id))
     if user is None:
@@ -151,7 +152,7 @@ async def edit_user_by_id_post(request: Request,
     return RedirectResponse('/users', status_code=status.HTTP_302_FOUND)
 
 @router.post("/{id}/delete", response_model=User)
-async def delete_user(request: Request, id: str, db: Session = Depends(get_db)
+async def delete_user(request: Request, id: str, db: AsyncSession = Depends(get_db)
 ):
     delete_user_by_id(db, id)
     request.session["message"] = _("success_deleted")

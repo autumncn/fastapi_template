@@ -594,7 +594,7 @@ coding:
     - microchip
     - mug-saucer
     - network-wired
-    - notdef
+    - notasync def
     - qrcode
     - rectangle-xmark
     - shield
@@ -3042,7 +3042,7 @@ writing:
     - folder-open
     - keyboard
     - newspaper
-    - notdef
+    - notasync def
     - note-sticky
     - paper-plane
     - paperclip

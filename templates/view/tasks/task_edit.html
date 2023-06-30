@@ -49,7 +49,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="small mb-1">{{ _('status') }}</label>
-                            <select class="form-select" name="task_status" aria-label="Default select Task Status">
+                            <select class="form-select" name="task_status" aria-label="default select Task Status">
                                 <option selected disabled>{{ _('--------') }}</option>
                                 <option value="-2" {% if task.status==-2 %}selected{% endif %}>{{ _('unknown') }}</option>
                                 <option value="-1" {% if task.status==-1 %}selected{% endif %}>{{ _('failure') }}</option>

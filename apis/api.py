@@ -10,6 +10,7 @@ from fastapi import Request,Query
 
 from fastapi.params import Form
 from fastapi import Depends, APIRouter,HTTPException
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Session
 
 from core.celeryConfig import celery_app
@@ -28,7 +29,7 @@ router = APIRouter()
 
 
 @router.get("/user")
-async def api_read_user(id: str,db: Session = Depends(get_db)):
+async def api_read_user(id: str,db: AsyncSession = Depends(get_db)):
     # print(id)
     item = get_user(db, item_id=int(id))
     # json_compatible_item_data = jsonable_encoder(item)
@@ -36,7 +37,7 @@ async def api_read_user(id: str,db: Session = Depends(get_db)):
     return JsonResponse(data=json_compatible_item_data, code=200, message="Success")
 
 @router.get("/item_list", response_model=List[User])
-async def api_read_user_list(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+async def api_read_user_list(skip: int = 0, limit: int = 100, db: AsyncSession = Depends(get_db)):
     items = get_users(db, skip=skip, limit=limit)
     item_list_json = model_list(items)
     return JsonResponse(code=200, data=item_list_json, message="Success")
@@ -49,7 +50,7 @@ async def api_read_time():
 
 # @shared_task
 @celery_app.task
-def get_divide(x, y):
+async def get_divide(x, y):
     logger.info("get_divide start")
     result = float(x)/float(y)
     time.sleep(10)
@@ -110,7 +111,7 @@ async def test_redis(request: Request, num: int=Query(123, title="参数num")):
     return {"msg": v}
 
 @router.post("/user/create", response_model=User)
-def create_user_detail(user: UserCreate, db: Session = Depends(get_db)):
+async def create_user_detail(user: UserCreate, db: AsyncSession = Depends(get_db)):
     db_user = get_user_by_email(email=user.email, db=db)
     if db_user:
         raise HTTPException(status_code=400, detail="Email already registered")

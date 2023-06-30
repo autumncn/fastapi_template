@@ -12,7 +12,7 @@ from core.error import AccessTokenFail
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")  # 加密密码
 
-def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
+async def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     to_encode = data.copy()
     if expires_delta:
         expire = datetime.utcnow() + expires_delta
@@ -30,15 +30,15 @@ async def check_jwt_token(token: Optional[str] = Header(...)) -> Union[str, Any]
     except Exception as e:  # jwt.JWTError, jwt.ExpiredSignatureError, AttributeError
         raise AccessTokenFail(f'token已过期! -- {e}')
 
-def get_password_hash(password: str) -> str:
+async def get_password_hash(password: str) -> str:
     """ 加密明文密码 """
     return pwd_context.hash(password)
 
-def verify_password(password: str, hashed_password: str) -> bool:
+async def verify_password(password: str, hashed_password: str) -> bool:
     """ 验证明文密码 与 加密后的密码 是否一致 """
     return pwd_context.verify(password, hashed_password)
 
-def create_uid():
+async def create_uid():
     m = hashlib.md5(str(time.perf_counter()).encode("utf-8"))
     return str(m.hexdigest())
 
